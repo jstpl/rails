@@ -112,6 +112,19 @@
 
         var router = Router(routes);
         router.init();
+
+        $("a").each(function(index, element) {
+            $(element).click(function (event) {
+                var el = $(event.target);
+                var uri = el.attr('href');
+                uri = _.trim(uri, '#/');
+                uri = '/' + uri;
+                console.log(uri);
+                bundle.helper.url.setUrl(uri);
+                return false;
+            });
+        });
+
     });
 </script>
 
