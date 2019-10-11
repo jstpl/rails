@@ -12,32 +12,37 @@
 
     $(function () {
 
-        namespace.define('bundle.contact.store');
+        namespace.define('bundle.contact.enum');
 
-        bundle.contact.store.contactActions = {
-            EDIT: 'EDIT',
+        var actionEnum = {
+            update: 'update',
         };
 
         var userReducer = function(state, action) {
             if (state === undefined) {
                 state = {};
             }
-            if (action.type === bundle.contact.store.contactActions.EDIT) {
+            if (action.type === actionEnum.update) {
                 state = _.clone(action.data);
                 container.event.trigger('bundle.contact.store.contact.update', state);
             }
             return state;
         };
 
-        bundle.contact.store.contact = Redux.createStore(userReducer);
-        bundle.contact.store.contact.update = function (contactEntity) {
-            bundle.contact.store.contact.dispatch({
-                type: bundle.contact.store.contactActions.EDIT,
-                data: contactEntity,
-            });
-        };
-        bundle.contact.store.contact.one = function () {
-            return bundle.contact.store.contact.getState();
+        var store = Redux.createStore(userReducer);
+
+        namespace.define('bundle.contact.store');
+
+        bundle.contact.store.contact = {
+            update: function (contactEntity) {
+                store.dispatch({
+                    type: actionEnum.update,
+                    data: contactEntity,
+                });
+            },
+            one: function () {
+                return store.getState();
+            },
         };
 
     });
