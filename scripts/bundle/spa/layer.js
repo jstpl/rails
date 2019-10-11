@@ -17,7 +17,6 @@ $(function () {
         },
 
         show: function (request) {
-            this._hideAll();
             var layerWrapper = this.getModuleLayer(request);
             layerWrapper.show();
         },
@@ -30,7 +29,7 @@ $(function () {
             $('#app').append(layerHtml);
         },
 
-        _hideAll: function () {
+        hideAll: function () {
             $('#app div.page-layer').hide();
         },
 
@@ -56,13 +55,12 @@ $(function () {
                     if (self.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
                     }
-
-
                 }
             });
         },
 
         run: function (requestSource) {
+            bundle.spa.layer.hideAll();
             var request = _.clone(requestSource);
             this.prepareRequest(request);
             var callback = function () {
@@ -78,12 +76,11 @@ $(function () {
         },
 
         doRequest: function (request, callback) {
-            var self = this;
             var isExists = bundle.spa.layer.has(request);
             if (isExists) {
                 callback();
             } else {
-                self.load(request, callback);
+                this.load(request, callback);
             }
         },
 

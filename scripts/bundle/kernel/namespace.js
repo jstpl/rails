@@ -88,26 +88,28 @@ $(function() {
             return className;
         },
 
-        requireClass: function(className, callback) {
+        requireClass: function(classNameSource, callback) {
+            var className = classNameSource;
             callback = _.defaultTo(callback, function () {});
             if(this.isDefined(className)) {
                 callback();
-                return;
+                return className;
             }
             className = this.getAlias(className);
             if(this.isDefined(className)) {
                 callback();
-                return;
+                return className;
             }
             var scriptClassArr = className.split('.');
             var scriptUrl = '/' + scriptClassArr.join('/') + '.js';
             if(store.loaded[scriptUrl] === true) {
                 callback();
-                return;
+                return className;
             }
             this.requireScript(scriptUrl, callback);
             store.loaded[scriptUrl] = true;
             console.info('Script loaded "' + scriptUrl + '"!');
+            return this.get(classNameSource);
         },
 
         requireScript: function(url, callback) {
@@ -127,6 +129,7 @@ $(function() {
          * @returns {*|boolean}
          */
         isDefined: function(path, value) {
+            //path = this.getAlias(path);
             value = value === undefined ? window : value;
             //value = bundle.helper.value.default(value, window);
             var arr = path.split('.');
@@ -140,6 +143,7 @@ $(function() {
          * @param namespace
          */
         define: function(namespace) {
+            //namespace = this.getAlias(namespace);
             var arr = namespace.split('.');
             helper.forgeNamespaceRecursive(arr, window);
         },
@@ -150,6 +154,7 @@ $(function() {
          * @returns {*}
          */
         get: function(namespace) {
+            //namespace = this.getAlias(namespace);
             var arr = namespace.split('.');
             return helper.forgeNamespaceRecursive(arr, window);
         },
