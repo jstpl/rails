@@ -14,7 +14,7 @@ Thumbs.db
 /.idea
 
 # vendor dir
-/*/vendor
+#/*/vendor
 
 # Mac DS_Store Files
 .DS_Store
