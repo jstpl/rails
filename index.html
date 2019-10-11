@@ -69,17 +69,75 @@
 
 <script src="/scripts/module/bonus/bonusModule.js"></script>
 
-<script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+<script src="/vendor/director/director-1.2.6.min.js"></script>
 
 <script>
     $(function () {
         /** Запуск приложения */
         bundle.legalbet.component.bootstrap.run();
 
-        var showApp = function (name) {
-            $('#app div').hide();
-            $('#app-' + name).show();
+        var layer = {
+            getModuleLayer: function (moduleName, pageName) {
+                return $('#app-' + moduleName);
+            },
+
+            has: function (moduleName, pageName) {
+                var layer = this.getModuleLayer(moduleName, pageName);
+                return layer.length;
+            },
+
+            show: function (moduleName, pageName) {
+                var layer = this.getModuleLayer(moduleName, pageName);
+                this.hideAll();
+                layer.show();
+            },
+
+            add: function (data) {
+                $('#app').append(data);
+            },
+
+            hideAll: function () {
+                $('#app div').hide();
+            },
         };
+
+        var moduleManager = {
+
+            isTemplate: function(data) {
+                return data.search(/<!DOCTYPE html>/g) === -1;
+            },
+
+            load: function(moduleName, pageName) {
+                pageName = _.defaultTo(pageName, 'index');
+                var self = this;
+                $.ajax({
+                    url: '/scripts/module/'+moduleName+'/'+pageName+'/template.html',
+                    success: function (data) {
+                        if(self.isTemplate(data)) {
+                            layer.add(data);
+                            layer.show(moduleName, pageName);
+                        }
+                    }
+                });
+            },
+
+            run: function (moduleName, pageName) {
+                var isExists = layer.has(moduleName, pageName);
+                if(isExists) {
+                    layer.show(moduleName, pageName);
+                } else {
+                    this.load(moduleName, pageName);
+                }
+            }
+
+        };
+
+        var showApp = function (moduleName, pageName) {
+            moduleManager.run(moduleName, pageName);
+        };
+        /*var appExists = function (name) {
+            return $('#app-' + name).is();
+        };*/
         var main = function () {
             console.log("main");
             showApp("main");
@@ -89,6 +147,8 @@
             showApp("about");
         };
         var contact = function () {
+            //console.log(appExists("contact"));
+
             console.log("contact");
             showApp("contact");
         };
@@ -113,17 +173,17 @@
         var router = Router(routes);
         router.init();
 
-        $("a").each(function(index, element) {
+        /*$("a").each(function(index, element) {
             $(element).click(function (event) {
                 var el = $(event.target);
                 var uri = el.attr('href');
                 uri = _.trim(uri, '#/');
-                uri = '/' + uri;
+                uri = '/#' + uri;
                 console.log(uri);
                 bundle.helper.url.setUrl(uri);
                 return false;
             });
-        });
+        });*/
 
     });
 </script>
@@ -162,13 +222,13 @@
             <h1>about</h1>
         </div>
 
-        <div id="app-contact" class="jumbotron" style="display: none">
+        <!--<div id="app-contact" class="jumbotron" style="display: none">
             <h1>contact</h1>
             <ul>
                 <li><a href="#contact/view/123">Contact 123</a></li>
                 <li><a href="#contact/view/456">Contact 456</a></li>
             </ul>
-        </div>
+        </div>-->
 
         <div id="app-contact-view" class="jumbotron" style="display: none">
             <h1>contact-view <span id="contact-id"></span></h1>
