@@ -20,14 +20,6 @@ $(function () {
             this._hideAll();
             var layerWrapper = this.getModuleLayer(request);
             layerWrapper.show();
-
-
-            /*var controllerClass = 'bundle.' + request.controller + '.controller.' + request.action;
-
-            if(namespace.isDefined(controllerClass)) {
-                var controller = namespace.get(controllerClass);
-                controller.run(request);
-            }*/
         },
 
         add: function (data, request) {
@@ -59,58 +51,47 @@ $(function () {
             $.ajax({
                 url: '/' + request.path + '/' + request.controller + '/' + request.action + '/template.html',
                 success: function (data) {
-                    var callback111 = function () {
-                        //var controllerClass = 'bundle.' + request.controller + '.controller.' + request.action;
-                        /*if(namespace.isDefined(className)) {
-                            var controller = namespace.get(className);
-                            console.log(controller);
-                            //
-                            //controller.run(request);
-                        }*/
-                        //console.log(4555555);
-                    };
                     namespace.requireClass(className, callback);
+                    callback();
                     if (self.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
                     }
-                    callback();
+
+
                 }
             });
         },
 
         run: function (requestSource) {
-
             var request = _.clone(requestSource);
-
-            //d(request);
-            request.action = _.defaultTo(request.action, 'index');
-            request.path = _.defaultTo(request.path, 'scripts/module');
-            request.namespace = request.controller + '.' + request.action;
-
-            var isExists = bundle.spa.layer.has(request);
-
-            var self = this;
-
+            this.prepareRequest(request);
             var callback = function () {
                 bundle.spa.layer.show(request);
                 var className = 'bundle.module.'+request.namespace+'.script';
                 //className = namespace.getAlias(className)
-
-                //if(namespace.isDefined(className)) {
-                    var controller = namespace.get(className);
-                    if( ! _.isEmpty(controller)) {
-                        //console.log(controller);
-                        controller.run(request);
-                    }
-                //}
+                var controller = namespace.get(className);
+                if( ! _.isEmpty(controller)) {
+                    controller.run(request);
+                }
             };
+            this.doRequest(request, callback);
+        },
 
+        doRequest: function (request, callback) {
+            var self = this;
+            var isExists = bundle.spa.layer.has(request);
             if (isExists) {
                 callback();
             } else {
                 self.load(request, callback);
             }
-        }
+        },
+
+        prepareRequest: function (request) {
+            request.action = _.defaultTo(request.action, 'index');
+            request.path = _.defaultTo(request.path, 'scripts/module');
+            request.namespace = request.controller + '.' + request.action;
+        },
 
     };
 

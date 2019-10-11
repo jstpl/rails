@@ -53,9 +53,7 @@ $(function() {
 
     var store = {
         loaded: {},
-        aliases: {
-            'bundle': 'scripts',
-        },
+        aliases: {},
     };
 
     /**
@@ -78,6 +76,10 @@ $(function() {
             return false;
         },
 
+        setAlias: function (from, to) {
+            store.aliases[from] = to;
+        },
+
         getAlias: function (className) {
             var alias = this._getAlias(className);
             if(alias) {
@@ -87,6 +89,7 @@ $(function() {
         },
 
         requireClass: function(className, callback) {
+            callback = _.defaultTo(callback, function () {});
             if(this.isDefined(className)) {
                 callback();
                 return;
