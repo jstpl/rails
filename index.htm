@@ -72,31 +72,46 @@
 <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
 
 <script>
-    $(function() {
+    $(function () {
         /** Запуск приложения */
         bundle.legalbet.component.bootstrap.run();
 
-        /** Запуск модуля бонусов */
-        //bundle.bonus.bonusModule.run();
-
-        var about = function () { console.log("about"); };
-        var contact = function () { console.log("contact"); };
-        var viewBook = function (bookId) {
-            console.log("viewBook: bookId is populated: " + bookId);
+        var showApp = function (name) {
+            $('#app div').hide();
+            $('#app-' + name).show();
+        };
+        var main = function () {
+            console.log("main");
+            showApp("main");
+        };
+        var about = function () {
+            console.log("about");
+            showApp("about");
+        };
+        var contact = function () {
+            console.log("contact");
+            showApp("contact");
+        };
+        var viewContact = function (id) {
+            console.log("viewContact: id is populated: " + id);
+            showApp("contact-view");
+            $('#contact-id').html(id);
         };
 
         var routes = {
+            '/': main,
             '/about': about,
-            '/contact': [contact, function() {
-                console.log("An inline route handler.");
-            }],
-            '/contact/view/:bookId': viewBook
+            '/contact': [
+                contact,
+                function () {
+                    console.log("An inline route handler.");
+                }
+            ],
+            '/contact/view/:id': viewContact
         };
 
         var router = Router(routes);
-
         router.init();
-
     });
 </script>
 
@@ -116,20 +131,41 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact/view/123">Contact 123</a></li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="container">
+    <div id="app">
 
-    <div class="jumbotron">
-        <h1 id="content-header">Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-primary" href="/scripts/bundle/test.htm" role="button">Run bundle tests</a></p>
+        <div id="app-default" class="jumbotron" style="display: none">
+            <h1>Default</h1>
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-primary" href="/scripts/bundle/test.htm" role="button">Run bundle tests</a></p>
+        </div>
+
+        <div id="app-about" class="jumbotron" style="display: none">
+            <h1>about</h1>
+        </div>
+
+        <div id="app-contact" class="jumbotron" style="display: none">
+            <h1>contact</h1>
+            <ul>
+                <li><a href="#contact/view/123">Contact 123</a></li>
+                <li><a href="#contact/view/456">Contact 456</a></li>
+            </ul>
+        </div>
+
+        <div id="app-contact-view" class="jumbotron" style="display: none">
+            <h1>contact-view <span id="contact-id"></span></h1>
+        </div>
+
+        <div id="app-main" class="jumbotron" style="display: none">
+            <h1>main</h1>
+        </div>
+
     </div>
-
 </div>
 
 </body>
