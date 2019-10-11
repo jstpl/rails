@@ -62,7 +62,7 @@ $(function () {
                 success: function (data) {
                     if (self.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
-                        bundle.spa.layer.show(request);
+                        //bundle.spa.layer.show(request);
                         callback();
                         //bundle.spa.layer.addScript('/'+request.path+'/'+request.controller+'/'+request.action+'/script.js');
                         //bundle[request.controller].controller
@@ -87,11 +87,9 @@ $(function () {
             };
 
             if (isExists) {
-                //self.load(request);
                 callback();
             } else {
                 self.load(request, callback);
-                //callback();
             }
         }
 

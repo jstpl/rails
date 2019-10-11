@@ -30,14 +30,15 @@
         };
 
         bundle.contact.store.contact = Redux.createStore(userReducer);
-        /*bundle.contact.store.contact.update = function (contactEntity) {
-
+        bundle.contact.store.contact.update = function (contactEntity) {
             bundle.contact.store.contact.dispatch({
                 type: bundle.contact.store.contactActions.EDIT,
-                title: 'title ' + request.query.id,
-                content: 'content ' + request.query.id,
+                data: contactEntity,
             });
-        };*/
+        };
+        bundle.contact.store.contact.one = function () {
+            return bundle.contact.store.contact.getState();
+        };
 
     });
 
@@ -57,16 +58,13 @@
             run: function (request) {
                 this.registerEventHandlers();
 
-                //console.log('STATE:', bundle.contact.store.contact.getState());
-                bundle.contact.store.contact.dispatch({
-                    type: bundle.contact.store.contactActions.EDIT,
-                    data: {
-                        title: 'title ' + request.query.id,
-                        content: 'content ' + request.query.id,
-                    },
-                });
-                //var contactEntity = bundle.contact.store.contact.getState();
-                //console.log('STATE:', contactEntity);
+                var contactEntity = {};
+                contactEntity.title = 'title ' + request.query.id;
+                contactEntity.content = 'content ' + request.query.id;
+                bundle.contact.store.contact.update(contactEntity);
+
+                var contactEntity222 = bundle.contact.store.contact.one();
+                console.log('STATE:', contactEntity222);
 
             },
 
