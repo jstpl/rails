@@ -96,6 +96,10 @@
                 $('#app').append(data);
             },
 
+            addScript: function (url) {
+                $('body').append('<script src="'+url+'"><\/script>');
+            },
+
             _hideAll: function () {
                 $('#app div').hide();
             },
@@ -110,11 +114,13 @@
             load: function(request) {
                 var self = this;
                 $.ajax({
-                    url: '/scripts/module/'+request.controller+'/'+request.action+'/template.html',
+                    url: '/'+request.path+'/'+request.controller+'/'+request.action+'/template.html',
                     success: function (data) {
                         if(self.isTemplate(data)) {
                             layer.add(data);
                             layer.show(request);
+                            layer.addScript('/'+request.path+'/'+request.controller+'/'+request.action+'/script.js');
+                            //bundle[request.controller].controller
                         }
                     }
                 });
@@ -122,6 +128,7 @@
 
             run: function (request) {
                 request.action = _.defaultTo(request.action, 'index');
+                request.path = _.defaultTo(request.path, 'scripts/module');
                 var isExists = layer.has(request);
                 if(isExists) {
                     layer.show(request);
