@@ -20,10 +20,20 @@ $(function () {
             var layerWrapper = this.getModuleLayer(request);
             this._hideAll();
             layerWrapper.show();
+            var controllerClass = 'bundle.' + request.controller + '.controller.' + request.action;
+
+            if(namespace.isDefined(controllerClass)) {
+                var controller = namespace.get(controllerClass);
+                controller.run(request);
+            }
         },
 
-        add: function (data) {
-            $('#app').append(data);
+        add: function (data, request) {
+            var layerHtml =
+                '<div class="page-layer" id="app-' + request.controller + '-' + request.action + '">' +
+                data +
+                '</div>';
+            $('#app').append(layerHtml);
         },
 
         addScript: function (url) {
@@ -31,7 +41,7 @@ $(function () {
         },
 
         _hideAll: function () {
-            $('#app div').hide();
+            $('#app div.page-layer').hide();
         },
 
     };
@@ -51,7 +61,7 @@ $(function () {
                 url: '/' + request.path + '/' + request.controller + '/' + request.action + '/template.html',
                 success: function (data) {
                     if (self.isTemplate(data)) {
-                        bundle.spa.layer.add(data);
+                        bundle.spa.layer.add(data, request);
                         bundle.spa.layer.show(request);
                         callback();
                         //bundle.spa.layer.addScript('/'+request.path+'/'+request.controller+'/'+request.action+'/script.js');
@@ -61,7 +71,10 @@ $(function () {
             });
         },
 
-        run: function (request) {
+        run: function (requestSource) {
+
+            var request = _.clone(requestSource);
+
             //d(request);
             request.action = _.defaultTo(request.action, 'index');
             request.path = _.defaultTo(request.path, 'scripts/module');

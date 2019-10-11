@@ -1,12 +1,17 @@
-<div id="app-contact-view" class="jumbotron" style="display: none">
+<div class="jumbotron">
     <h1>contact-view <span id="contact-id"></span></h1>
 </div>
 
 <script>
     $(function () {
 
-        $('#contact-id').html(1111111111);
-        //alert(123456);
+        namespace.define('bundle.contact.controller');
+
+        bundle.contact.controller.view = {
+            run: function (request) {
+                $('#contact-id').html(request.query.id);
+            }
+        };
 
     });
 </script>
