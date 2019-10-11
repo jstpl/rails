@@ -77,18 +77,18 @@
         bundle.legalbet.component.bootstrap.run();
 
         var layer = {
-            getModuleLayer: function (moduleName, pageName) {
-                return $('#app-' + moduleName);
+            getModuleLayer: function (request) {
+                return $('#app-' + request.controller + '-' + request.action);
             },
 
-            has: function (moduleName, pageName) {
-                var layer = this.getModuleLayer(moduleName, pageName);
+            has: function (request) {
+                var layer = this.getModuleLayer(request);
                 return layer.length;
             },
 
-            show: function (moduleName, pageName) {
-                var layer = this.getModuleLayer(moduleName, pageName);
-                this.hideAll();
+            show: function (request) {
+                var layer = this.getModuleLayer(request);
+                this._hideAll();
                 layer.show();
             },
 
@@ -96,7 +96,7 @@
                 $('#app').append(data);
             },
 
-            hideAll: function () {
+            _hideAll: function () {
                 $('#app div').hide();
             },
         };
@@ -107,33 +107,36 @@
                 return data.search(/<!DOCTYPE html>/g) === -1;
             },
 
-            load: function(moduleName, pageName) {
-                pageName = _.defaultTo(pageName, 'index');
+            load: function(request) {
                 var self = this;
                 $.ajax({
-                    url: '/scripts/module/'+moduleName+'/'+pageName+'/template.html',
+                    url: '/scripts/module/'+request.controller+'/'+request.action+'/template.html',
                     success: function (data) {
                         if(self.isTemplate(data)) {
                             layer.add(data);
-                            layer.show(moduleName, pageName);
+                            layer.show(request);
                         }
                     }
                 });
             },
 
-            run: function (moduleName, pageName) {
-                var isExists = layer.has(moduleName, pageName);
+            run: function (request) {
+                request.action = _.defaultTo(request.action, 'index');
+                var isExists = layer.has(request);
                 if(isExists) {
-                    layer.show(moduleName, pageName);
+                    layer.show(request);
                 } else {
-                    this.load(moduleName, pageName);
+                    this.load(request);
                 }
             }
 
         };
 
         var showApp = function (moduleName, pageName) {
-            moduleManager.run(moduleName, pageName);
+            var request = {};
+            request.controller = moduleName;
+            request.action = pageName;
+            moduleManager.run(request);
         };
         /*var appExists = function (name) {
             return $('#app-' + name).is();
@@ -147,14 +150,12 @@
             showApp("about");
         };
         var contact = function () {
-            //console.log(appExists("contact"));
-
             console.log("contact");
             showApp("contact");
         };
         var viewContact = function (id) {
             console.log("viewContact: id is populated: " + id);
-            showApp("contact-view");
+            showApp("contact", 'view');
             $('#contact-id').html(id);
         };
 
@@ -201,7 +202,6 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -212,29 +212,21 @@
 <div class="container">
     <div id="app">
 
-        <div id="app-default" class="jumbotron" style="display: none">
+        <div id="app-default-index" class="jumbotron" style="display: none">
             <h1>Default</h1>
             <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-primary" href="/scripts/bundle/test.htm" role="button">Run bundle tests</a></p>
         </div>
 
-        <div id="app-about" class="jumbotron" style="display: none">
+        <div id="app-about-index" class="jumbotron" style="display: none">
             <h1>about</h1>
         </div>
-
-        <!--<div id="app-contact" class="jumbotron" style="display: none">
-            <h1>contact</h1>
-            <ul>
-                <li><a href="#contact/view/123">Contact 123</a></li>
-                <li><a href="#contact/view/456">Contact 456</a></li>
-            </ul>
-        </div>-->
 
         <div id="app-contact-view" class="jumbotron" style="display: none">
             <h1>contact-view <span id="contact-id"></span></h1>
         </div>
 
-        <div id="app-main" class="jumbotron" style="display: none">
+        <div id="app-main-index" class="jumbotron" style="display: none">
             <h1>main</h1>
         </div>
 
