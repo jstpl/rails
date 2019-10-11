@@ -51,10 +51,71 @@
  */
 $(function() {
 
+    var store = {
+        loaded: {},
+        aliases: {
+            'bundle': 'scripts',
+        },
+    };
+
     /**
      * Пространства имен
      */
     window.namespace = {
+
+        _getAlias: function (className) {
+            for(var i in store.aliases) {
+                var from = i;
+                var to = store.aliases[i];
+                var isMatch = className.indexOf(from + '.') === 0;
+                if(isMatch) {
+                    return {
+                        from: from,
+                        to: to,
+                    };
+                }
+            }
+            return false;
+        },
+
+        getAlias: function (className) {
+            var alias = this._getAlias(className);
+            if(alias) {
+                className = alias.to + className.substr(alias.from.length);
+            }
+            return className;
+        },
+
+        requireClass: function(className, callback) {
+            if(this.isDefined(className)) {
+                callback();
+                return;
+            }
+            className = this.getAlias(className);
+            if(this.isDefined(className)) {
+                callback();
+                return;
+            }
+            var scriptClassArr = className.split('.');
+            var scriptUrl = '/' + scriptClassArr.join('/') + '.js';
+            if(store.loaded[scriptUrl] === true) {
+                callback();
+                return;
+            }
+            this.requireScript(scriptUrl, callback);
+            store.loaded[scriptUrl] = true;
+            console.info('Script loaded "' + scriptUrl + '"!');
+        },
+
+        requireScript: function(url, callback) {
+            jQuery.ajax({
+                url: url,
+                dataType: 'script',
+                success: callback,
+                async: true
+            });
+            //$('body').append('<script src="' + url + '"></script>');
+        },
 
         /**
          * Объявлено ли пространство имен
