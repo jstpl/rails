@@ -71,127 +71,56 @@
 
 <script src="/vendor/director/director-1.2.6.min.js"></script>
 
+<script src="/scripts/bundle/spa/layer.js"></script>
+
 <script>
     $(function () {
+
         /** Запуск приложения */
         bundle.legalbet.component.bootstrap.run();
 
-        var layer = {
-            getModuleLayer: function (request) {
-                return $('#app-' + request.controller + '-' + request.action);
-            },
-
-            has: function (request) {
-                var layer = this.getModuleLayer(request);
-                return layer.length;
-            },
+        var app = {
 
             show: function (request) {
-                var layer = this.getModuleLayer(request);
-                this._hideAll();
-                layer.show();
+                bundle.spa.module.run(request);
             },
 
-            add: function (data) {
-                $('#app').append(data);
+            main: function () {
+                app.show({
+                    controller: 'main',
+                });
             },
-
-            addScript: function (url) {
-                $('body').append('<script src="'+url+'"><\/script>');
+            about: function () {
+                app.show({
+                    controller: 'about',
+                });
             },
-
-            _hideAll: function () {
-                $('#app div').hide();
+            contactIndex: function () {
+                app.show({
+                    controller: 'contact',
+                });
             },
-        };
-
-        var moduleManager = {
-
-            isTemplate: function(data) {
-                return data.search(/<!DOCTYPE html>/g) === -1;
-            },
-
-            load: function(request) {
-                var self = this;
-                $.ajax({
-                    url: '/'+request.path+'/'+request.controller+'/'+request.action+'/template.html',
-                    success: function (data) {
-                        if(self.isTemplate(data)) {
-                            layer.add(data);
-                            layer.show(request);
-                            layer.addScript('/'+request.path+'/'+request.controller+'/'+request.action+'/script.js');
-                            //bundle[request.controller].controller
-                        }
-                    }
+            contactView: function (id) {
+                app.show({
+                    controller: 'contact',
+                    action: 'view',
+                    query: {
+                        id: id,
+                    },
                 });
             },
 
-            run: function (request) {
-                request.action = _.defaultTo(request.action, 'index');
-                request.path = _.defaultTo(request.path, 'scripts/module');
-                var isExists = layer.has(request);
-                if(isExists) {
-                    layer.show(request);
-                } else {
-                    this.load(request);
-                }
-            }
-
-        };
-
-        var showApp = function (moduleName, pageName) {
-            var request = {};
-            request.controller = moduleName;
-            request.action = pageName;
-            moduleManager.run(request);
-        };
-        /*var appExists = function (name) {
-            return $('#app-' + name).is();
-        };*/
-        var main = function () {
-            console.log("main");
-            showApp("main");
-        };
-        var about = function () {
-            console.log("about");
-            showApp("about");
-        };
-        var contact = function () {
-            console.log("contact");
-            showApp("contact");
-        };
-        var viewContact = function (id) {
-            console.log("viewContact: id is populated: " + id);
-            showApp("contact", 'view');
-            $('#contact-id').html(id);
         };
 
         var routes = {
-            '/': main,
-            '/about': about,
-            '/contact': [
-                contact,
-                function () {
-                    console.log("An inline route handler.");
-                }
-            ],
-            '/contact/view/:id': viewContact
+            '/': app.main,
+            '/about': app.about,
+            '/contact': app.contactIndex,
+            '/contact/view/:id': app.contactView
         };
 
         var router = Router(routes);
         router.init();
-
-        /*$("a").each(function(index, element) {
-            $(element).click(function (event) {
-                var el = $(event.target);
-                var uri = el.attr('href');
-                uri = _.trim(uri, '#/');
-                uri = '/#' + uri;
-                console.log(uri);
-                bundle.helper.url.setUrl(uri);
-                return false;
-            });
-        });*/
 
     });
 </script>
@@ -229,9 +158,9 @@
             <h1>about</h1>
         </div>
 
-        <div id="app-contact-view" class="jumbotron" style="display: none">
+        <!--<div id="app-contact-view" class="jumbotron" style="display: none">
             <h1>contact-view <span id="contact-id"></span></h1>
-        </div>
+        </div>-->
 
         <div id="app-main-index" class="jumbotron" style="display: none">
             <h1>main</h1>
