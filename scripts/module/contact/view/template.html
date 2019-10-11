@@ -1,16 +1,75 @@
 <div class="jumbotron">
-    <h1>contact-view <span id="contact-id"></span></h1>
+
+    <h1 id="title"></h1>
+
+    <h1 id="content"></h1>
+
 </div>
 
+
+
 <script>
+
+    $(function () {
+
+        namespace.define('bundle.contact.store');
+
+        bundle.contact.store.contactActions = {
+            EDIT: 'EDIT',
+        };
+
+        var userReducer = function(state, action) {
+            if (state === undefined) {
+                state = {};
+            }
+            if (action.type === bundle.contact.store.contactActions.EDIT) {
+                state = _.clone(action.data);
+                container.event.trigger('bundle.contact.store.contact.update', state);
+            }
+            return state;
+        };
+
+        bundle.contact.store.contact = Redux.createStore(userReducer);
+        /*bundle.contact.store.contact.update = function (contactEntity) {
+
+            bundle.contact.store.contact.dispatch({
+                type: bundle.contact.store.contactActions.EDIT,
+                title: 'title ' + request.query.id,
+                content: 'content ' + request.query.id,
+            });
+        };*/
+
+    });
+
     $(function () {
 
         namespace.define('bundle.contact.controller');
 
         bundle.contact.controller.view = {
+
+            registerEventHandlers: function () {
+                container.event.registerHandler('bundle.contact.store.contact.update', function (contactEntity) {
+                    $('#title').html(contactEntity.title);
+                    $('#content').html(contactEntity.content);
+                });
+            },
+
             run: function (request) {
-                $('#contact-id').html(request.query.id);
-            }
+                this.registerEventHandlers();
+
+                //console.log('STATE:', bundle.contact.store.contact.getState());
+                bundle.contact.store.contact.dispatch({
+                    type: bundle.contact.store.contactActions.EDIT,
+                    data: {
+                        title: 'title ' + request.query.id,
+                        content: 'content ' + request.query.id,
+                    },
+                });
+                //var contactEntity = bundle.contact.store.contact.getState();
+                //console.log('STATE:', contactEntity);
+
+            },
+
         };
 
     });

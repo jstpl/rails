@@ -47,31 +47,17 @@
 <!--Module-->
 
 <script src="/scripts/bundle/legalbet/bootstrap.js"></script>
-<script src="/scripts/module/bonus/event/tabsChangeHandler.js"></script>
-<script src="/scripts/module/bonus/event/filterChangeHandler.js"></script>
 <script src="/scripts/bundle/widget/form/input.js"></script>
 <script src="/scripts/bundle/widget/form/formWidget.js"></script>
 <script src="/scripts/bundle/widget/tabs/tabsWidget.js"></script>
 <script src="/scripts/bundle/widget/action/actionWidget.js"></script>
 
-<script src="/scripts/module/bonus/widget/mobileFormWidget.js"></script>
-<!--<script src="/scripts/module/bonus/widget/compilationWidget.js"></script>-->
-<script src="/scripts/module/bonus/widget/sliderWidget.js"></script>
-<script src="/scripts/module/bonus/widget/foundWidget.js"></script>
-
-<script src="/scripts/module/bonus/service/contentService.js"></script>
-<script src="/scripts/module/bonus/service/bonusService.js"></script>
-
-<script src="/scripts/module/bonus/store/bonusStore.js"></script>
-<script src="/scripts/module/bonus/store/bonusServerStore.js"></script>
-
-<script src="/scripts/module/bonus/controller/filterController.js"></script>
-
-<script src="/scripts/module/bonus/bonusModule.js"></script>
-
 <script src="/vendor/director/director-1.2.6.min.js"></script>
 
 <script src="/scripts/bundle/spa/layer.js"></script>
+<script src="/scripts/module/app/config/route.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.5.2/redux.min.js"></script>
 
 <script>
     $(function () {
@@ -79,47 +65,7 @@
         /** Запуск приложения */
         bundle.legalbet.component.bootstrap.run();
 
-        var app = {
-
-            show: function (request) {
-                bundle.spa.module.run(request);
-            },
-
-            main: function () {
-                app.show({
-                    controller: 'main',
-                });
-            },
-            about: function () {
-                app.show({
-                    controller: 'about',
-                });
-            },
-            contactIndex: function () {
-                app.show({
-                    controller: 'contact',
-                });
-            },
-            contactView: function (id) {
-                app.show({
-                    controller: 'contact',
-                    action: 'view',
-                    query: {
-                        id: id,
-                    },
-                });
-            },
-
-        };
-
-        var routes = {
-            '/': app.main,
-            '/about': app.about,
-            '/contact': app.contactIndex,
-            '/contact/view/:id': app.contactView
-        };
-
-        var router = Router(routes);
+        var router = Router(bundle.app.config.route);
         router.init();
 
     });
