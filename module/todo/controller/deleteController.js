@@ -1,8 +1,8 @@
 $(function () {
 
-    namespace.define('bundle.module.vue.controller');
+    namespace.define('bundle.module.todo.controller');
 
-    bundle.module.vue.controller.deleteController = {
+    bundle.module.todo.controller.deleteController = {
 
         data: {
             entity: {},
@@ -10,17 +10,17 @@ $(function () {
 
         methods: {
             del: function (event) {
-                bundle.module.vue.store.contactStore.deleteById(bundle.module.vue.controller.deleteController.data.entity.id);
+                bundle.module.todo.store.contactStore.deleteById(bundle.module.todo.controller.deleteController.data.entity.id);
                 location.hash = '#vue';
             }
         },
 
         depends: [
-            'bundle.module.vue.store.contactStore',
+            'bundle.module.todo.store.contactStore',
         ],
 
         run: function (request) {
-            var entity = bundle.module.vue.store.contactStore.oneById(request.query.id);
+            var entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
             this.data.entity = _.clone(entity);
         },
 

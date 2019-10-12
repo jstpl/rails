@@ -1,8 +1,8 @@
 $(function () {
 
-    namespace.define('bundle.module.vue.controller');
+    namespace.define('bundle.module.todo.controller');
 
-    bundle.module.vue.controller.allController = {
+    bundle.module.todo.controller.allController = {
 
         //el: '#app-vue-all',
         data: {
@@ -10,17 +10,17 @@ $(function () {
         },
 
         depends: [
-            'bundle.module.vue.store.contactStore',
-            //'bundle.module.vue.store.allStore',
+            'bundle.module.todo.store.contactStore',
+            //'bundle.module.todo.store.allStore',
         ],
 
         run: function (request) {
-            this.data.collection = bundle.module.vue.store.contactStore.all();
-            /*bundle.module.vue.store.contactStore.update({
+            this.data.collection = bundle.module.todo.store.contactStore.all();
+            /*bundle.module.todo.store.contactStore.update({
                 id: 1,
                 title: 'qwerty',
             });*/
-            /*bundle.module.vue.store.contactStore.create({
+            /*bundle.module.todo.store.contactStore.create({
                 title: 'qw333',
                 content: 'qwerty33333333333333333333333'
             });*/

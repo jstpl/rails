@@ -10,16 +10,16 @@ $(function () {
         }
         if (action.type === actionEnum.update) {
             state = _.clone(action.data);
-            container.event.trigger('bundle.module.vue.store.contactStore.update', state);
+            container.event.trigger('bundle.module.todo.store.contactStore.update', state);
         }
         return state;
     };
 
     var store = Redux.createStore(userReducer);
 
-    namespace.define('bundle.module.vue.store');
+    namespace.define('bundle.module.todo.store');
 
-    bundle.module.vue.store.allStore = {
+    bundle.module.todo.store.allStore = {
         update: function (contactEntity) {
             store.dispatch({
                 type: actionEnum.update,

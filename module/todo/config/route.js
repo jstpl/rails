@@ -1,22 +1,22 @@
 $(function () {
 
-    bundle.spa.router.addRoute('/vue', function () {
+    bundle.spa.router.addRoute('/todo', function () {
         bundle.vue.loader.run({
-            controller: 'vue',
+            controller: 'todo',
             action: 'all',
         });
     });
 
-    bundle.spa.router.addRoute('/vue/create', function (id) {
+    bundle.spa.router.addRoute('/todo/create', function (id) {
         bundle.vue.loader.run({
-            controller: 'vue',
+            controller: 'todo',
             action: 'create',
         });
     });
 
-    bundle.spa.router.addRoute('/vue/view/:id', function (id) {
+    bundle.spa.router.addRoute('/todo/view/:id', function (id) {
         bundle.vue.loader.run({
-            controller: 'vue',
+            controller: 'todo',
             action: 'one',
             query: {
                 id: id,
@@ -24,9 +24,9 @@ $(function () {
         });
     });
 
-    bundle.spa.router.addRoute('/vue/update/:id', function (id) {
+    bundle.spa.router.addRoute('/todo/update/:id', function (id) {
         bundle.vue.loader.run({
-            controller: 'vue',
+            controller: 'todo',
             action: 'update',
             query: {
                 id: id,
@@ -34,9 +34,9 @@ $(function () {
         });
     });
 
-    bundle.spa.router.addRoute('/vue/delete/:id', function (id) {
+    bundle.spa.router.addRoute('/todo/delete/:id', function (id) {
         bundle.vue.loader.run({
-            controller: 'vue',
+            controller: 'todo',
             action: 'delete',
             query: {
                 id: id,

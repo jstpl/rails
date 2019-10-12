@@ -1,8 +1,8 @@
 $(function () {
 
-    namespace.define('bundle.module.vue.store');
+    namespace.define('bundle.module.todo.store');
 
-    bundle.module.vue.store.contactStore = {
+    bundle.module.todo.store.contactStore = {
 
         storageKey: 'todo3',
         collection: null,
