@@ -17,6 +17,7 @@ $(function () {
         },
 
         show: function (request) {
+            bundle.spa.layer.hideAll();
             var layerWrapper = this.getModuleLayer(request);
             layerWrapper.show();
         },
@@ -46,6 +47,11 @@ $(function () {
             return data.search(/<!DOCTYPE html>/g) === -1;
         },
 
+        prepareRequest: function (request) {
+            request.action = _.defaultTo(request.action, 'index');
+            request.path = _.defaultTo(request.path, 'module');
+            request.namespace = request.controller + '.' + request.action;
+        },
     };
 
     /**
@@ -53,20 +59,7 @@ $(function () {
      */
     window.bundle.spa.module = {
 
-        getClassName: function (request, type) {
-            var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
-            return className;
-        },
-
-        isTemplate: function (data) {
-            return data.search(/<!DOCTYPE html>/g) === -1;
-        },
-
-        load: function (request, callback) {
-            //var self = this;
-            //var templateUrl
-            //var className = 'bundle.module.'+request.namespace+'.script';
-            //var className = window.bundle.spa.helper.getClassName(request, 'controller');
+        loadTemplate: function (request, callback) {
             $.ajax({
                 url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
                 success: function (data) {
@@ -80,11 +73,11 @@ $(function () {
         },
 
         run: function (requestSource) {
-            bundle.spa.layer.hideAll();
             var request = _.clone(requestSource);
-            this.prepareRequest(request);
+            bundle.spa.helper.prepareRequest(request);
             var callback = function () {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
+
                 bundle.spa.layer.show(request);
                 var cb = function () {
                     var controller = namespace.get(className);
@@ -106,14 +99,9 @@ $(function () {
             if (isExists) {
                 callback();
             } else {
-                this.load(request, callback);
-            }
-        },
 
-        prepareRequest: function (request) {
-            request.action = _.defaultTo(request.action, 'index');
-            request.path = _.defaultTo(request.path, 'module');
-            request.namespace = request.controller + '.' + request.action;
+                this.loadTemplate(request, callback);
+            }
         },
 
     };
