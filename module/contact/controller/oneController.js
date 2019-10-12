@@ -5,21 +5,14 @@ $(function () {
     bundle.module.contact.controller.oneController = {
 
         depends: [
-            'bundle.module.contact.store.contactStore'
+            'bundle.module.contact.store.contactStore',
         ],
 
         run: function (request) {
-            var self = this;
-            var cb = function () {
-                self.onLoad(request);
-            };
-            for(var k in this.depends) {
-                var dependClass = this.depends[k];
-                namespace.requireClass(dependClass, cb);
-            }
+
         },
 
-        onLoad: function (request) {
+        onLoadDepends: function (request) {
             var contactEntity = this.forgeEntityFromId(request.query.id);
             this.setValue(contactEntity);
             this.dumpStateToConsole();

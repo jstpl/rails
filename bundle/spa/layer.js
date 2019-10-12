@@ -127,6 +127,25 @@ $(function () {
             });
         },
 
+        loadDepends: function (request, controller) {
+            if(controller.depends.length ===0) {
+                controller.onLoadDepends(request);
+                return;
+            }
+            var cbCount = 0;
+            var cb = function () {
+                cbCount++;
+                if(cbCount === controller.depends.length) {
+                    //d(cbCount);
+                    controller.onLoadDepends(request);
+                }
+            };
+            for(var k in controller.depends) {
+                var dependClass = controller.depends[k];
+                namespace.requireClass(dependClass, cb);
+            }
+        },
+
         run: function (requestSource) {
             var request = _.clone(requestSource);
             this.request = request;
@@ -137,6 +156,16 @@ $(function () {
                 var cb = function () {
                     var controller = namespace.get(className);
                     if( ! _.isEmpty(controller)) {
+
+                        bundle.spa.module.loadDepends(request, controller);
+
+
+
+
+                        //d(controller.depends);
+
+
+
                         controller.run(request);
                     }
                     bundle.spa.module.registerEventHandlers(request);

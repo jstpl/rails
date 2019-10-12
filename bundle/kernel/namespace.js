@@ -123,7 +123,7 @@ $(function() {
             jQuery.ajax({
                 url: url,
                 dataType: 'script',
-                success: callback,
+                complete: callback,
                 async: true
             });
             //$('body').append('<script src="' + url + '"></script>');
