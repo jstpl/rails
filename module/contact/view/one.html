@@ -1,6 +1,8 @@
 <div class="jumbotron">
-    <h1 id="title"></h1>
-    <a id="delete-action" href="#">delete</a>
-    <a id="update-action" href="#">update</a>
-    <h1 id="content"></h1>
+    <div class="pull-right">
+        <a m-href="#contact/delete/<%-id%>">delete</a>
+        <a m-href="#contact/update/<%-id%>">update</a>
+    </div>
+    <h1 m-html="<%-title%>"></h1>
+    <p m-html="<%-content%>"></p>
 </div>

@@ -88,6 +88,13 @@ $(function() {
             return className;
         },
 
+        requireClasses: function(classesNameSource, callback) {
+            for(var k in classesNameSource) {
+                var className = classesNameSource[k];
+                this.requireClass(className);
+            }
+        },
+
         requireClass: function(classNameSource, callback) {
             var className = classNameSource;
             callback = _.defaultTo(callback, function () {});

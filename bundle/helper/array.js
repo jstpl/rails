@@ -3,7 +3,61 @@ $(function () {
     namespace.define('bundle.helper');
 
     /**
-     * Работа с массивами и объектами
+     * Работа со строками
+     */
+    window.bundle.helper.dom = {
+
+        bindEventForList: function (elements, eventName) {
+            elements.each(function (index, value) {
+                bundle.helper.dom.bindEvent(this, eventName);
+            });
+        },
+
+        bindEventForAttribute: function (jElement, eventName, attributeName) {
+            var aName = attributeName.substr(2);
+            var handler = function (params) {
+                var compiled = bundle.spa.template.compile(jElement.attr(attributeName), params);
+                if (aName === 'html') {
+                    jElement.html(compiled);
+                } else {
+                    jElement.attr(aName, compiled);
+                }
+            };
+            container.event.registerHandler(eventName, handler);
+        },
+
+        bindEvent: function (element, eventName) {
+            var jElement = $(element);
+            var attributes = bundle.helper.dom.getAttributes(element);
+            $.each(attributes, function(attributeName, value) {
+                var isMatch = attributeName.indexOf('m-') === 0;
+                if(isMatch) {
+                    bundle.helper.dom.bindEventForAttribute(jElement, eventName, attributeName);
+                }
+            });
+        },
+
+        getAttributes: function (element) {
+            var attrs = {};
+            $.each(element.attributes, function() {
+                if(this.specified) {
+                    attrs[this.name] = this.value;
+                    //console.log(this.name, this.value);
+                }
+            });
+            return attrs;
+        },
+
+    };
+
+});
+
+$(function () {
+
+    namespace.define('bundle.helper');
+
+    /**
+     * Работа со строками
      */
     window.bundle.helper.string = {
 

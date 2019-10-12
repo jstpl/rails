@@ -99,6 +99,8 @@ $(function () {
      */
     window.bundle.spa.module = {
 
+        request: null,
+
         loadTemplate: function (request, callback) {
             var templateUrl = window.bundle.spa.helper.getTemplateUrl(request);
             $.ajax({
@@ -115,6 +117,7 @@ $(function () {
 
         run: function (requestSource) {
             var request = _.clone(requestSource);
+            this.request = request;
             bundle.spa.helper.prepareRequest(request);
             var callback = function () {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
