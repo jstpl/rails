@@ -6,11 +6,6 @@ $(function () {
 
         run: function (request) {
             var moduleElement = bundle.spa.layer.getModuleLayer(request);
-
-            var template = moduleElement.html();
-            template = bundle.helper.string.unescapeHtml(template);
-            //d(template);
-            //var template = '<span class="title"><%-title%></span>';
             var value = {
                 collection: [
                     {
@@ -23,14 +18,9 @@ $(function () {
                         title: 'item 456',
                         content: '',
                     },
-
-
                 ],
             };
-            var html = _.template(template)(value);
-            moduleElement.html(html);
-            //$('.menu').show();
-
+            bundle.spa.template.compileElement(moduleElement, value);
         },
 
     };
