@@ -14,7 +14,7 @@ $(function () {
 
         data: data,
         depends: [
-            'bundle.module.user.store.authStore',
+            //'bundle.module.user.store.authStore',
         ],
         methods: {
             auth: function (event) {

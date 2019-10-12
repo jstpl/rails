@@ -6,7 +6,7 @@ $(function () {
 
         data: {},
         depends: [
-            'bundle.module.user.store.authStore',
+            //'bundle.module.user.store.authStore',
         ],
         methods: {
             out: function (event) {
@@ -17,11 +17,11 @@ $(function () {
             bundle.module.user.store.authStore.logout();
             bundle.spa.router.goHome();
         },
-        /*access: function () {
+        access: function () {
             return {
                 auth: '@',
             };
-        },*/
+        },
     };
 
 });
