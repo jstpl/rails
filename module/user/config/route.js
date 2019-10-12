@@ -7,4 +7,11 @@ $(function () {
         });
     });
 
+    bundle.spa.router.addRoute('/user/person', function () {
+        bundle.vue.loader.run({
+            controller: 'user',
+            action: 'person',
+        });
+    });
+
 });
