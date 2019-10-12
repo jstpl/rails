@@ -2,12 +2,13 @@ $(function () {
 
     namespace.define('bundle.module.todo.controller');
 
+    var data = {
+        entity: {},
+    };
+
     bundle.module.todo.controller.deleteController = {
 
-        data: {
-            entity: {},
-        },
-
+        data: data,
         methods: {
             del: function (event) {
                 bundle.module.todo.store.contactStore.deleteById(bundle.module.todo.controller.deleteController.data.entity.id);

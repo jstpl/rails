@@ -2,15 +2,16 @@ $(function () {
 
     namespace.define('bundle.module.todo.controller');
 
+    var data = {
+        entity: {
+            title: '',
+            content: '',
+        },
+    };
+
     bundle.module.todo.controller.createController = {
 
-        data: {
-            entity: {
-                title: '',
-                content: '',
-            },
-        },
-
+        data: data,
         methods: {
             save: function (event) {
                 var entity = _.clone(bundle.module.todo.controller.createController.data.entity);

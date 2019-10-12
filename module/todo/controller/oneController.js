@@ -2,13 +2,13 @@ $(function () {
 
     namespace.define('bundle.module.todo.controller');
 
+    var data = {
+        entity: {},
+    };
+
     bundle.module.todo.controller.oneController = {
 
-        //el: '#app-vue-one',
-        data: {
-            entity: {},
-        },
-
+        data: data,
         depends: [
             'bundle.module.todo.store.contactStore',
         ],

@@ -2,12 +2,13 @@ $(function () {
 
     namespace.define('bundle.module.todo.controller');
 
+    var data = {
+        entity: {},
+    };
+
     bundle.module.todo.controller.updateController = {
 
-        data: {
-            entity: {},
-        },
-
+        data: data,
         methods: {
             save: function (event) {
                 bundle.module.todo.store.contactStore.update(bundle.module.todo.controller.updateController.data.entity);
@@ -22,9 +23,7 @@ $(function () {
 
         run: function () {
             var request = bundle.vue.loader.request;
-
             var entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
-            //d(entity);
             bundle.module.todo.controller.updateController.data.entity = _.clone(entity);
         },
 

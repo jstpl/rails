@@ -2,18 +2,19 @@ $(function () {
 
     namespace.define('bundle.module.todo.controller');
 
+    var data = {
+        collection: {},
+    };
+
     bundle.module.todo.controller.allController = {
 
-        data: {
-            collection: [],
-        },
-
+        data: data,
         depends: [
             'bundle.module.todo.store.contactStore',
         ],
 
         created: function (request) {
-            this.collection = bundle.module.todo.store.contactStore.all();
+            data.collection = bundle.module.todo.store.contactStore.all();
         },
 
     };
