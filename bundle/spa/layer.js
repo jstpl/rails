@@ -59,7 +59,7 @@ $(function () {
     window.bundle.spa.helper = {
 
         getClassName: function (request, type) {
-            var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
+            var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action + _.startCase(_.toLower(type));
             return className;
         },
 

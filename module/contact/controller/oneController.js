@@ -2,7 +2,7 @@ $(function () {
 
     namespace.define('bundle.module.contact.controller');
 
-    bundle.module.contact.controller.one = {
+    bundle.module.contact.controller.oneController = {
 
         //moduleElement: null,
 
