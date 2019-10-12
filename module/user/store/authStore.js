@@ -22,12 +22,14 @@ $(function () {
                         password: loginDto.password,
                     },
                     success: function(data) {
-                        console.log('success:', data);
+                        console.info('Success authorization!');
+                        //console.log('success:', data);
                         //bundle.module.user.store.authStore.identity = data;
                         bundle.module.user.store.identityStore.set(data);
                         resolve(data);
                     },
                     error: function(data) {
+                        console.info('Error authorization!');
                         //console.log('error:', data);
                         reject(data);
                         //return reject(new Error("Error login or password!"));
