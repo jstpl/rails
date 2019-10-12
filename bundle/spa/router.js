@@ -7,6 +7,11 @@ $(function () {
 
     window.bundle.spa.router = {
 
+        go: function (uri) {
+            uri = _.defaultTo(uri, '');
+            location.hash = '#' + uri;
+        },
+
         addRoute: function (route, callback) {
             store.routes[route] = callback;
         },
