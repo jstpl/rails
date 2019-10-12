@@ -19,13 +19,14 @@ $(function () {
         '/contact': function () {
             bundle.spa.module.run({
                 controller: 'contact',
+                action: 'all',
             });
         },
 
         '/contact/view/:id': function (id) {
             bundle.spa.module.run({
                 controller: 'contact',
-                action: 'view',
+                action: 'one',
                 query: {
                     id: id,
                 },

@@ -48,7 +48,7 @@ $(function () {
             var self = this;
             var className = 'bundle.module.'+request.namespace+'.script';
             $.ajax({
-                url: '/' + request.path + '/' + request.controller + '/' + request.action + '/template.html',
+                url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
                 success: function (data) {
                     namespace.requireClass(className, callback);
                     callback();
@@ -65,7 +65,8 @@ $(function () {
             this.prepareRequest(request);
             var callback = function () {
                 bundle.spa.layer.show(request);
-                var className = 'bundle.module.'+request.namespace+'.script';
+                var className = 'bundle.module.' + request.controller + '.' + request.action+'.script';
+                //console.log(className);
                 //className = namespace.getAlias(className)
                 var controller = namespace.get(className);
                 if( ! _.isEmpty(controller)) {

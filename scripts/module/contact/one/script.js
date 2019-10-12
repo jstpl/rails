@@ -2,7 +2,7 @@ console.log('------------------------------');
 
 $(function () {
 
-    namespace.define('bundle.contact.enum');
+    //namespace.define('bundle.contact.enum');
 
     var actionEnum = {
         update: 'update',
@@ -39,9 +39,9 @@ $(function () {
 
 $(function () {
 
-    namespace.define('bundle.module.contact.controller');
+    namespace.define('bundle.module.contact.one');
 
-    bundle.module.contact.view.script = {
+    bundle.module.contact.one.script = {
 
         registerEventHandlers: function () {
             container.event.registerHandler('bundle.contact.store.contact.update', function (contactEntity) {
