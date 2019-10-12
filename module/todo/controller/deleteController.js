@@ -19,10 +19,10 @@ $(function () {
             'bundle.module.todo.store.contactStore',
         ],
 
-        created: function () {
+        run: function () {
             var request = bundle.vue.loader.request;
             var entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
-            this.entity = _.clone(entity);
+            bundle.module.todo.controller.deleteController.data.entity = _.clone(entity);
         },
 
     };

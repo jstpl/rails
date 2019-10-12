@@ -13,9 +13,10 @@ $(function () {
             'bundle.module.todo.store.contactStore',
         ],
 
-        created: function () {
+        run: function () {
             var request = bundle.vue.loader.request;
-            this.entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
+            var entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
+            bundle.module.todo.controller.oneController.data.entity = _.clone(entity);
         },
 
     };

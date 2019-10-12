@@ -1,5 +1,7 @@
 $(function () {
 
+    namespace.define('bundle.spa');
+
     var store = {
         routes: {},
         routerInstance: null,

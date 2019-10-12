@@ -1,13 +1,19 @@
 <form>
     <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="text" v-model="entity.login" class="form-control" placeholder="Email address" required="" autofocus="">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" v-model="entity.password" class="form-control" placeholder="Password" required="">
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" v-model="entity.isRemember" value="remember-me"> Remember me
-        </label>
+
+
+    <div class="form-group">
+        <label>Login:</label>
+        <input type="text" v-model="entity.login" class="form-control is-invalid" placeholder="Login" required="" autofocus="">
     </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" v-model="entity.password" class="form-control" placeholder="Password" required="">
+    </div>
+
+    <div class="checkbox">
+        <label><input type="checkbox" v-model="entity.isRemember" value="remember-me"> Remember me</label>
+    </div>
+
     <button type="submit" class="btn btn-primary" v-on:click="auth">Sign in</button>
 </form>
