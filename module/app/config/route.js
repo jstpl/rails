@@ -33,6 +33,26 @@ $(function () {
             });
         },
 
+        '/contact/update/:id': function (id) {
+            bundle.spa.module.run({
+                controller: 'contact',
+                action: 'update',
+                query: {
+                    id: id,
+                },
+            });
+        },
+
+        '/contact/delete/:id': function (id) {
+            bundle.spa.module.run({
+                controller: 'contact',
+                action: 'delete',
+                query: {
+                    id: id,
+                },
+            });
+        },
+
     };
 
 });

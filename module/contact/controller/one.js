@@ -4,41 +4,20 @@ $(function () {
 
     bundle.module.contact.controller.one = {
 
-        registerEventHandlers: function () {
+        //moduleElement: null,
+
+        registerEventHandlers: function (request) {
             container.event.registerHandler('bundle.module.contact.store.contact.update', function (contactEntity) {
-                $('#title').html(contactEntity.title);
-                $('#content').html(contactEntity.content);
+                var moduleElement = bundle.spa.layer.getModuleLayer(request);
+                moduleElement.find('#title').html(contactEntity.title);
+                moduleElement.find('#content').html(contactEntity.content);
+                moduleElement.find('#delete-action').attr('href', contactEntity.deleteAction);
+                moduleElement.find('#update-action').attr('href', contactEntity.updateAction);
             });
         },
 
-        /*load: function (request, callback) {
-            var self = this;
-            //var templateUrl
-            //var className = 'bundle.module.'+request.namespace+'.script';
-            //var className = window.bundle.spa.helper.getClassName(request, 'controller');
-            $.ajax({
-                url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
-                success: function (data) {
-
-                    callback();
-
-                    if (bundle.spa.helper.isTemplate(data)) {
-                        bundle.spa.layer.add(data, request);
-                    }
-                }
-            });
-        },*/
-
         run: function (request) {
             var self = this;
-
-            /*var templateFileName = '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html';
-            var cb1 = function () {
-
-            };
-            this.load(templateFileName, cb1);
-            d(templateFileName);*/
-
             var className = 'bundle.module.contact.store.contact';
             var cb = function () {
                 var contactEntity = self.forgeEntityFromId(request.query.id);
@@ -46,13 +25,15 @@ $(function () {
                 self.dumpStateToConsole();
             };
             namespace.requireClass(className, cb);
-            this.registerEventHandlers();
+            this.registerEventHandlers(request);
         },
 
         forgeEntityFromId: function (id) {
             var contactEntity = {};
             contactEntity.title = 'title ' + id;
             contactEntity.content = 'content ' + id;
+            contactEntity.deleteAction = '#contact/delete/' + id;
+            contactEntity.updateAction = '#contact/update/' + id;
             return contactEntity;
         },
 

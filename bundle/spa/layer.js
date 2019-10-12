@@ -108,6 +108,7 @@ $(function () {
                 var cb = function () {
                     var controller = namespace.get(className);
                     if( ! _.isEmpty(controller)) {
+                        //controller.moduleElement = bundle.spa.layer.getModuleLayer(request);
                         controller.run(request);
                     }
                 };
