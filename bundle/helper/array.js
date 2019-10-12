@@ -1,3 +1,42 @@
+$(function () {
+
+    namespace.define('bundle.helper');
+
+    /**
+     * Работа с массивами и объектами
+     */
+    window.bundle.helper.string = {
+
+        escapeHtml: function (unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        },
+
+        /*unescapeHtml: function (safe) {
+            return safe
+                .replace("&amp;", /&/g)
+                .replace("&lt;", /</g)
+                .replace("&gt;", />/g)
+                .replace("&quot;", /"/g)
+                .replace("&#039;", /'/g);
+        },*/
+
+        unescapeHtml: function (safe) {
+            return safe.replace(/&amp;/g, '&')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"')
+                .replace(/&#039;/g, "'");
+        }
+
+    };
+
+});
+
 $(function() {
 
     namespace.define('bundle.helper');
