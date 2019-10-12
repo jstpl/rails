@@ -1,58 +1,15 @@
 $(function () {
 
-    namespace.define('bundle.app.config');
+    bundle.spa.router.addRoute('/', function () {
+        bundle.spa.module.run({
+            controller: 'main',
+        });
+    });
 
-    bundle.app.config.route = {
-
-        '/': function () {
-            bundle.spa.module.run({
-                controller: 'main',
-            });
-        },
-
-        '/about': function () {
-            bundle.spa.module.run({
-                controller: 'about',
-            });
-        },
-
-        '/contact': function () {
-            bundle.spa.module.run({
-                controller: 'contact',
-                action: 'all',
-            });
-        },
-
-        '/contact/view/:id': function (id) {
-            bundle.spa.module.run({
-                controller: 'contact',
-                action: 'one',
-                query: {
-                    id: id,
-                },
-            });
-        },
-
-        '/contact/update/:id': function (id) {
-            bundle.spa.module.run({
-                controller: 'contact',
-                action: 'update',
-                query: {
-                    id: id,
-                },
-            });
-        },
-
-        '/contact/delete/:id': function (id) {
-            bundle.spa.module.run({
-                controller: 'contact',
-                action: 'delete',
-                query: {
-                    id: id,
-                },
-            });
-        },
-
-    };
+    bundle.spa.router.addRoute('/about', function () {
+        bundle.spa.module.run({
+            controller: 'about',
+        });
+    });
 
 });

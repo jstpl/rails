@@ -1,0 +1,17 @@
+<div class="jumbotron">
+
+    <h1>contact</h1>
+
+    <div class="menu">
+        <ul>
+            <% collection.forEach(function(item) { %>
+            <li>
+                <a href="#vue/view/<%-item.id%>">
+                    <%-item.title%>
+                </a>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+
+</div>

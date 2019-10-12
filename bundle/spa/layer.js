@@ -45,7 +45,7 @@ $(function () {
             var moduleElementId = this.getElementId(request.controller + '-' + request.action);
             var layerHtml =
                 '<div class="page-layer" id="' + moduleElementId + '">' +
-                    data +
+                data +
                 '</div>';
             this.getWrapperElement().append(layerHtml);
         },
@@ -55,6 +55,10 @@ $(function () {
         },
 
     };
+
+});
+
+$(function () {
 
     window.bundle.spa.template = {
 
@@ -70,6 +74,28 @@ $(function () {
         },
 
     };
+
+});
+
+$(function () {
+
+    var store = {};
+
+    window.bundle.spa.router = {
+
+        addRoute: function (route, callback) {
+            store[route] = callback;
+        },
+
+        all: function () {
+            return store;
+        },
+
+    };
+
+});
+
+$(function () {
 
     window.bundle.spa.helper = {
 
