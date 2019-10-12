@@ -2,15 +2,13 @@
 
     <h1>contact</h1>
 
-    <div class="menu">
+    <div id="example-3" class="demo">
         <ul>
-            <% collection.forEach(function(item) { %>
-            <li>
-                <a href="#vue/view/<%-item.id%>">
-                    <%-item.title%>
+            <li v-for="todo in collection">
+                <a v-bind:href="'#vue/view/' + todo.id">
+                    {{ todo.title }}
                 </a>
             </li>
-            <% }); %>
         </ul>
     </div>
 

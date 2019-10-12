@@ -144,7 +144,6 @@ $(function () {
             $.ajax({
                 url: templateUrl,
                 success: function (data) {
-
                     callback();
                     if (window.bundle.spa.helper.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
@@ -185,7 +184,7 @@ $(function () {
                     if( ! _.isEmpty(controller)) {
                         bundle.spa.module.loadDepends(request, controller);
                     }
-                    bundle.spa.module.registerEventHandlers(request);
+                    //bundle.spa.module.registerEventHandlers(request);
                 };
                 namespace.requireClass(className, cb);
             };
@@ -193,14 +192,10 @@ $(function () {
         },
 
         doRequest: function (request, callback) {
-
-            //callback();
-
             var isExists = bundle.spa.layer.has(request);
             if (isExists) {
                 callback();
             } else {
-
                 this.loadTemplate(request, callback);
             }
         },
