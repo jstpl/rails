@@ -5,18 +5,10 @@ $(function () {
     bundle.module.contact.controller.allController = {
 
         run: function (request) {
-            var self = this;
-            var cb = function () {
-                self.onLoad(request);
-            };
-            /*for(var k in this.depends) {
-                var dependClass = this.depends[k];
-                namespace.requireClass(dependClass, cb);
-            }*/
-            cb();
+
         },
 
-        onLoad: function (request) {
+        onLoadDepends: function (request) {
             var value = {
                 collection: [
                     {

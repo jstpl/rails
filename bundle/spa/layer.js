@@ -128,7 +128,7 @@ $(function () {
         },
 
         loadDepends: function (request, controller) {
-            if(controller.depends.length ===0) {
+            if(_.isEmpty(controller.depends)) {
                 controller.onLoadDepends(request);
                 return;
             }
@@ -138,6 +138,7 @@ $(function () {
                 if(cbCount === controller.depends.length) {
                     //d(cbCount);
                     controller.onLoadDepends(request);
+                    controller.run(request);
                 }
             };
             for(var k in controller.depends) {
@@ -156,17 +157,7 @@ $(function () {
                 var cb = function () {
                     var controller = namespace.get(className);
                     if( ! _.isEmpty(controller)) {
-
                         bundle.spa.module.loadDepends(request, controller);
-
-
-
-
-                        //d(controller.depends);
-
-
-
-                        controller.run(request);
                     }
                     bundle.spa.module.registerEventHandlers(request);
                 };
