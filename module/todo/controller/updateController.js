@@ -19,18 +19,10 @@ $(function () {
             'bundle.module.todo.store.contactStore',
         ],
 
-        run: function (request) {
-            /*container.event.registerHandler('bundle.module.todo.store.contactStore.update', function (data) {
-                d(data);
-            });*/
+        created: function () {
+            var request = bundle.vue.loader.request;
             var entity = bundle.module.todo.store.contactStore.oneById(request.query.id);
-            this.data.entity = _.clone(entity);
-            //bundle.module.todo.store.contactStore.deleteById(1);
-            //d(bundle.module.todo.store.contactStore.all());
-        },
-
-        onLoadDepends: function (request) {
-
+            this.entity = _.clone(entity);
         },
 
     };

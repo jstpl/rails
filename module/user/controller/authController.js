@@ -7,7 +7,6 @@ $(function () {
         data: {
             entity: {},
         },
-
         depends: [
             'bundle.module.user.store.authStore',
         ],
@@ -21,25 +20,10 @@ $(function () {
                     console.log(err.message);
                 });
             },
-            onSubmit: function (event) {
-                var promise = bundle.module.user.store.authStore.auth(bundle.module.user.controller.authController.data.entity);
-                promise.then(function (identity) {
-                    location.hash = '#';
-                    console.log(identity);
-                }).catch(function (err) {
-                    console.log(err.message);
-                });
-            }
         },
-
-        run: function (request) {
+        created: function () {
 
         },
-
-        onLoadDepends: function (request) {
-
-        },
-
     };
 
 });

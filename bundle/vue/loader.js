@@ -24,7 +24,7 @@ $(function () {
             if(_.isEmpty(controller.depends)) {
                 //d(controller);
                 bundle.spa.helper.getVueInstance(controller);
-                controller.onLoadDepends(request);
+                //controller.onLoadDepends(request);
                 return;
             }
             var cbCount = 0;
@@ -34,8 +34,8 @@ $(function () {
                     //d(cbCount);
                     //d(controller);
                     bundle.spa.helper.getVueInstance(controller);
-                    controller.onLoadDepends(request);
-                    controller.run(request);
+                    //controller.onLoadDepends(request);
+                    //controller.run(request);
                 }
             };
             for(var k in controller.depends) {

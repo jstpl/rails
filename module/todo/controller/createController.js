@@ -24,14 +24,6 @@ $(function () {
             'bundle.module.todo.store.contactStore',
         ],
 
-        run: function (request) {
-
-        },
-
-        onLoadDepends: function (request) {
-
-        },
-
     };
 
 });
