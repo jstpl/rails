@@ -40,8 +40,8 @@ $(function () {
      */
     window.bundle.spa.module = {
 
-        getControllerClassName: function (request) {
-            var className = 'bundle.module.' + request.controller + '.controller.' + request.action;
+        getControllerClassName: function (request, type) {
+            var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
             return className;
         },
 
@@ -52,11 +52,11 @@ $(function () {
         load: function (request, callback) {
             var self = this;
             //var className = 'bundle.module.'+request.namespace+'.script';
-            var className = bundle.spa.module.getControllerClassName(request);
+            var className = bundle.spa.module.getControllerClassName(request, 'controller');
             $.ajax({
                 url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
                 success: function (data) {
-                    namespace.requireClass(className, callback);
+
                     callback();
                     if (self.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
@@ -70,14 +70,17 @@ $(function () {
             var request = _.clone(requestSource);
             this.prepareRequest(request);
             var callback = function () {
+                var className = bundle.spa.module.getControllerClassName(request, 'controller');
+
                 bundle.spa.layer.show(request);
-                var className = bundle.spa.module.getControllerClassName(request);
-                //console.log(className);
-                //className = namespace.getAlias(className)
-                var controller = namespace.get(className);
-                if( ! _.isEmpty(controller)) {
-                    controller.run(request);
-                }
+                var cb = function () {
+                    var controller = namespace.get(className);
+                    if( ! _.isEmpty(controller)) {
+                        controller.run(request);
+                    }
+                };
+                namespace.requireClass(className, cb);
+
             };
             this.doRequest(request, callback);
         },
