@@ -16,7 +16,7 @@ $(function () {
                 var entity = _.clone(bundle.module.todo.controller.createController.data.entity);
                 bundle.module.todo.store.contactStore.create(entity);
                 bundle.module.todo.controller.createController.data.entity = {};
-                location.hash = '#vue';
+                location.hash = '#todo';
             }
         },
 

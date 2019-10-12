@@ -11,7 +11,7 @@ $(function () {
         methods: {
             del: function (event) {
                 bundle.module.todo.store.contactStore.deleteById(bundle.module.todo.controller.deleteController.data.entity.id);
-                location.hash = '#vue';
+                location.hash = '#todo';
             }
         },
 
