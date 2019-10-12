@@ -101,6 +101,18 @@ $(function () {
 
         request: null,
 
+        registerEventHandlers: function (request) {
+            var moduleElement = bundle.spa.layer.getModuleLayer(request);
+            var elements = moduleElement.find($("*"));
+            bundle.helper.dom.bindEventForList(elements, 'bundle.module.contact.store.contactStore.update');
+            /*container.event.registerHandler('bundle.module.contact.store.contactStore.update', function (contactEntity) {
+                moduleElement.find('#title').html(contactEntity.title);
+                moduleElement.find('#content').html(contactEntity.content);
+                moduleElement.find('#delete-action').attr('href', contactEntity.deleteAction);
+                moduleElement.find('#update-action').attr('href', contactEntity.updateAction);
+            });*/
+        },
+
         loadTemplate: function (request, callback) {
             var templateUrl = window.bundle.spa.helper.getTemplateUrl(request);
             $.ajax({
@@ -121,17 +133,15 @@ $(function () {
             bundle.spa.helper.prepareRequest(request);
             var callback = function () {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
-
                 bundle.spa.layer.show(request);
                 var cb = function () {
                     var controller = namespace.get(className);
                     if( ! _.isEmpty(controller)) {
-                        //controller.moduleElement = bundle.spa.layer.getModuleLayer(request);
                         controller.run(request);
                     }
+                    bundle.spa.module.registerEventHandlers(request);
                 };
                 namespace.requireClass(className, cb);
-
             };
             this.doRequest(request, callback);
         },

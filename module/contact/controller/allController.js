@@ -5,7 +5,18 @@ $(function () {
     bundle.module.contact.controller.allController = {
 
         run: function (request) {
-            var moduleElement = bundle.spa.layer.getModuleLayer(request);
+            var self = this;
+            var cb = function () {
+                self.onLoad(request);
+            };
+            /*for(var k in this.depends) {
+                var dependClass = this.depends[k];
+                namespace.requireClass(dependClass, cb);
+            }*/
+            cb();
+        },
+
+        onLoad: function (request) {
             var value = {
                 collection: [
                     {
@@ -20,6 +31,7 @@ $(function () {
                     },
                 ],
             };
+            var moduleElement = bundle.spa.layer.getModuleLayer(request);
             bundle.spa.template.compileElement(moduleElement, value);
         },
 
