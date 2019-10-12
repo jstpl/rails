@@ -29,6 +29,24 @@ $(function () {
         one: function () {
             return store.getState();
         },
+        all: function () {
+            return {
+                1: {
+                    id: 1,
+                    title: '111111',
+                    content: '111111111111111111111',
+                },
+                2: {
+                    id: 2,
+                    title: '2222222',
+                    content: '22222222222222222222222222222222222',
+                },
+            };
+        },
+        oneById: function (id) {
+            var contactCollection = this.all();
+            return contactCollection[id];
+        },
     };
 
 });

@@ -1,8 +1,8 @@
 <div class="jumbotron">
     <div class="pull-right">
-        <a m-href="#vue/delete/<%-id%>">delete</a>
-        <a m-href="#vue/update/<%-id%>">update</a>
+        <a v-bind:href="'#vue/delete/' + entity.id">delete</a>
+        <a v-bind:href="'#vue/update/' + entity.id">update</a>
     </div>
-    <h1 m-html="<%-title%>"></h1>
-    <p m-html="<%-content%>"></p>
+    <h1>{{ entity.title }}</h1>
+    <p>{{ entity.content }}</p>
 </div>

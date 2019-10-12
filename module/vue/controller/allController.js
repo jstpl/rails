@@ -4,51 +4,22 @@ $(function () {
 
     bundle.module.vue.controller.allController = {
 
+        depends: [
+            'bundle.module.vue.store.contactStore',
+        ],
+        
         run: function (request) {
 
         },
 
         onLoadDepends: function (request) {
-            //bundle.spa.module.registerEventHandlers(request);
 
             new Vue({
-                el: '#example-3',
+                el: '#app-vue-all',
                 data: {
-                    checkedNames: [],
-                    collection: [
-                        {
-                            id: 123,
-                            title: 'item 123',
-                            content: '',
-                        },
-                        {
-                            id: 456,
-                            title: 'item 456',
-                            content: '',
-                        },
-                    ],
+                    collection: bundle.module.vue.store.contactStore.all(),
                 }
             });
-
-            var value = {
-                collection: [
-                    {
-                        id: 123,
-                        title: 'item 123',
-                        content: '',
-                    },
-                    {
-                        id: 456,
-                        title: 'item 456',
-                        content: '',
-                    },
-                ],
-            };
-
-
-
-            var moduleElement = bundle.spa.layer.getModuleLayer(request);
-            bundle.spa.template.compileElement(moduleElement, value);
         },
 
     };

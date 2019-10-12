@@ -13,19 +13,23 @@ $(function () {
         },
 
         onLoadDepends: function (request) {
+
+            /*bundle.spa.module.registerEventHandlers(request);*/
             var contactEntity = this.forgeEntityFromId(request.query.id);
             this.setValue(contactEntity);
             this.dumpStateToConsole();
+
+            new Vue({
+                el: '#app-vue-one',
+                data: {
+                    entity: contactEntity,
+                }
+            });
+
         },
 
         forgeEntityFromId: function (id) {
-            var contactEntity = {};
-            contactEntity.id = id;
-            contactEntity.title = 'title ' + id;
-            contactEntity.content = 'content ' + id;
-            contactEntity.deleteAction = '#vue/delete/' + id;
-            contactEntity.updateAction = '#vue/update/' + id;
-            return contactEntity;
+            return bundle.module.vue.store.contactStore.oneById(id);
         },
 
         setValue: function (contactEntity) {
