@@ -7,14 +7,13 @@ $(function () {
         depends: [
             'bundle.module.vue.store.contactStore',
         ],
-        
+
         run: function (request) {
 
         },
 
         onLoadDepends: function (request) {
-
-            new Vue({
+            var vm = new Vue({
                 el: '#app-vue-all',
                 data: {
                     collection: bundle.module.vue.store.contactStore.all(),

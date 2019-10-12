@@ -4,28 +4,31 @@ $(function () {
 
     bundle.module.vue.controller.oneController = {
 
+        el: '#app-vue-one',
+        model: {
+            entity: {},
+        },
+
         depends: [
             'bundle.module.vue.store.contactStore',
         ],
 
         run: function (request) {
-
+            //d('---run');
+            this.model.entity = bundle.module.vue.store.contactStore.oneById(request.query.id);
         },
 
         onLoadDepends: function (request) {
-
-            /*bundle.spa.module.registerEventHandlers(request);*/
+            //d('---onLoadDepends');
+            /*bundle.spa.module.registerEventHandlers(request);
             var contactEntity = this.forgeEntityFromId(request.query.id);
             this.setValue(contactEntity);
-            this.dumpStateToConsole();
+            this.dumpStateToConsole();*/
 
-            new Vue({
+            bundle.spa.helper.getVueInstance(this.el, {
                 el: '#app-vue-one',
-                data: {
-                    entity: contactEntity,
-                }
-            });
-
+                data: this.model,
+            })
         },
 
         forgeEntityFromId: function (id) {
