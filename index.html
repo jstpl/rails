@@ -55,6 +55,8 @@
 <script src="/vendor/director/director-1.2.6.min.js"></script>
 
 <script src="/bundle/spa/layer.js"></script>
+<script src="/bundle/spa/router.js"></script>
+<script src="/bundle/vue/loader.js"></script>
 
 <script src="/module/app/config/route.js"></script>
 <script src="/module/contact/config/route.js"></script>
@@ -71,9 +73,7 @@
         /** Запуск приложения */
         bundle.legalbet.component.bootstrap.run();
 
-        var router = Router(bundle.spa.router.all());
-        router.init();
-
+        bundle.spa.router.init();
     });
 </script>
 

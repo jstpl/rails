@@ -4,7 +4,7 @@ $(function () {
 
     bundle.module.vue.controller.allController = {
 
-        el: '#app-vue-all',
+        //el: '#app-vue-all',
         data: {
             collection: [],
         },
@@ -16,14 +16,18 @@ $(function () {
 
         run: function (request) {
             this.data.collection = bundle.module.vue.store.contactStore.all();
+            /*bundle.module.vue.store.contactStore.update({
+                id: 1,
+                title: 'qwerty',
+            });*/
+            /*bundle.module.vue.store.contactStore.create({
+                title: 'qw333',
+                content: 'qwerty33333333333333333333333'
+            });*/
         },
 
         onLoadDepends: function (request) {
-            var users = [
-                { 'user': 'barney', 'age': 36, 'active': true },
-                { 'user': 'fred',   'age': 40, 'active': false }
-            ];
-            d(_.filter(users, { 'age': 36, 'active': true }));
+
         },
 
     };

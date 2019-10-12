@@ -1,14 +1,14 @@
 $(function () {
 
     bundle.spa.router.addRoute('/vue', function () {
-        bundle.spa.vueModule.run({
+        bundle.vue.loader.run({
             controller: 'vue',
             action: 'all',
         });
     });
 
     bundle.spa.router.addRoute('/vue/view/:id', function (id) {
-        bundle.spa.vueModule.run({
+        bundle.vue.loader.run({
             controller: 'vue',
             action: 'one',
             query: {
@@ -18,7 +18,7 @@ $(function () {
     });
 
     bundle.spa.router.addRoute('/vue/update/:id', function (id) {
-        bundle.spa.module.run({
+        bundle.vue.loader.run({
             controller: 'vue',
             action: 'update',
             query: {
@@ -28,7 +28,7 @@ $(function () {
     });
 
     bundle.spa.router.addRoute('/vue/delete/:id', function (id) {
-        bundle.spa.module.run({
+        bundle.vue.loader.run({
             controller: 'vue',
             action: 'delete',
             query: {
