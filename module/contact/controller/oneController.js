@@ -13,7 +13,7 @@ $(function () {
         },
 
         onLoadDepends: function (request) {
-            bundle.spa.module.registerEventHandlers(request);
+            bundle.spa.helper.registerEventHandlers(request);
             var contactEntity = this.forgeEntityFromId(request.query.id);
             this.setValue(contactEntity);
             this.dumpStateToConsole();

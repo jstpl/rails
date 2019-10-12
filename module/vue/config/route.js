@@ -1,14 +1,14 @@
 $(function () {
 
     bundle.spa.router.addRoute('/vue', function () {
-        bundle.spa.module.run({
+        bundle.spa.vueModule.run({
             controller: 'vue',
             action: 'all',
         });
     });
 
     bundle.spa.router.addRoute('/vue/view/:id', function (id) {
-        bundle.spa.module.run({
+        bundle.spa.vueModule.run({
             controller: 'vue',
             action: 'one',
             query: {

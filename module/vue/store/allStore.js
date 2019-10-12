@@ -19,7 +19,7 @@ $(function () {
 
     namespace.define('bundle.module.vue.store');
 
-    bundle.module.vue.store.contactStore = {
+    bundle.module.vue.store.allStore = {
         update: function (contactEntity) {
             store.dispatch({
                 type: actionEnum.update,
@@ -45,9 +45,7 @@ $(function () {
         },
         oneById: function (id) {
             var contactCollection = this.all();
-            id = _.toInteger(id);
-            var findCollection = _.filter(contactCollection, { 'id': id });
-            return findCollection[0];
+            return contactCollection[id];
         },
     };
 
