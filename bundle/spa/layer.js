@@ -7,8 +7,27 @@ $(function () {
      */
     window.bundle.spa.layer = {
 
+        wrapperId: 'app',
+        wrapperInstance: null,
+
+        getWrapperElement: function () {
+            if( ! _.isObject(this.wrapperInstance)) {
+                this.wrapperInstance = $('#' + this.wrapperId);
+            }
+            return this.wrapperInstance;
+        },
+
+        getElementId: function (id) {
+            if(id) {
+                return this.wrapperId + '-' + id;
+            } else {
+                return this.wrapperId;
+            }
+        },
+
         getModuleLayer: function (request) {
-            return $('#app-' + request.controller + '-' + request.action);
+            var moduleElementId = this.getElementId(request.controller + '-' + request.action);
+            return this.getWrapperElement().find('#' + moduleElementId);
         },
 
         has: function (request) {
@@ -23,15 +42,16 @@ $(function () {
         },
 
         add: function (data, request) {
+            var moduleElementId = this.getElementId(request.controller + '-' + request.action);
             var layerHtml =
-                '<div class="page-layer" id="app-' + request.controller + '-' + request.action + '">' +
-                data +
+                '<div class="page-layer" id="' + moduleElementId + '">' +
+                    data +
                 '</div>';
-            $('#app').append(layerHtml);
+            this.getWrapperElement().append(layerHtml);
         },
 
         hideAll: function () {
-            $('#app div.page-layer').hide();
+            this.getWrapperElement().find('.page-layer').hide();
         },
 
     };
@@ -41,6 +61,11 @@ $(function () {
         getClassName: function (request, type) {
             var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
             return className;
+        },
+
+        getTemplateUrl: function (request) {
+            var templateUrl = '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html';
+            return templateUrl;
         },
 
         isTemplate: function (data) {
@@ -60,8 +85,9 @@ $(function () {
     window.bundle.spa.module = {
 
         loadTemplate: function (request, callback) {
+            var templateUrl = window.bundle.spa.helper.getTemplateUrl(request);
             $.ajax({
-                url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
+                url: templateUrl,
                 success: function (data) {
 
                     callback();
