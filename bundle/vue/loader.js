@@ -2,6 +2,27 @@ $(function () {
 
     namespace.define('bundle.vue');
 
+    var helper = {
+
+        runController: function (controller, request) {
+            if(_.isFunction(controller.access)) {
+                var access = controller.access();
+                if( ! _.isEmpty(access)) {
+                    if(access.auth === '@' && ! bundle.module.user.store.authStore.isLogin()) {
+                        bundle.spa.router.go('user/auth');
+                    }
+                    if(access.auth === '?' && bundle.module.user.store.authStore.isLogin()) {
+                        bundle.spa.router.goBack();
+                    }
+                }
+            }
+            if(_.isFunction(controller.run)) {
+                controller.run(request);
+            }
+        },
+
+    };
+
     window.bundle.vue.loader = {
 
         request: null,
@@ -11,7 +32,6 @@ $(function () {
             $.ajax({
                 url: templateUrl,
                 success: function (data) {
-
                     callback();
                     if (window.bundle.spa.helper.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
@@ -25,7 +45,7 @@ $(function () {
                 //d(controller);
                 bundle.spa.helper.getVueInstance(controller);
                 //controller.onLoadDepends(request);
-                controller.run(request);
+                helper.runController(controller, request);
                 return;
             }
             var cbCount = 0;
@@ -36,7 +56,7 @@ $(function () {
                     //d(controller);
                     bundle.spa.helper.getVueInstance(controller);
                     //controller.onLoadDepends(request);
-                    controller.run(request);
+                    helper.runController(controller, request);
                 }
             };
             for(var k in controller.depends) {

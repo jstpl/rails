@@ -14,6 +14,10 @@ $(function () {
             location.hash = '#' + uri;
         },
 
+        goBack: function () {
+            history.back();
+        },
+
         addRoute: function (route, callback) {
             store.routes[route] = callback;
         },

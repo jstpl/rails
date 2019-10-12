@@ -12,6 +12,11 @@ $(function () {
         depends: [
             'bundle.module.user.store.authStore',
         ],
+        access: function () {
+            return {
+                auth: '@',
+            };
+        },
         run: function () {
             data.entity = bundle.module.user.store.authStore.identity;
         },

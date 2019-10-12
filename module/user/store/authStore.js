@@ -6,6 +6,10 @@ $(function () {
 
         identity: null,
 
+        isLogin: function () {
+            return ! _.isEmpty(this.identity);
+        },
+
         auth: function (loginDto) {
             console.log('DATA: ', loginDto);
             return new Promise(function(resolve, reject) {

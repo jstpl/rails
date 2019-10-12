@@ -20,6 +20,7 @@ $(function () {
             auth: function (event) {
                 var promise = bundle.module.user.store.authStore.auth(bundle.module.user.controller.authController.data.entity);
                 promise.then(function (identity) {
+                    bundle.module.user.controller.authController.data.entity = {};
                     bundle.spa.router.go();
                     console.log(identity);
                 }).catch(function (err) {
@@ -36,7 +37,15 @@ $(function () {
                 });
             },
         },
+        access: function () {
+            return {
+                auth: '?',
+            };
+        },
         created: function () {
+
+        },
+        run: function () {
 
         },
     };
