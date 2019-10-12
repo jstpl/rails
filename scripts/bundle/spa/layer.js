@@ -40,7 +40,7 @@ $(function () {
      */
     window.bundle.spa.module = {
 
-        getControllerClassName: function (request, type) {
+        getClassName: function (request, type) {
             var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
             return className;
         },
@@ -52,7 +52,7 @@ $(function () {
         load: function (request, callback) {
             var self = this;
             //var className = 'bundle.module.'+request.namespace+'.script';
-            var className = bundle.spa.module.getControllerClassName(request, 'controller');
+            var className = bundle.spa.module.getClassName(request, 'controller');
             $.ajax({
                 url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
                 success: function (data) {
@@ -70,8 +70,7 @@ $(function () {
             var request = _.clone(requestSource);
             this.prepareRequest(request);
             var callback = function () {
-                var className = bundle.spa.module.getControllerClassName(request, 'controller');
-
+                var className = bundle.spa.module.getClassName(request, 'controller');
                 bundle.spa.layer.show(request);
                 var cb = function () {
                     var controller = namespace.get(className);
