@@ -18,6 +18,10 @@ $(function () {
             history.back();
         },
 
+        goHome: function () {
+            this.go();
+        },
+
         addRoute: function (route, callback) {
             store.routes[route] = callback;
         },

@@ -12,7 +12,8 @@ $(function () {
 
         sendRequest: function (request) {
             request.url = bundle.rest.api.baseUrl + '/' + request.url;
-            if(bundle.module.user.store.authStore.identity != null) {
+            var identity = bundle.module.user.store.identityStore.get();
+            if(identity != null) {
                 request.headers = {};
                 request.headers.Authorization = bundle.module.user.store.authStore.identity.token;
             }

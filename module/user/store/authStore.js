@@ -7,7 +7,8 @@ $(function () {
         identity: null,
 
         isLogin: function () {
-            return ! _.isEmpty(this.identity);
+            var identity = bundle.module.user.store.identityStore.get();
+            return ! _.isEmpty(identity);
         },
 
         auth: function (loginDto) {
@@ -22,7 +23,8 @@ $(function () {
                     },
                     success: function(data) {
                         console.log('success:', data);
-                        bundle.module.user.store.authStore.identity = data;
+                        //bundle.module.user.store.authStore.identity = data;
+                        bundle.module.user.store.identityStore.set(data);
                         resolve(data);
                     },
                     error: function(data) {
@@ -37,7 +39,8 @@ $(function () {
         },
 
         logout: function () {
-            module.user.store.authStore.identity = null;
+            bundle.module.user.store.identityStore.set(null);
+            //module.user.store.authStore.identity = null;
         },
 
     };

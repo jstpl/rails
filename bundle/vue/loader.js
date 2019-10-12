@@ -9,9 +9,11 @@ $(function () {
                 var access = controller.access();
                 if( ! _.isEmpty(access)) {
                     if(access.auth === '@' && ! bundle.module.user.store.authStore.isLogin()) {
+                        console.info('Need authorization!');
                         bundle.spa.router.go('user/auth');
                     }
                     if(access.auth === '?' && bundle.module.user.store.authStore.isLogin()) {
+                        console.info('Already authorized!');
                         bundle.spa.router.goBack();
                     }
                 }
