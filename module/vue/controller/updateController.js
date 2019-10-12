@@ -11,6 +11,7 @@ $(function () {
         methods: {
             save: function (event) {
                 bundle.module.vue.store.contactStore.update(bundle.module.vue.controller.updateController.data.entity);
+                location.hash = '#vue/view/' + bundle.module.vue.controller.updateController.data.entity.id;
             }
         },
 

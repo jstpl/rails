@@ -7,6 +7,13 @@ $(function () {
         });
     });
 
+    bundle.spa.router.addRoute('/vue/create', function (id) {
+        bundle.vue.loader.run({
+            controller: 'vue',
+            action: 'create',
+        });
+    });
+
     bundle.spa.router.addRoute('/vue/view/:id', function (id) {
         bundle.vue.loader.run({
             controller: 'vue',
