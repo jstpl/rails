@@ -41,7 +41,7 @@ $(function () {
     window.bundle.spa.module = {
 
         getControllerClassName: function (request) {
-            var className = 'bundle.module.' + request.controller + '.' + request.action+'.script';
+            var className = 'bundle.module.' + request.controller + '.controller.' + request.action;
             return className;
         },
 

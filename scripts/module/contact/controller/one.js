@@ -39,9 +39,9 @@ $(function () {
 
 $(function () {
 
-    namespace.define('bundle.module.contact.one');
+    namespace.define('bundle.module.contact.controller');
 
-    bundle.module.contact.one.script = {
+    bundle.module.contact.controller.one = {
 
         registerEventHandlers: function () {
             container.event.registerHandler('bundle.contact.store.contact.update', function (contactEntity) {
