@@ -10,7 +10,7 @@ $(function () {
         }
         if (action.type === actionEnum.update) {
             state = _.clone(action.data);
-            container.event.trigger('bundle.module.contact.store.contact.update', state);
+            container.event.trigger('bundle.module.contact.store.contactStore.update', state);
         }
         return state;
     };
@@ -19,7 +19,7 @@ $(function () {
 
     namespace.define('bundle.module.contact.store');
 
-    bundle.module.contact.store.contact = {
+    bundle.module.contact.store.contactStore = {
         update: function (contactEntity) {
             store.dispatch({
                 type: actionEnum.update,
