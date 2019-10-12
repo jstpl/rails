@@ -35,6 +35,19 @@ $(function () {
 
     };
 
+    window.bundle.spa.helper = {
+
+        getClassName: function (request, type) {
+            var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action;
+            return className;
+        },
+
+        isTemplate: function (data) {
+            return data.search(/<!DOCTYPE html>/g) === -1;
+        },
+
+    };
+
     /**
      *
      */
@@ -50,15 +63,16 @@ $(function () {
         },
 
         load: function (request, callback) {
-            var self = this;
+            //var self = this;
+            //var templateUrl
             //var className = 'bundle.module.'+request.namespace+'.script';
-            var className = bundle.spa.module.getClassName(request, 'controller');
+            //var className = window.bundle.spa.helper.getClassName(request, 'controller');
             $.ajax({
                 url: '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html',
                 success: function (data) {
 
                     callback();
-                    if (self.isTemplate(data)) {
+                    if (window.bundle.spa.helper.isTemplate(data)) {
                         bundle.spa.layer.add(data, request);
                     }
                 }
@@ -70,7 +84,7 @@ $(function () {
             var request = _.clone(requestSource);
             this.prepareRequest(request);
             var callback = function () {
-                var className = bundle.spa.module.getClassName(request, 'controller');
+                var className = window.bundle.spa.helper.getClassName(request, 'controller');
                 bundle.spa.layer.show(request);
                 var cb = function () {
                     var controller = namespace.get(className);
@@ -85,6 +99,9 @@ $(function () {
         },
 
         doRequest: function (request, callback) {
+
+            //callback();
+
             var isExists = bundle.spa.layer.has(request);
             if (isExists) {
                 callback();
@@ -95,7 +112,7 @@ $(function () {
 
         prepareRequest: function (request) {
             request.action = _.defaultTo(request.action, 'index');
-            request.path = _.defaultTo(request.path, 'scripts/module');
+            request.path = _.defaultTo(request.path, 'module');
             request.namespace = request.controller + '.' + request.action;
         },
 
