@@ -4,7 +4,13 @@ $(function () {
 
     bundle.module.user.service.authService = {
 
-        identity: null,
+        getToken: function () {
+            var identity = bundle.module.user.store.identityStore.get();
+            if(_.isEmpty(identity)) {
+                return null;
+            }
+            return identity.token;
+        },
 
         isLogin: function () {
             var identity = bundle.module.user.store.identityStore.get();
