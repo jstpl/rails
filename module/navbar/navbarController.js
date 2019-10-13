@@ -19,7 +19,7 @@ $(function () {
         data: data,
         created: function () {
             helper.update();
-            container.event.registerHandler(['user.auth', 'user.logout'], helper.update);
+            container.event.registerHandler(['user.auth.login', 'user.auth.logout'], helper.update);
         }
     };
 

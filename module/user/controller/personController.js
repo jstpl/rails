@@ -10,7 +10,7 @@ $(function () {
 
         data: data,
         depends: [
-            //'bundle.module.user.store.authStore',
+            'bundle.module.user.service.personService',
         ],
         access: function () {
             return {
@@ -18,8 +18,13 @@ $(function () {
             };
         },
         run: function () {
-            var identity = bundle.module.user.store.identityStore.get();
-            data.entity = identity;
+            //var identity = bundle.module.user.store.identityStore.get();
+            bundle.module.user.service.personService.oneSelf().then(function (entity) {
+                d(entity);
+                data.entity = entity;
+            });
+
+            //data.entity = identity;
         },
     };
 

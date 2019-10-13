@@ -39,14 +39,14 @@ $(function () {
             var promise = container.restClient.sendRequestPromise(request);
             promise.then(function (identity) {
                 identityStore.set(identity);
-                container.event.trigger('user.auth', identity);
+                container.event.trigger('user.auth.login', identity);
             });
             return promise;
         },
 
         logout: function () {
             identityStore.set(null);
-            container.event.trigger('user.logout');
+            container.event.trigger('user.auth.logout');
             //module.user.store.authStore.identity = null;
         },
 
