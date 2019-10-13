@@ -6,6 +6,8 @@ $(function() {
      * Ядро приложения
      *
      * Запускается 1 раз при запуске приложения
+     *
+     * Todo: переименовать в bundle.legalbet.bootstrap
      */
     window.bundle.legalbet.component.bootstrap = {
 
@@ -35,7 +37,7 @@ $(function() {
          * @param params
          */
         run: function (params) {
-            bundle.kernel.component.bootstrap.run(params);
+            bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
             container.log.info('legalbet kernel launch');

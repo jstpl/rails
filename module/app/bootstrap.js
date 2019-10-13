@@ -38,7 +38,7 @@ $(function() {
          * @param params
          */
         run: function (params) {
-            bundle.kernel.component.bootstrap.run(params);
+            bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
 

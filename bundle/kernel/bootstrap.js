@@ -7,7 +7,7 @@ $(function() {
      *
      * Запускается 1 раз при запуске приложения
      */
-    window.bundle.kernel.component.bootstrap = {
+    window.bundle.kernel.bootstrap = {
         /**
          * Регистрация сервисов в контейнере
          */
