@@ -68,8 +68,11 @@
 <script src="/module/user/store/identityStore.js"></script>
 <script src="/module/user/service/authService.js"></script>
 <script src="/module/user/lang/ru/auth.js"></script>
+
 <script src="/module/notify/enum/notifyTypeEnum.js"></script>
 <script src="/module/notify/service/notifyService.js"></script>
+
+<script src="/module/navbar/navbarController.js"></script>
 
 <script src="/module/app/config/alias.js"></script>
 <script src="/module/app/bootstrap.js"></script>
@@ -82,17 +85,14 @@
 
 <script>
     $(function () {
-
         /** Запуск приложения */
         bundle.module.app.bootstrap.run();
-
-        bundle.spa.router.init();
     });
 </script>
 
 <div id="toastjs"></div>
 
-<div class="navbar navbar-inverse" role="navigation">
+<div id="navbar" class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -110,12 +110,12 @@
                 <li><a href="#todo">Todo</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#user/auth">Auth</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <li v-if=" ! isLogin"><a href="#user/auth">Auth</a></li>
+                <li v-if="isLogin" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{identity.login}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#user/person">Person</a></li>
-                        <li><a href="#user/logout">Logout</a></li>
+                        <li v-if="isLogin"><a href="#user/person">Person</a></li>
+                        <li v-if="isLogin"><a href="#user/logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>

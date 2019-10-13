@@ -7,7 +7,7 @@ $(function () {
         successAuthorizationMessage: 'Вы авторизованы',
         successLogoutMessage: 'Вы вышли из аккаунта',
         authorizationRequiredMessage: 'Необходимо авторизоваться',
-        alreadyAuthorizedMessage: 'Необходимо авторизоваться',
+        alreadyAuthorizedMessage: 'Вы уже авторизованы',
 
     };
 

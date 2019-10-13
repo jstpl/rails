@@ -32,6 +32,10 @@ $(function() {
             bundle.legalbet.component.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
+
+            bundle.spa.router.init();
+            bundle.vue.vm.ensure(bundle.module.navbar.navbarConretoller);
+
             container.log.info('application kernel launch');
         }
     };

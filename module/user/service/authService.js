@@ -2,9 +2,17 @@ $(function () {
 
     namespace.define('bundle.module.user.service');
 
+    var identityStore = bundle.module.user.store.identityStore;
+
     bundle.module.user.service.authService = {
 
-        //identity: null,
+        getIdentity: function () {
+            var identity = bundle.module.user.store.identityStore.get();
+            if(_.isEmpty(identity)) {
+                return null;
+            }
+            return identity;
+        },
 
         getToken: function () {
             var identity = bundle.module.user.store.identityStore.get();
@@ -16,6 +24,7 @@ $(function () {
 
         isLogin: function () {
             var identity = bundle.module.user.store.identityStore.get();
+            //d(identity);
             return ! _.isEmpty(identity);
         },
 
@@ -30,15 +39,11 @@ $(function () {
                         password: loginDto.password,
                     },
                     success: function(data) {
-                        //console.info('Success authorization!');
-                        //console.log('success:', data);
-                        //container.authService.identity = data;
                         bundle.module.user.store.identityStore.set(data);
+                        container.event.trigger('user.auth', data);
                         resolve(data);
                     },
                     error: function(data) {
-                        //console.info('Error authorization!');
-                        //console.log('error:', data);
                         reject(data);
                         //return reject(new Error("Error login or password!"));
                     },
@@ -50,6 +55,7 @@ $(function () {
 
         logout: function () {
             bundle.module.user.store.identityStore.set(null);
+            container.event.trigger('user.logout');
             //module.user.store.authStore.identity = null;
         },
 
