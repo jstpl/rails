@@ -2,10 +2,15 @@ $(function () {
 
     namespace.define('bundle.module.todo.store');
 
-    bundle.module.todo.store.contactStore = {
+    var localStore = bundle.helper.class.extends(bundle.domain.baseLocalStorage, {
 
         storageKey: 'todo3',
-        collection: null,
+
+    });
+
+    bundle.module.todo.store.contactStore = {
+
+        collection: undefined,
 
         deleteById: function (id) {
             this._forge();
@@ -63,18 +68,13 @@ $(function () {
             return _.find(this.collection, { 'id': id });
         },
         _forge: function () {
-            if(this.collection === null) {
-                var collectionJson = localStorage.getItem(this.storageKey);
-                if(! _.isEmpty(collectionJson)) {
-                    this.collection = JSON.parse(collectionJson);
-                }
-                if( ! _.isArray(this.collection)) {
-                    this.collection = [];
-                }
+            if(this.collection === undefined) {
+                this.collection = localStore.get([]);
             }
         },
         _saveToLocal: function () {
-            localStorage.setItem(this.storageKey, JSON.stringify(this.collection));
+            var value = _.defaultTo(this.collection, []);
+            localStore.set(value);
         }
     };
 

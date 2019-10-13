@@ -12,7 +12,7 @@ $(function() {
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
-
+            container.authService = bundle.module.user.service.authService;
         },
 
         /**

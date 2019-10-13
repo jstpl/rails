@@ -14,7 +14,7 @@ $(function () {
             },
         },
         run: function () {
-            bundle.module.user.store.authStore.logout();
+            container.authService.logout();
             bundle.spa.router.goHome();
         },
         access: function () {

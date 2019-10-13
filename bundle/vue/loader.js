@@ -8,11 +8,11 @@ $(function () {
             if(_.isFunction(controller.access)) {
                 var access = controller.access();
                 if( ! _.isEmpty(access)) {
-                    if(access.auth === '@' && ! bundle.module.user.store.authStore.isLogin()) {
+                    if(access.auth === '@' && ! container.authService.isLogin()) {
                         console.info('Need authorization!');
                         bundle.spa.router.go('user/auth');
                     }
-                    if(access.auth === '?' && bundle.module.user.store.authStore.isLogin()) {
+                    if(access.auth === '?' && container.authService.isLogin()) {
                         console.info('Already authorized!');
                         bundle.spa.router.goBack();
                     }

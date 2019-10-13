@@ -1,8 +1,8 @@
 $(function () {
 
-    namespace.define('bundle.module.user.store');
+    namespace.define('bundle.module.user.service');
 
-    bundle.module.user.store.authStore = {
+    bundle.module.user.service.authService = {
 
         identity: null,
 

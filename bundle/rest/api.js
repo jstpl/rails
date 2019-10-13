@@ -15,7 +15,7 @@ $(function () {
             var identity = bundle.module.user.store.identityStore.get();
             if(identity != null) {
                 request.headers = {};
-                request.headers.Authorization = bundle.module.user.store.authStore.identity.token;
+                request.headers.Authorization = container.authService.identity.token;
             }
 
             $.ajax(request);
