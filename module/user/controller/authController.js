@@ -23,7 +23,7 @@ $(function () {
                     bundle.module.user.controller.authController.data.entity = {};
                     bundle.spa.router.go();
                     console.log(identity);
-                    container.notify.success('Authentication success!');
+                    container.notify.success(lang.user.auth.successAuthorizationMessage);
                 }).catch(function (err) {
                     if(err.status === 422) {
                         bundle.module.user.controller.authController.data.errors = {};
@@ -35,7 +35,6 @@ $(function () {
                         }
                         console.log(bundle.module.user.controller.authController.data.errors);
                     }
-                    //container.notify.error('Authentication error!');
                 });
             },
         },

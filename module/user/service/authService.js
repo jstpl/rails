@@ -4,6 +4,8 @@ $(function () {
 
     bundle.module.user.service.authService = {
 
+        //identity: null,
+
         getToken: function () {
             var identity = bundle.module.user.store.identityStore.get();
             if(_.isEmpty(identity)) {
@@ -28,14 +30,14 @@ $(function () {
                         password: loginDto.password,
                     },
                     success: function(data) {
-                        console.info('Success authorization!');
+                        //console.info('Success authorization!');
                         //console.log('success:', data);
                         //container.authService.identity = data;
                         bundle.module.user.store.identityStore.set(data);
                         resolve(data);
                     },
                     error: function(data) {
-                        console.info('Error authorization!');
+                        //console.info('Error authorization!');
                         //console.log('error:', data);
                         reject(data);
                         //return reject(new Error("Error login or password!"));

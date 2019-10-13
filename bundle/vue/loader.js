@@ -4,23 +4,30 @@ $(function () {
 
     var helper = {
 
-        runController: function (controller, request) {
-            if(_.isFunction(controller.access)) {
-                var access = controller.access();
-                if( ! _.isEmpty(access)) {
-                    if(access.auth === '@' && ! container.authService.isLogin()) {
-                        //console.info('Need authorization!');
-                        container.notify.info('Need authorization!');
-                        bundle.spa.router.go('user/auth');
-                    }
-                    if(access.auth === '?' && container.authService.isLogin()) {
-                        //console.info('Already authorized!');
-                        container.notify.info('Already authorized!');
-                        bundle.spa.router.goBack();
-                    }
-                }
+        checkAccess: function (controller) {
+            var access = controller.access();
+            if(_.isEmpty(access)) {
+                return true;
             }
-            if(_.isFunction(controller.run)) {
+            if(access.auth === '@' && ! container.authService.isLogin()) {
+                container.notify.info(lang.user.auth.authorizationRequiredMessage);
+                bundle.spa.router.go('user/auth');
+                return false;
+            }
+            if(access.auth === '?' && container.authService.isLogin()) {
+                container.notify.info(lang.user.auth.alreadyAuthorizedMessage);
+                bundle.spa.router.goBack();
+                return false;
+            }
+            return true;
+        },
+
+        runController: function (controller, request) {
+            var isAllow = false;
+            if(_.isFunction(controller.access)) {
+                isAllow = this.checkAccess(controller);
+            }
+            if(_.isFunction(controller.run) && isAllow) {
                 controller.run(request);
             }
         },
