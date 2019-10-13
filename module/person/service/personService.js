@@ -1,8 +1,8 @@
 $(function () {
 
-    namespace.define('bundle.module.user.service');
+    namespace.define('bundle.module.person.service');
 
-    bundle.module.user.service.personService = {
+    bundle.module.person.service.personService = {
 
         oneSelf: function () {
             var promise = container.restClient.get('person');
