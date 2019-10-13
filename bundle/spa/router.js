@@ -29,6 +29,7 @@ $(function () {
         init: function () {
             store.routerInstance = Router(store.routes);
             store.routerInstance.init();
+            store.routerInstance.setRoute();
         },
 
     };

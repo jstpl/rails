@@ -7,7 +7,7 @@ $(function () {
     bundle.module.user.service.authService = {
 
         getIdentity: function () {
-            var identity = bundle.module.user.store.identityStore.get();
+            var identity = identityStore.get();
             if(_.isEmpty(identity)) {
                 return null;
             }
@@ -15,7 +15,7 @@ $(function () {
         },
 
         getToken: function () {
-            var identity = bundle.module.user.store.identityStore.get();
+            var identity = identityStore.get();
             if(_.isEmpty(identity)) {
                 return null;
             }
@@ -23,8 +23,7 @@ $(function () {
         },
 
         isLogin: function () {
-            var identity = bundle.module.user.store.identityStore.get();
-            //d(identity);
+            var identity = identityStore.get();
             return ! _.isEmpty(identity);
         },
 
@@ -39,9 +38,9 @@ $(function () {
                         password: loginDto.password,
                     },
                     success: function(data) {
-                        bundle.module.user.store.identityStore.set(data);
-                        container.event.trigger('user.auth', data);
+                        identityStore.set(data);
                         resolve(data);
+                        container.event.trigger('user.auth', data);
                     },
                     error: function(data) {
                         reject(data);
@@ -54,7 +53,7 @@ $(function () {
         },
 
         logout: function () {
-            bundle.module.user.store.identityStore.set(null);
+            identityStore.set(null);
             container.event.trigger('user.logout');
             //module.user.store.authStore.identity = null;
         },

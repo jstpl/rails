@@ -13,10 +13,16 @@ $(function() {
         /**
          * Регистрация обработчика события
          *
-         * @param eventName имя события
+         * @param eventName {String|Array} имя события или массив имен
          * @param handler обработчик (функция или класс с методом "run")
          */
         registerHandler: function(eventName, handler) {
+            if(_.isArray(eventName)) {
+                for(var k in eventName) {
+                    var eventNameItem = eventName[k];
+                    this.registerHandler(eventNameItem, handler);
+                }
+            }
             this._initEventArray(eventName);
             this.handlers[eventName].push(handler);
             container.log.info('Register handler (' + bundle.helper.php.get_type(handler) + ') for event "' + eventName + '"');
