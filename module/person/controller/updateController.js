@@ -3,6 +3,7 @@ $(function () {
     namespace.define('bundle.module.person.controller');
 
     var data = {
+        errors: {},
         entity: {},
     };
 
@@ -15,9 +16,24 @@ $(function () {
         ],
         methods: {
             save: function (event) {
-                bundle.module.person.service.personService.update(data.entity);
-                container.event.trigger('person.info.update', data.entity);
-                bundle.spa.router.go('person/view');
+                var promise = bundle.module.person.service.personService.update(data.entity);
+                promise.then(function (data) {
+                    //container.event.trigger('person.info.update', data);
+                    bundle.spa.router.go('person/view');
+                }).catch(function (err) {
+                    if(err.status === 422) {
+                        var errors = {};
+                        for(var k in err.responseJSON) {
+                            var fieldName = err.responseJSON[k].field;
+                            var fieldMessage = err.responseJSON[k].message;
+                            errors[fieldName] = fieldMessage;
+                        }
+                        console.log(errors);
+                        data.errors = errors;
+
+                        //console.log(bundle.module.user.controller.authController.data.errors);
+                    }
+                });
             }
         },
         access: function () {
@@ -27,12 +43,11 @@ $(function () {
         },
         run: function () {
             bundle.module.person.service.personService.oneSelf().then(function (entity) {
-                d(entity);
                 data.entity = entity;
             });
         },
         created: function () {
-            container.event.registerHandler('user.person.info.update', function (entity) {
+            container.event.registerHandler('person.info.update', function (entity) {
                 container.notify.success(lang.person.info.infoUpdatedMessage);
             })
         },

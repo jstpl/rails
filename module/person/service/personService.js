@@ -7,7 +7,7 @@ $(function () {
         oneSelf: function () {
             var promise = container.restClient.get('person');
             promise.then(function (entity) {
-                container.event.trigger('user.person.info.view', entity);
+                container.event.trigger('person.info.view', entity);
             });
             return promise;
         },
@@ -22,7 +22,7 @@ $(function () {
                 email: entity.email,
             });
             promise.then(function (data) {
-                container.event.trigger('user.person.info.update', data);
+                container.event.trigger('person.info.update', data);
             });
             return promise;
         },

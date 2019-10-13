@@ -63,13 +63,9 @@ $(function () {
                     resolve(data);
                     container.event.trigger('api.request.send.success', data);
                 };
-                request.error = function(jqXHR, exception) {
-                    helper.errorCallback(jqXHR, exception);
+                request.error = function(jqXHR) {
+                    container.event.trigger('api.request.send.error', jqXHR);
                     reject(jqXHR);
-                    container.event.trigger('api.request.send.error', {
-                        jqXHR: jqXHR,
-                        exception: exception,
-                    });
                 };
                 $.ajax(request);
             };
@@ -86,6 +82,25 @@ $(function () {
             request.url = this.baseUrl + '/' + request.url;
         },
 
+        /**
+         * Полученние сообщения об ошибке
+         * @param response {*}
+         * @returns {string}
+         */
+        getErrorMessage: function(response) {
+            var msg = '';
+            if (response.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (response.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (response.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else {
+                msg = 'Uncaught Error.\n' + response.responseText;
+            }
+            return msg;
+        },
+
     };
 
     var helper = {
@@ -97,9 +112,5 @@ $(function () {
             }
         },
 
-        errorCallback: function (jqXHR, exception) {
-            var msg = bundle.helper.ajax.getErrorMessage(jqXHR, exception);
-            container.notify.error('Произошла ошибка запроса!' + "<br/>" + msg);
-        },
     };
 });

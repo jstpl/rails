@@ -31,6 +31,23 @@ $(function() {
             /** Конфигурация приложения */
             //container.env.setMode(bundle.env.envEnum.develop);
 
+            container.event.registerHandler('api.request.send.error', function (response) {
+                if(response.status === 401) {
+                    bundle.module.user.service.authService.logout();
+                    bundle.module.user.service.authService.authRequired();
+                } else if (response.status === 422) {
+                    
+                } else {
+                    var msg = bundle.rest.client.getErrorMessage(response);
+                    container.notify.error('Произошла ошибка запроса!' + "<br/>" + msg);
+                }
+            });
+
+            container.event.registerHandler('user.auth.authRequired', function () {
+                container.notify.info(lang.user.auth.authorizationRequiredMessage);
+                bundle.spa.router.go('user/auth');
+            });
+
         },
 
         /**

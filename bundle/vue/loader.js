@@ -10,8 +10,7 @@ $(function () {
                 return true;
             }
             if(access.auth === '@' && ! container.authService.isLogin()) {
-                container.notify.info(lang.user.auth.authorizationRequiredMessage);
-                bundle.spa.router.go('user/auth');
+                bundle.module.user.service.authService.authRequired();
                 return false;
             }
             if(access.auth === '?' && container.authService.isLogin()) {

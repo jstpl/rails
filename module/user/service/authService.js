@@ -6,6 +6,10 @@ $(function () {
 
     bundle.module.user.service.authService = {
 
+        authRequired: function () {
+            container.event.trigger('user.auth.authRequired');
+        },
+
         getIdentity: function () {
             var identity = identityStore.get();
             if(_.isEmpty(identity)) {
