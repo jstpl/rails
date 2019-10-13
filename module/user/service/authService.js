@@ -28,28 +28,20 @@ $(function () {
         },
 
         auth: function (loginDto) {
-            console.log('DATA: ', loginDto);
-            return new Promise(function(resolve, reject) {
-                var request = {
-                    url: "auth",
-                    type: "POST",
-                    data: {
-                        login: loginDto.login,
-                        password: loginDto.password,
-                    },
-                    success: function(data) {
-                        identityStore.set(data);
-                        resolve(data);
-                        container.event.trigger('user.auth', data);
-                    },
-                    error: function(data) {
-                        reject(data);
-                        //return reject(new Error("Error login or password!"));
-                    },
-                };
-                bundle.rest.api.setBaseUrl('http://api.union.project/v1');
-                bundle.rest.api.sendRequest(request);
+            var request = {
+                url: "auth",
+                type: "POST",
+                data: {
+                    login: loginDto.login,
+                    password: loginDto.password,
+                },
+            };
+            var promise = container.restClient.sendRequestPromise(request);
+            promise.then(function (identity) {
+                identityStore.set(identity);
+                container.event.trigger('user.auth', identity);
             });
+            return promise;
         },
 
         logout: function () {

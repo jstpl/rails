@@ -12,8 +12,16 @@ $(function() {
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
+            container.cache = bundle.cache.cacheService;
+            container.event = bundle.event.eventService;
+            //container.queue = bundle.queue.queueService;
+            /*container.loader = container.instance(bundle.ui.baseElementService, {
+                selector: '.js-loader',
+            });*/
             container.authService = bundle.module.user.service.authService;
             container.notify = bundle.module.notify.service.notifyService;
+            container.restClient = container.instance(bundle.rest.api);
+            container.restClient.setBaseUrl('http://api.union.project/v1');
         },
 
         /**
@@ -22,6 +30,7 @@ $(function() {
         initConfig: function () {
             /** Конфигурация приложения */
             //container.env.setMode(bundle.env.envEnum.develop);
+
         },
 
         /**
@@ -29,7 +38,7 @@ $(function() {
          * @param params
          */
         run: function (params) {
-            bundle.legalbet.component.bootstrap.run(params);
+            bundle.kernel.component.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
 

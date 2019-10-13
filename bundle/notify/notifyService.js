@@ -11,7 +11,7 @@ $(function() {
          * Показать сообщение об ошибке
          * @param message текст сообщения
          */
-        showError: function (message) {
+        error: function (message) {
             this.show(bundle.notify.notifyTypeEnum.error, message);
         },
 
@@ -19,7 +19,7 @@ $(function() {
          * Показать сообщение о критической ошибке
          * @param message текст сообщения
          */
-        showDanger: function (message) {
+        danger: function (message) {
             this.show(bundle.notify.notifyTypeEnum.danger, message);
         },
 
@@ -27,7 +27,7 @@ $(function() {
          * Показать сообщение с информацией
          * @param message текст сообщения
          */
-        showInfo: function (message) {
+        info: function (message) {
             this.show(bundle.notify.notifyTypeEnum.info, message);
         },
 
@@ -35,7 +35,7 @@ $(function() {
          * Показать сообщение об успешной операции
          * @param message текст сообщения
          */
-        showSuccess: function (message) {
+        success: function (message) {
             this.show(bundle.notify.notifyTypeEnum.success, message);
         },
 

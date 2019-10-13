@@ -9,7 +9,7 @@ $(function() {
 
         errorCallback: function (jqXHR, exception) {
             var msg = window.bundle.helper.ajax.getErrorMessage(jqXHR, exception);
-            container.notify.showError('Произошла ошибка запроса!' + "<br/>" + msg);
+            container.notify.error('Произошла ошибка запроса!' + "<br/>" + msg);
         },
 
         /**
@@ -63,12 +63,6 @@ $(function() {
          * @returns {*}
          */
         send: function(request) {
-            /* if(!bundle.helper.php.empty(request.cache)) {
-                 if(container.cache.has(request)) {
-                     return container.cache.get(request);
-                 }
-             }*/
-
             //container.loader.show();
 
             var cloneRequest = _.clone(request);
@@ -76,11 +70,15 @@ $(function() {
 
             var promiseCallback = function(resolve,reject){
                 cloneRequest.success = function(data) {
-                    request.success(data);
+                    if(_.isFunction(request.success)) {
+                        request.success(data);
+                    }
                     resolve(data);
                 };
                 cloneRequest.error = function(data) {
-                    request.error(data);
+                    if(_.isFunction(request.error)) {
+                        request.error(data);
+                    }
                     reject(data);
                 };
                 $.ajax(cloneRequest);
