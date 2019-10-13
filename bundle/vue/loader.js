@@ -74,7 +74,11 @@ $(function () {
             };
             for(var k in controller.depends) {
                 var dependClass = controller.depends[k];
-                namespace.requireClass(dependClass, cb);
+                if(dependClass.search(/\//g) !== -1) {
+                    namespace.requireScript(dependClass, cb);
+                } else {
+                    namespace.requireClass(dependClass, cb);
+                }
             }
         },
 
