@@ -2,20 +2,60 @@ $(function () {
 
     namespace.define('bundle.rest');
 
-    window.bundle.rest.api = {
+    window.bundle.rest.client = {
 
         baseUrl: null,
+
+        get: function (url, query, headers) {
+            var request = {
+                url: url,
+            };
+            if(headers) {
+                request.headers = _.defaultTo(headers, {});
+            }
+            return this.sendRequest(request);
+        },
+
+        post: function (url, data, headers) {
+            var request = {
+                url: url,
+                type: 'POST',
+                data: data,
+            };
+            if(headers) {
+                request.headers = _.defaultTo(headers, {});
+            }
+            return this.sendRequest(request);
+        },
+
+        put: function (url, data, headers) {
+            var request = {
+                url: url,
+                type: 'PUT',
+                data: data,
+            };
+            if(headers) {
+                request.headers = _.defaultTo(headers, {});
+            }
+            return this.sendRequest(request);
+        },
+
+        del: function (url, query, headers) {
+            var request = {
+                url: url,
+                type: 'DELETE',
+            };
+            if(headers) {
+                request.headers = _.defaultTo(headers, {});
+            }
+            return this.sendRequest(request);
+        },
 
         setBaseUrl: function (baseUrl) {
             this.baseUrl = baseUrl;
         },
 
-        sendRequest: function (request) {
-            this.prepareRequest(request);
-            $.ajax(request);
-        },
-
-        sendRequestPromise: function (requestSource) {
+        sendRequest: function (requestSource) {
             var request = _.clone(requestSource);
             this.prepareRequest(request);
             var promiseCallback = function(resolve,reject){
@@ -37,6 +77,7 @@ $(function () {
         },
 
         prepareRequest: function (request) {
+            request.headers = _.defaultTo(request.headers, {});
             this.prepareRequestUrl(request);
             helper.prepareRequestAuthorization(request);
         },
@@ -52,7 +93,6 @@ $(function () {
         prepareRequestAuthorization: function (request) {
             var token = container.authService.getToken();
             if(token) {
-                request.headers = {};
                 request.headers.Authorization = token;
             }
         },

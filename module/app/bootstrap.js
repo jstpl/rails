@@ -20,7 +20,7 @@ $(function() {
             });*/
             container.authService = bundle.module.user.service.authService;
             container.notify = bundle.module.notify.service.notifyService;
-            container.restClient = container.instance(bundle.rest.api);
+            container.restClient = container.instance(bundle.rest.client);
             container.restClient.setBaseUrl('http://api.union.project/v1');
         },
 

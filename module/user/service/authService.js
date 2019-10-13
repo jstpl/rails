@@ -28,15 +28,7 @@ $(function () {
         },
 
         auth: function (loginDto) {
-            var request = {
-                url: "auth",
-                type: "POST",
-                data: {
-                    login: loginDto.login,
-                    password: loginDto.password,
-                },
-            };
-            var promise = container.restClient.sendRequestPromise(request);
+            var promise = container.restClient.post('auth', loginDto);
             promise.then(function (identity) {
                 identityStore.set(identity);
                 container.event.trigger('user.auth.login', identity);
