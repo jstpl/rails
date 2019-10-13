@@ -15,6 +15,7 @@ $(function () {
         },
         run: function () {
             container.authService.logout();
+            container.notify.success('Logout success!');
             bundle.spa.router.goHome();
         },
         access: function () {

@@ -81,13 +81,13 @@ $(function () {
 
     window.bundle.spa.helper = {
 
-        getVueInstance: function (definition) {
+        /*getVueInstance: function (definition) {
             var el = definition.el;
-            namespace.define('bundle.spa.vm');
-            if(_.isEmpty(bundle.spa.vm[el])) {
-                bundle.spa.vm[el] = new Vue(definition);
+            if( ! bundle.vue.vm.has(el)) {
+                var vueInstance = new Vue(definition);
+                bundle.vue.vm.set(el, vueInstance);
             }
-        },
+        },*/
 
         getClassName: function (request, type) {
             var className = 'bundle.module.' + request.controller + '.'+type+'.' + request.action + _.startCase(_.toLower(type));

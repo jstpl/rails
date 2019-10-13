@@ -13,6 +13,7 @@ $(function() {
          */
         initContainer: function () {
             container.authService = bundle.module.user.service.authService;
+            container.notify = bundle.module.notify.service.notifyService;
         },
 
         /**

@@ -9,11 +9,13 @@ $(function () {
                 var access = controller.access();
                 if( ! _.isEmpty(access)) {
                     if(access.auth === '@' && ! container.authService.isLogin()) {
-                        console.info('Need authorization!');
+                        //console.info('Need authorization!');
+                        container.notify.info('Need authorization!');
                         bundle.spa.router.go('user/auth');
                     }
                     if(access.auth === '?' && container.authService.isLogin()) {
-                        console.info('Already authorized!');
+                        //console.info('Already authorized!');
+                        container.notify.info('Already authorized!');
                         bundle.spa.router.goBack();
                     }
                 }
@@ -45,7 +47,8 @@ $(function () {
         loadDepends: function (request, controller) {
             if(_.isEmpty(controller.depends)) {
                 //d(controller);
-                bundle.spa.helper.getVueInstance(controller);
+                bundle.vue.vm.ensure(controller);
+                //bundle.spa.helper.getVueInstance(controller);
                 //controller.onLoadDepends(request);
                 helper.runController(controller, request);
                 return;
@@ -56,7 +59,8 @@ $(function () {
                 if(cbCount === controller.depends.length) {
                     //d(cbCount);
                     //d(controller);
-                    bundle.spa.helper.getVueInstance(controller);
+                    //bundle.spa.helper.getVueInstance(controller);
+                    bundle.vue.vm.ensure(controller);
                     //controller.onLoadDepends(request);
                     helper.runController(controller, request);
                 }
