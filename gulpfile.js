@@ -43,8 +43,7 @@ var bundleSrc = [
 ];
 
 var appSrc = [
-    './module/**/config/*.js',
-    './module/app/bootstrap.js',
+
     './module/navbar/**/*.js',
 
     './module/user/store/*.js',
@@ -56,6 +55,10 @@ var appSrc = [
 
     './module/notify/enum/*.js',
     './module/notify/service/*.js',
+
+    './module/**/config/*.js',
+    './module/app/bootstrap.js',
+    './module/app/run.js',
 ];
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
@@ -90,11 +93,11 @@ gulp.task('minify', function() {
         .pipe(minify())
         .pipe(gulp.dest('./dist/script/'));
 
-    /*gulp.src([
+    gulp.src([
         './dist/style/app.css',
     ])
         .pipe(minify())
-        .pipe(gulp.dest('./dist/style/'));*/
+        .pipe(gulp.dest('./dist/style/'));
 
 });
 
