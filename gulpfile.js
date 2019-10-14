@@ -96,60 +96,27 @@ gulp.task('build', function() {
 
     gulp.src([
         './bundle/kernel/namespace.js',
-        './bundle/helper/!*.js',
-        './bundle/env/!*.js',
-        './bundle/log/!*.js',
-        './bundle/notify/!*.js',
-        './bundle/queue/!*.js',
-        './bundle/ui/!*.js',
+        './bundle/helper/*.js',
+        './bundle/env/*.js',
+        './bundle/log/*.js',
+        './bundle/notify/*.js',
+        './bundle/queue/*.js',
+        './bundle/ui/*.js',
         './bundle/kernel/container.js',
         './bundle/kernel/bootstrap.js',
         './bundle/kernel/func.js',
-        './bundle/domain/!*.js',
-        './bundle/cache/!*.js',
-        './bundle/event/!*.js',
-        './bundle/rest/!*.js',
-        './bundle/legalbet/!*.js',
-        './bundle/widget/!*.js',
-        './bundle/spa/!*.js',
-        './bundle/vue/!*.js',
+        './bundle/domain/*.js',
+        './bundle/cache/*.js',
+        './bundle/event/*.js',
+        './bundle/rest/*.js',
+        './bundle/legalbet/*.js',
+        './bundle/widget/*.js',
+        './bundle/spa/*.js',
+        './bundle/vue/*.js',
 
-        //'./bundle/!**/!*.js',
+        //'./bundle/**/*.js',
     ], { sourcemaps: true })
         .pipe(concat('bundle.js'))
-        .pipe(minify())
-        .pipe(gulp.dest('./dist/js/'));
-
-    gulp.src([
-
-        './module/navbar/*.js',
-        './module/notify/**/*.js',
-        './module/user/store/*.js',
-            './module/user/service/*.js',
-            './module/user/lang/*.js',
-
-        './module/app/**/*.js',
-
-        './module/todo/**/*.js',
-
-        /*'./module/!**!/config/!*.js',
-
-
-        './module/user/store/!*.js',
-        './module/user/service/!*.js',
-        './module/user/lang/!*.js',
-
-
-        './module/notify/service/!*.js',
-
-
-
-        './module/person/!**!/!*.js',
-        './module/person/!**!/!*.js',*/
-
-        //'./module/**/*.js',
-    ], { sourcemaps: true })
-        .pipe(concat('module.js'))
         .pipe(minify())
         .pipe(gulp.dest('./dist/js/'));
 
