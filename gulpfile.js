@@ -27,7 +27,7 @@ gulp.task('build', function() {
         //'./vendor/**/*.js'
     ], { sourcemaps: true })
         .pipe(concat('vendor.js'))
-        .pipe(minify())
+        //.pipe(minify())
         .pipe(gulp.dest('./dist/js/'));
 
     gulp.src([
@@ -53,7 +53,31 @@ gulp.task('build', function() {
         //'./bundle/**/*.js',
     ], { sourcemaps: true })
         .pipe(concat('bundle.js'))
-        .pipe(minify())
+        //.pipe(minify())
+        .pipe(gulp.dest('./dist/js/'));
+
+    gulp.src([
+        './module/**/config/*.js',
+        './module/app/bootstrap.js',
+        './module/navbar/**/*.js',
+
+        //'./module/user/config/*.js',
+        './module/user/store/*.js',
+        './module/user/service/*.js',
+        './module/user/lang/ru/*.js',
+
+        //'./module/contact/config/*.js',
+        './module/contact/store/*.js',
+        './module/contact/service/*.js',
+
+        './module/notify/enum/*.js',
+        './module/notify/service/*.js',
+
+
+
+    ], { sourcemaps: true })
+        .pipe(concat('app.js'))
+        //.pipe(minify())
         .pipe(gulp.dest('./dist/js/'));
 
 });
