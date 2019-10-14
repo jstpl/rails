@@ -13,6 +13,9 @@ Thumbs.db
 # PHP Storm IDE
 /.idea
 
+/node_modules
+/dist
+
 # vendor dir
 #/*/vendor
 
