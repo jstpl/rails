@@ -16,8 +16,13 @@
 <script src="/vendor/lodash/4.17.15/lodash.js"></script>
 <script src="/vendor/bootstrap/3.3.7/bootstrap.min.js"></script>
 <script src="/vendor/toastr/toastr-2.1.4.min.js"></script>
+<script src="/vendor/redux/redux-3.5.2.min.js"></script>
+<script src="/vendor/vue/vue-2.6.10.js"></script>
 
 <script src="/bundle/kernel/namespace.js"></script>
+<script src="/bundle/kernel/container.js"></script>
+<script src="/bundle/kernel/bootstrap.js"></script>
+<script src="/bundle/kernel/func.js"></script>
 
 <script src="/bundle/helper/ajax.js"></script>
 <script src="/bundle/helper/array.js"></script>
@@ -37,10 +42,6 @@
 
 <script src="/bundle/env/envEnum.js"></script>
 <script src="/bundle/env/envService.js"></script>
-
-<script src="/bundle/kernel/container.js"></script>
-<script src="/bundle/kernel/bootstrap.js"></script>
-<script src="/bundle/kernel/func.js"></script>
 
 <script src="/bundle/domain/baseMemoryStore.js"></script>
 <script src="/bundle/domain/baseLocalStorage.js"></script>
@@ -64,10 +65,15 @@
 <script src="/bundle/vue/vm.js"></script>
 
 <script src="/module/app/config/route.js"></script>
+<script src="/module/app/config/alias.js"></script>
+<script src="/module/app/bootstrap.js"></script>
+
 <script src="/module/contact/config/route.js"></script>
 <script src="/module/todo/config/route.js"></script>
 <script src="/module/user/config/route.js"></script>
 <script src="/module/person/config/route.js"></script>
+<script src="/module/kit/config/route.js"></script>
+
 <script src="/module/user/store/identityStore.js"></script>
 <script src="/module/user/service/authService.js"></script>
 <script src="/module/user/lang/ru/auth.js"></script>
@@ -76,16 +82,21 @@
 <script src="/module/notify/service/notifyService.js"></script>
 
 <script src="/module/navbar/navbarController.js"></script>
-
-<script src="/module/app/config/alias.js"></script>
-<script src="/module/app/bootstrap.js"></script>
-
-<script src="/vendor/redux/redux-3.5.2.min.js"></script>
-<script src="/vendor/vue/vue-2.6.10.js"></script>
+<script src="/module/modal/modalService.js"></script>
 
 <script src="/module/app/run.js"></script>
 
 <div id="toastjs"></div>
+
+<div id="modal-wrapper">
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+</div>
 
 <div id="navbar" class="navbar navbar-inverse" role="navigation">
     <div class="container">
@@ -101,6 +112,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#about">About</a></li>
+                <li><a href="#kit">UIKit</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#todo">Todo</a></li>
             </ul>
