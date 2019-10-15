@@ -6,20 +6,33 @@ var replace = require('gulp-replace');
 var csso = require('gulp-csso');
 
 var styleSrc = [
-    './vendor/bootstrap/3.3.7/bootstrap.min.css',
+    './node_modules/bootstrap/dist/css/bootstrap.min.css',
+
+
+    //'./vendor/bootstrap/3.3.7/bootstrap.min.css',
     './vendor/bootstrap/3.3.7/bootstrap-theme.min.css',
+
     './vendor/toastr/toastr-2.1.4.min.css',
 ];
 
 var vendorSrc = [
-    './vendor/jquery/jquery-2.2.4.min.js',
-    './vendor/jquery/jquery-ui-1.12.1.min.js',
-    './vendor/lodash/4.17.15/lodash.js',
-    './vendor/bootstrap/3.3.7/bootstrap.min.js',
-    './vendor/director/director-1.2.6.min.js',
-    './vendor/redux/redux-3.5.2.min.js',
-    './vendor/vue/vue-2.6.10.js',
-    './vendor/toastr/toastr-2.1.4.min.js',
+    './node_modules/jquery/dist/jquery.min.js',
+    './node_modules/lodash/lodash.min.js',
+    './node_modules/bootstrap/dist/js/bootstrap.min.js',
+    './node_modules/director/build/director.min.js',
+    './node_modules/redux/dist/redux.min.js',
+    './node_modules/vue/dist/vue.min.js',
+    './node_modules/toastr/build/toastr.min.js',
+    './node_modules/jquery-ui/jquery-ui.min.js',
+
+    //'./vendor/jquery/jquery-2.2.4.min.js',
+    //'./vendor/jquery/jquery-ui-1.12.1.min.js',
+    //'./vendor/lodash/4.17.15/lodash.js',
+    //'./vendor/bootstrap/3.3.7/bootstrap.min.js',
+    //'./vendor/director/director-1.2.6.min.js',
+    //'./vendor/redux/redux-3.5.2.min.js',
+    //'./vendor/vue/vue-2.6.10.js',
+    //'./vendor/toastr/toastr-2.1.4.min.js',
 ];
 
 
@@ -60,12 +73,32 @@ var appSrc = [
     './module/notify/service/*.js',
 
     './module/bootstrap/**/*.js',
+
     './module/**/config/*.js',
     './module/app/bootstrap.js',
     './module/app/run.js',
 ];
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
+
+gulp.task('renderScripts', function() {
+
+    var html = '';
+    for(var k in allSrc) {
+        var url = allSrc[k];
+        var item = '<script src="'+url+'"></script>';
+        html = html + "\n" + item;
+    }
+
+    //console.log(html);
+
+    gulp.src(['./src/index.html'])
+        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
+        .pipe(gulp.dest('.'));
+
+    //console(gulp.src('./dist/script/all.js').sourcemaps());
+
+});
 
 gulp.task('build', function() {
 
@@ -77,11 +110,11 @@ gulp.task('build', function() {
         .pipe(concat('all.js'))
         .pipe(gulp.dest('./dist/script/'));
 
-    /*gulp.src(vendorSrc, { sourcemaps: true })
+    gulp.src(vendorSrc, { sourcemaps: true })
         .pipe(concat('vendor.js'))
-        .pipe(gulp.dest('./dist/script/'));
+        .pipe(gulp.dest('./dev/script/'));
 
-    gulp.src(bundleSrc, { sourcemaps: true })
+    /*gulp.src(bundleSrc, { sourcemaps: true })
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest('./dist/script/'));
 
