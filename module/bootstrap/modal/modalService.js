@@ -14,10 +14,7 @@ $(function () {
         renderFooter: function (content) {
             return '<div class="modal-footer">'+content+'</div>';
         },
-    };
-
-    bundle.module.bootstrap.modal.modalService = {
-        show: function (data, options) {
+        renderModal: function (data) {
             var contentHtml = '';
             if(data.title) {
                 contentHtml = contentHtml + helper.renderHeader(data.title);
@@ -28,9 +25,21 @@ $(function () {
             if(data.foot) {
                 contentHtml = contentHtml + helper.renderFooter(data.foot);
             }
+            return '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\n' +
+                '        <div class="modal-dialog" role="document">\n' +
+                '            <div class="modal-content">'+contentHtml+'</div>\n' +
+                '        </div>\n' +
+                '    </div>';
+        },
+    };
 
-            var modalEl = $('#myModal');
-            modalEl.find('.modal-content').html(contentHtml);
+    bundle.module.bootstrap.modal.modalService = {
+        show: function (data, options) {
+            var modalHtml = helper.renderModal(data);
+            var modalEl = $(modalHtml);
+            var bodyWrapper = $('body');
+            $('.modal').remove();
+            bodyWrapper.append(modalEl);
             modalEl.modal();
         },
     };
