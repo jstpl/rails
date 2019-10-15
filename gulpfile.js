@@ -68,6 +68,26 @@ var appSrc = [
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
 
+var config = {
+    dev: {},
+    dist: {},
+    min: {},
+    src: '.',
+};
+
+config.dev.path = './dev';
+config.dev.scriptOutputPath = config.dev.path + '/script/';
+config.dev.styleOutputPath = config.dev.path + '/style/';
+
+config.dist.path = './dist';
+config.dist.scriptOutputPath = config.dist.path + '/script/';
+config.dist.styleOutputPath = config.dist.path + '/style/';
+
+config.min.path = './dist/min';
+config.min.scriptOutputPath = config.min.path + '/script/';
+config.min.styleOutputPath = config.min.path + '/style/';
+
+
 gulp.task('renderScripts', function() {
 
     var html = '';
@@ -91,11 +111,11 @@ gulp.task('build', function() {
 
     gulp.src(styleSrc)
         .pipe(concatCss("app.css"))
-        .pipe(gulp.dest('./dist/style/'));
+        .pipe(gulp.dest(config.dist.styleOutputPath));
 
     gulp.src(allSrc, { sourcemaps: true })
         .pipe(concat('all.js'))
-        .pipe(gulp.dest('./dist/script/'));
+        .pipe(gulp.dest(config.dist.scriptOutputPath));
 
     /*gulp.src(bundleSrc, { sourcemaps: true })
         .pipe(concat('bundle.js'))
@@ -111,28 +131,28 @@ gulp.task('build-dev', function() {
 
     gulp.src(vendorSrc, { sourcemaps: true })
         .pipe(concat('vendor.js'))
-        .pipe(gulp.dest('./dev/script/'));
+        .pipe(gulp.dest(config.dev.scriptOutputPath));
 
     gulp.src(styleSrc)
         .pipe(concatCss('vendor.css'))
-        .pipe(gulp.dest('./dev/style/'));
+        .pipe(gulp.dest(config.dev.styleOutputPath));
 
 });
 
 gulp.task('min', function() {
 
-    gulp.src('./dist/script/all.js')
+    gulp.src(config.dist.scriptOutputPath + 'all.js')
         .pipe(minify())
-        .pipe(gulp.dest('./dist/script/'));
+        .pipe(gulp.dest(config.min.scriptOutputPath));
 
     gulp.src([
-        './dist/style/app.css',
+        config.dist.styleOutputPath + 'app.css',
     ])
         .pipe(minify())
-        .pipe(gulp.dest('./dist/style/'));
+        .pipe(gulp.dest(config.dist.styleOutputPath));
 
-    gulp.src('./dist/style/app.css')
+    gulp.src(config.dist.styleOutputPath + 'app.css')
         .pipe(csso())
-        .pipe(gulp.dest('./dist/style/min'));
+        .pipe(gulp.dest(config.min.styleOutputPath));
 
 });
