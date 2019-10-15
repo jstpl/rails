@@ -1,6 +1,6 @@
 $(function () {
 
-    namespace.define('bundle.module.modal');
+    namespace.define('bundle.module.bootstrap.modal');
 
     var helper = {
         renderHeader: function (content) {
@@ -16,7 +16,7 @@ $(function () {
         },
     };
 
-    bundle.module.modal.modalService = {
+    bundle.module.bootstrap.modal.modalService = {
         show: function (data, options) {
             var contentHtml = '';
             if(data.title) {
