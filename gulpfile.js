@@ -93,26 +93,6 @@ var appSrc = [
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
 
-
-gulp.task('renderScripts', function() {
-
-    var html = '';
-    for(var k in allSrc) {
-        var url = allSrc[k];
-        var item = '<script src="'+url+'"></script>';
-        html = html + "\n" + item;
-    }
-
-    //console.log(html);
-
-    gulp.src([config.src.path + '/index.html'])
-        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
-        .pipe(gulp.dest('.'));
-
-    //console(gulp.src('./dist/script/all.js').sourcemaps());
-
-});
-
 gulp.task('build', function() {
 
     gulp.src(styleSrc)
@@ -122,14 +102,6 @@ gulp.task('build', function() {
     gulp.src(allSrc, { sourcemaps: true })
         .pipe(concat(config.dev.scriptFileName))
         .pipe(gulp.dest(config.dist.scriptOutputPath));
-
-    /*gulp.src(bundleSrc, { sourcemaps: true })
-        .pipe(concat('bundle.js'))
-        .pipe(gulp.dest('./dist/script/'));
-
-    gulp.src(appSrc, { sourcemaps: true })
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('./dist/script/'));*/
 
 });
 
@@ -160,5 +132,25 @@ gulp.task('min', function() {
     gulp.src(config.dist.styleOutputPath + config.dev.styleFileName)
         .pipe(csso())
         .pipe(gulp.dest(config.min.styleOutputPath));
+
+});
+
+
+gulp.task('renderScripts', function() {
+
+    var html = '';
+    for(var k in allSrc) {
+        var url = allSrc[k];
+        var item = '<script src="'+url+'"></script>';
+        html = html + "\n" + item;
+    }
+
+    //console.log(html);
+
+    gulp.src([config.src.path + '/index.html'])
+        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
+        .pipe(gulp.dest('.'));
+
+    //console(gulp.src('./dist/script/all.js').sourcemaps());
 
 });
