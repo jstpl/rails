@@ -95,7 +95,7 @@ $(function () {
         },
 
         getTemplateUrl: function (request) {
-            var templateUrl = '/' + request.path + '/' + request.controller + '/view/' + request.action + '.html';
+            var templateUrl = '/src/' + request.path + '/' + request.controller + '/view/' + request.action + '.html';
             return templateUrl;
         },
 

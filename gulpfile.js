@@ -12,7 +12,7 @@ var config = {
     src: {},
 };
 
-config.src.path = '.';
+config.src.path = './src';
 
 config.dev.path = './dev';
 config.dev.scriptOutputPath = config.dev.path + '/script/';

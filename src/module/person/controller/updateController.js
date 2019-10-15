@@ -12,7 +12,7 @@ $(function () {
         data: data,
         depends: [
             'bundle.module.person.service.personService',
-            '/module/person/lang/ru/info.js',
+            '/src/module/person/lang/ru/info.js',
         ],
         methods: {
             save: function (event) {
