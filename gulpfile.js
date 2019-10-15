@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-const minify = require('gulp-minify');
+var minify = require('gulp-minify');
 var concatCss = require('gulp-concat-css');
 
 var styleSrc = [
@@ -23,18 +23,19 @@ var vendorSrc = [
 
 var bundleSrc = [
     './bundle/kernel/namespace.js',
-    './bundle/helper/*.js',
-    './bundle/env/*.js',
-    './bundle/log/*.js',
-    './bundle/notify/*.js',
-    './bundle/queue/*.js',
-    './bundle/ui/*.js',
     './bundle/kernel/container.js',
     './bundle/kernel/bootstrap.js',
     './bundle/kernel/func.js',
+
+    './bundle/helper/*.js',
+    './bundle/env/*.js',
+    './bundle/event/*.js',
+    './bundle/log/*.js',
+    './bundle/queue/*.js',
+    './bundle/ui/*.js',
+    './bundle/notify/*.js',
     './bundle/domain/*.js',
     './bundle/cache/*.js',
-    './bundle/event/*.js',
     './bundle/rest/*.js',
     './bundle/legalbet/*.js',
     './bundle/widget/*.js',
@@ -100,8 +101,3 @@ gulp.task('minify', function() {
         .pipe(gulp.dest('./dist/style/'));
 
 });
-
-/*
-    <link  href="/vendor/toastr/toastr-2.1.4.min.css" rel="stylesheet">*/
-    
-    
