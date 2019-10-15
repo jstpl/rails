@@ -5,6 +5,31 @@ var concatCss = require('gulp-concat-css');
 var replace = require('gulp-replace');
 var csso = require('gulp-csso');
 
+var config = {
+    dev: {},
+    dist: {},
+    min: {},
+    src: {},
+};
+
+config.src.path = '.';
+
+config.dev.path = './dev';
+config.dev.scriptOutputPath = config.dev.path + '/script/';
+config.dev.styleOutputPath = config.dev.path + '/style/';
+config.dev.scriptFileName = 'app.js';
+config.dev.styleFileName = 'app.css';
+
+
+
+config.dist.path = './dist';
+config.dist.scriptOutputPath = config.dist.path + '/script/';
+config.dist.styleOutputPath = config.dist.path + '/style/';
+
+config.min.path = './dist/min';
+config.min.scriptOutputPath = config.min.path + '/script/';
+config.min.styleOutputPath = config.min.path + '/style/';
+
 var styleSrc = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
     './node_modules/bootstrap/dist/css/bootstrap-theme.css',
@@ -24,68 +49,49 @@ var vendorSrc = [
 
 
 var bundleSrc = [
-    './bundle/kernel/namespace.js',
-    './bundle/kernel/container.js',
-    './bundle/kernel/bootstrap.js',
-    './bundle/kernel/func.js',
+    config.src.path + '/bundle/kernel/namespace.js',
+    config.src.path + '/bundle/kernel/container.js',
+    config.src.path + '/bundle/kernel/bootstrap.js',
+    config.src.path + '/bundle/kernel/func.js',
 
-    './bundle/helper/*.js',
-    './bundle/env/*.js',
-    './bundle/event/*.js',
-    './bundle/log/*.js',
-    './bundle/queue/*.js',
-    './bundle/ui/*.js',
-    './bundle/notify/*.js',
-    './bundle/domain/*.js',
-    './bundle/cache/*.js',
-    './bundle/rest/*.js',
-    './bundle/legalbet/*.js',
-    './bundle/widget/*.js',
-    './bundle/spa/*.js',
-    './bundle/vue/*.js',
+    config.src.path + '/bundle/helper/*.js',
+    config.src.path + '/bundle/env/*.js',
+    config.src.path + '/bundle/event/*.js',
+    config.src.path + '/bundle/log/*.js',
+    config.src.path + '/bundle/queue/*.js',
+    config.src.path + '/bundle/ui/*.js',
+    config.src.path + '/bundle/notify/*.js',
+    config.src.path + '/bundle/domain/*.js',
+    config.src.path + '/bundle/cache/*.js',
+    config.src.path + '/bundle/rest/*.js',
+    config.src.path + '/bundle/legalbet/*.js',
+    config.src.path + '/bundle/widget/*.js',
+    config.src.path + '/bundle/spa/*.js',
+    config.src.path + '/bundle/vue/*.js',
 ];
 
 var appSrc = [
 
-    './module/navbar/**/*.js',
+    config.src.path + '/module/navbar/**/*.js',
 
-    './module/user/store/*.js',
-    './module/user/service/*.js',
-    './module/user/lang/ru/*.js',
+    config.src.path + '/module/user/store/*.js',
+    config.src.path + '/module/user/service/*.js',
+    config.src.path + '/module/user/lang/ru/*.js',
 
-    './module/contact/store/*.js',
-    './module/contact/service/*.js',
+    config.src.path + '/module/contact/store/*.js',
+    config.src.path + '/module/contact/service/*.js',
 
-    './module/notify/enum/*.js',
-    './module/notify/service/*.js',
+    config.src.path + '/module/notify/enum/*.js',
+    config.src.path + '/module/notify/service/*.js',
 
-    './module/bootstrap/**/*.js',
+    config.src.path + '/module/bootstrap/**/*.js',
 
-    './module/**/config/*.js',
-    './module/app/bootstrap.js',
-    './module/app/run.js',
+    config.src.path + '/module/**/config/*.js',
+    config.src.path + '/module/app/bootstrap.js',
+    config.src.path + '/module/app/run.js',
 ];
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
-
-var config = {
-    dev: {},
-    dist: {},
-    min: {},
-    src: '.',
-};
-
-config.dev.path = './dev';
-config.dev.scriptOutputPath = config.dev.path + '/script/';
-config.dev.styleOutputPath = config.dev.path + '/style/';
-
-config.dist.path = './dist';
-config.dist.scriptOutputPath = config.dist.path + '/script/';
-config.dist.styleOutputPath = config.dist.path + '/style/';
-
-config.min.path = './dist/min';
-config.min.scriptOutputPath = config.min.path + '/script/';
-config.min.styleOutputPath = config.min.path + '/style/';
 
 
 gulp.task('renderScripts', function() {
@@ -99,7 +105,7 @@ gulp.task('renderScripts', function() {
 
     //console.log(html);
 
-    gulp.src(['./src/index.html'])
+    gulp.src([config.src.path + '/index.html'])
         .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
         .pipe(gulp.dest('.'));
 
@@ -110,11 +116,11 @@ gulp.task('renderScripts', function() {
 gulp.task('build', function() {
 
     gulp.src(styleSrc)
-        .pipe(concatCss("app.css"))
+        .pipe(concatCss(config.dev.styleFileName))
         .pipe(gulp.dest(config.dist.styleOutputPath));
 
     gulp.src(allSrc, { sourcemaps: true })
-        .pipe(concat('all.js'))
+        .pipe(concat(config.dev.scriptFileName))
         .pipe(gulp.dest(config.dist.scriptOutputPath));
 
     /*gulp.src(bundleSrc, { sourcemaps: true })
@@ -141,17 +147,17 @@ gulp.task('build-dev', function() {
 
 gulp.task('min', function() {
 
-    gulp.src(config.dist.scriptOutputPath + 'all.js')
+    gulp.src(config.dist.scriptOutputPath + config.dev.scriptFileName)
         .pipe(minify())
         .pipe(gulp.dest(config.min.scriptOutputPath));
 
     gulp.src([
-        config.dist.styleOutputPath + 'app.css',
+        config.dist.styleOutputPath + config.dev.styleFileName,
     ])
         .pipe(minify())
         .pipe(gulp.dest(config.dist.styleOutputPath));
 
-    gulp.src(config.dist.styleOutputPath + 'app.css')
+    gulp.src(config.dist.styleOutputPath + config.dev.styleFileName)
         .pipe(csso())
         .pipe(gulp.dest(config.min.styleOutputPath));
 
