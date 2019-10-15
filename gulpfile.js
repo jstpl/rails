@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var concatCss = require('gulp-concat-css');
+var replace = require('gulp-replace');
+var csso = require('gulp-csso');
 
 var styleSrc = [
     './vendor/bootstrap/3.3.7/bootstrap.min.css',
@@ -64,6 +66,25 @@ var appSrc = [
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
 
+gulp.task('renderScripts', function() {
+
+    var html = '';
+    for(var k in allSrc) {
+        var url = allSrc[k];
+        var item = '<script src="'+url+'"></script>';
+        html = html + "\n" + item;
+    }
+
+    //console.log(html);
+
+    gulp.src(['./src/index.html'])
+        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
+        .pipe(gulp.dest('.'));
+
+    //console(gulp.src('./dist/script/all.js').sourcemaps());
+
+});
+
 gulp.task('build', function() {
 
     gulp.src(styleSrc)
@@ -88,7 +109,7 @@ gulp.task('build', function() {
 
 });
 
-gulp.task('minify', function() {
+gulp.task('min', function() {
 
     gulp.src('./dist/script/all.js')
         .pipe(minify())
@@ -99,5 +120,9 @@ gulp.task('minify', function() {
     ])
         .pipe(minify())
         .pipe(gulp.dest('./dist/style/'));
+
+    gulp.src('./dist/style/app.css')
+        .pipe(csso())
+        .pipe(gulp.dest('./dist/style/min'));
 
 });
