@@ -1,2 +1,3 @@
+cd ..
 gulp build
 pause
