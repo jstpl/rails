@@ -27,21 +27,11 @@ $(function () {
         },
 
         show: function (type, message, options) {
-            //helper.forgeWrapper();
             options = _.defaultTo(options, this.options);
             var method = toastr[type];
             method(message, options);
         },
 
-    };
-
-    var helper = {
-        forgeWrapper: function () {
-            var wrapperElement = $('toastjs');
-            if(_.isEmpty(wrapperElement.length)) {
-                bundle.helper.dom.appendToBody('<div id="toastjs"></div>');
-            }
-        },
     };
 
 });

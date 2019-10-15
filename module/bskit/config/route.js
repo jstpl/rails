@@ -1,15 +1,15 @@
 $(function () {
 
-    bundle.spa.router.addRoute('/kit', function () {
+    bundle.spa.router.addRoute('/bskit', function () {
         bundle.vue.loader.run({
-            controller: 'kit',
+            controller: 'bskit',
             action: 'all',
         });
     });
 
-    bundle.spa.router.addRoute('/kit/:id', function (id) {
+    bundle.spa.router.addRoute('/bskit/:id', function (id) {
         bundle.vue.loader.run({
-            controller: 'kit',
+            controller: 'bskit',
             action: id,
             query: {
                 id: id,

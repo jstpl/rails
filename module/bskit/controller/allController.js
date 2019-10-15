@@ -1,6 +1,6 @@
 $(function () {
 
-    namespace.define('bundle.module.kit.controller');
+    namespace.define('bundle.module.bskit.controller');
 
     var data = {
         collection: [
@@ -19,12 +19,9 @@ $(function () {
         ],
     };
 
-    bundle.module.kit.controller.allController = {
+    bundle.module.bskit.controller.allController = {
 
         data: data,
-        created: function (request) {
-            //data.collection = bundle.module.todo.store.contactStore.all();
-        },
 
     };
 
