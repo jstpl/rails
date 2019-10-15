@@ -6,13 +6,9 @@ var replace = require('gulp-replace');
 var csso = require('gulp-csso');
 
 var styleSrc = [
-    './node_modules/bootstrap/dist/css/bootstrap.min.css',
-
-
-    //'./vendor/bootstrap/3.3.7/bootstrap.min.css',
-    './vendor/bootstrap/3.3.7/bootstrap-theme.min.css',
-
-    './vendor/toastr/toastr-2.1.4.min.css',
+    './node_modules/bootstrap/dist/css/bootstrap.css',
+    './node_modules/bootstrap/dist/css/bootstrap-theme.css',
+    './node_modules/toastr/build/toastr.min.css',
 ];
 
 var vendorSrc = [
@@ -24,15 +20,6 @@ var vendorSrc = [
     './node_modules/vue/dist/vue.min.js',
     './node_modules/toastr/build/toastr.min.js',
     './node_modules/jquery-ui/jquery-ui.min.js',
-
-    //'./vendor/jquery/jquery-2.2.4.min.js',
-    //'./vendor/jquery/jquery-ui-1.12.1.min.js',
-    //'./vendor/lodash/4.17.15/lodash.js',
-    //'./vendor/bootstrap/3.3.7/bootstrap.min.js',
-    //'./vendor/director/director-1.2.6.min.js',
-    //'./vendor/redux/redux-3.5.2.min.js',
-    //'./vendor/vue/vue-2.6.10.js',
-    //'./vendor/toastr/toastr-2.1.4.min.js',
 ];
 
 
@@ -110,10 +97,6 @@ gulp.task('build', function() {
         .pipe(concat('all.js'))
         .pipe(gulp.dest('./dist/script/'));
 
-    gulp.src(vendorSrc, { sourcemaps: true })
-        .pipe(concat('vendor.js'))
-        .pipe(gulp.dest('./dev/script/'));
-
     /*gulp.src(bundleSrc, { sourcemaps: true })
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest('./dist/script/'));
@@ -121,6 +104,18 @@ gulp.task('build', function() {
     gulp.src(appSrc, { sourcemaps: true })
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./dist/script/'));*/
+
+});
+
+gulp.task('build-dev', function() {
+
+    gulp.src(vendorSrc, { sourcemaps: true })
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('./dev/script/'));
+
+    gulp.src(styleSrc)
+        .pipe(concatCss('vendor.css'))
+        .pipe(gulp.dest('./dev/style/'));
 
 });
 
