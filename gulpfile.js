@@ -59,31 +59,13 @@ var appSrc = [
     './module/notify/enum/*.js',
     './module/notify/service/*.js',
 
+    './module/bootstrap/**/*.js',
     './module/**/config/*.js',
     './module/app/bootstrap.js',
     './module/app/run.js',
 ];
 
 var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
-
-gulp.task('renderScripts', function() {
-
-    var html = '';
-    for(var k in allSrc) {
-        var url = allSrc[k];
-        var item = '<script src="'+url+'"></script>';
-        html = html + "\n" + item;
-    }
-
-    //console.log(html);
-
-    gulp.src(['./src/index.html'])
-        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
-        .pipe(gulp.dest('.'));
-
-    //console(gulp.src('./dist/script/all.js').sourcemaps());
-
-});
 
 gulp.task('build', function() {
 
