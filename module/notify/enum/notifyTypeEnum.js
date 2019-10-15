@@ -8,6 +8,7 @@ $(function () {
         info: 'info',
         warning: 'warning',
         danger: 'danger',
+        error: 'error',
 
     };
 

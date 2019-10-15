@@ -35,9 +35,14 @@ $(function () {
     namespace.define('bundle.helper');
 
     /**
-     * Работа со строками
+     * Работа с DOM
      */
     window.bundle.helper.dom = {
+
+        appendToBody: function (element) {
+            var bodyElement = $('body');
+            bodyElement.append($(element));
+        },
 
         bindEventForList: function (elements, eventName) {
             elements.each(function (index, value) {

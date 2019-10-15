@@ -2,7 +2,7 @@ $(function () {
 
     namespace.define('bundle.module.notify.service');
 
-    //var typeEnum = bundle.module.notify.enum.notifyTypeEnum;
+    var typeEnum = bundle.module.notify.enum.notifyTypeEnum;
 
     bundle.module.notify.service.notifyService = {
 
@@ -11,25 +11,37 @@ $(function () {
         },
 
         info: function (message, options) {
-            options = _.defaultTo(options, this.options);
-            toastr.info(message, options);
+            this.show(typeEnum.info, message, options);
         },
 
         warning: function (message, options) {
-            options = _.defaultTo(options, this.options);
-            toastr.warning(message, options);
+            this.show(typeEnum.warning, message, options);
         },
 
         success: function (message, options) {
-            options = _.defaultTo(options, this.options);
-            toastr.success(message, options);
+            this.show(typeEnum.success, message, options);
         },
 
         error: function (message, options) {
-            options = _.defaultTo(options, this.options);
-            toastr.error(message, options);
+            this.show(typeEnum.error, message, options);
         },
 
+        show: function (type, message, options) {
+            //helper.forgeWrapper();
+            options = _.defaultTo(options, this.options);
+            var method = toastr[type];
+            method(message, options);
+        },
+
+    };
+
+    var helper = {
+        forgeWrapper: function () {
+            var wrapperElement = $('toastjs');
+            if(_.isEmpty(wrapperElement.length)) {
+                bundle.helper.dom.appendToBody('<div id="toastjs"></div>');
+            }
+        },
     };
 
 });
