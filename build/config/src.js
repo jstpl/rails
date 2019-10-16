@@ -36,6 +36,7 @@ var src = {
         config.src.path + '/bundle/widget/*.js',
         config.src.path + '/bundle/spa/*.js',
         config.src.path + '/bundle/vue/*.js',
+        config.src.path + '/bundle/bootstrap/**/*.js',
     ],
     app: [
         config.src.path + '/module/user/store/*.js',
@@ -47,8 +48,6 @@ var src = {
 
         config.src.path + '/module/notify/enum/*.js',
         config.src.path + '/module/notify/service/*.js',
-
-        config.src.path + '/module/bootstrap/**/*.js',
 
         config.src.path + '/module/**/config/*.js',
         config.src.path + '/module/app/controller/*.js',
