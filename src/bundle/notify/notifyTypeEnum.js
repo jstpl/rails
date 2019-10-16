@@ -6,10 +6,11 @@ $(function() {
      * Список типов уведомлений
      */
     window.bundle.notify.notifyTypeEnum = {
-        danger: 'danger',
-        info: 'info',
-        error: 'error',
         success: 'success',
+        info: 'info',
+        warning: 'warning',
+        danger: 'danger',
+        error: 'error',
     };
 
 });

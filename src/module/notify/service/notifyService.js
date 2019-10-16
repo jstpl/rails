@@ -2,7 +2,7 @@ $(function () {
 
     namespace.define('bundle.module.notify.service');
 
-    var typeEnum = bundle.module.notify.enum.notifyTypeEnum;
+    var typeEnum = bundle.notify.notifyTypeEnum;
 
     bundle.module.notify.service.notifyService = {
 

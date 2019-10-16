@@ -46,7 +46,7 @@ var src = {
         config.src.path + '/module/contact/store/*.js',
         config.src.path + '/module/contact/service/*.js',
 
-        config.src.path + '/module/notify/enum/*.js',
+        //config.src.path + '/module/notify/enum/*.js',
         config.src.path + '/module/notify/service/*.js',
 
         config.src.path + '/module/**/config/*.js',
