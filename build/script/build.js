@@ -63,6 +63,15 @@ var build = {
             .pipe(replace(build.firstCharExp,  listFilesDocBlockStyle + '\n\n$1'))
             .pipe(gulp.dest(config.dev.styleOutputPath));
     },
+    rails: function () {
+        //gulp.src(src.bundle, { sourcemaps: true }).glob();
+
+        var listFilesDocBlock = build.renderIncludedList(src.bundle);
+        gulp.src(src.bundle, { sourcemaps: true })
+            .pipe(concat('rails.js'))
+            .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
+            .pipe(gulp.dest(config.dev.scriptOutputPath));
+    },
 };
 
 module.exports = build;

@@ -4,6 +4,7 @@ var build = require('./build/script/build');
 gulp.task('build', build.main);
 gulp.task('build-min', build.min);
 gulp.task('build-vendor', build.vendor);
+gulp.task('build-rails', build.rails);
 gulp.task('clean', build.clean);
 
 gulp.task('build-all', function() {
