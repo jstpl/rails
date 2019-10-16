@@ -8,6 +8,30 @@ $(function() {
     window.bundle.notify.notifyService = {
 
         /**
+         * Показать сообщение с информацией
+         * @param message текст сообщения
+         */
+        info: function (message) {
+            this.show(bundle.notify.notifyTypeEnum.info, message);
+        },
+
+        /**
+         * Показать предупреждение
+         * @param message текст сообщения
+         */
+        warning: function (message, options) {
+            this.show(typeEnum.warning, message, options);
+        },
+
+        /**
+         * Показать сообщение об успешной операции
+         * @param message текст сообщения
+         */
+        success: function (message) {
+            this.show(bundle.notify.notifyTypeEnum.success, message);
+        },
+
+        /**
          * Показать сообщение об ошибке
          * @param message текст сообщения
          */
@@ -21,22 +45,6 @@ $(function() {
          */
         danger: function (message) {
             this.show(bundle.notify.notifyTypeEnum.danger, message);
-        },
-
-        /**
-         * Показать сообщение с информацией
-         * @param message текст сообщения
-         */
-        info: function (message) {
-            this.show(bundle.notify.notifyTypeEnum.info, message);
-        },
-
-        /**
-         * Показать сообщение об успешной операции
-         * @param message текст сообщения
-         */
-        success: function (message) {
-            this.show(bundle.notify.notifyTypeEnum.success, message);
         },
 
         /**
