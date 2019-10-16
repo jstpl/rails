@@ -95,13 +95,16 @@ $(function () {
                         if(_.isEmpty(controller.isInit)) {
                             controller.isInit = true;
                             controller.el = '#app-'+request.controller+'-'+request.action;
-                            //d();
                             bundle.vue.loader.loadDepends(request, controller);
                         }
                     }
                     bundle.spa.helper.registerEventHandlers(request);
                 };
-                namespace.requireClass(className, cb);
+                if(namespace.isDefined(className)) {
+                    cb();
+                } else {
+                    namespace.requireClass(className, cb);
+                }
             };
             this.doRequest(request, callback);
         },
