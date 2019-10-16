@@ -159,7 +159,7 @@ gulp.task('clean', build.clean);
 
 gulp.task('build-all', function() {
 
-    build.clean();
+    //build.clean();
     build.main();
     build.min();
     build.vendor();
