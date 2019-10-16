@@ -6,10 +6,4 @@ $(function () {
         });
     });
 
-    bundle.spa.router.addRoute('/about', function () {
-        bundle.spa.module.run({
-            controller: 'about',
-        });
-    });
-
 });

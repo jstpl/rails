@@ -61,7 +61,8 @@ $(function() {
             this.initConfig();
 
             bundle.spa.router.init();
-            bundle.vue.vm.ensure(bundle.module.navbar.navbarConretoller);
+            bundle.vue.vm.ensure(bundle.module.app.controller.navbarController);
+            bundle.vue.vm.ensure(bundle.module.app.controller.footerController);
 
             container.log.info('application kernel launch');
         }
