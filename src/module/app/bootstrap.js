@@ -22,7 +22,7 @@ $(function() {
             container.notify = bundle.module.notify.service.notifyService;
             container.modal = bundle.module.bootstrap.modal.modalService;
             container.restClient = container.instance(bundle.rest.client);
-            container.restClient.setBaseUrl('http://test-api.union.yuwert.kz/v1');
+            container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 
         /**
