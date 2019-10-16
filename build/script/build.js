@@ -40,8 +40,9 @@ var builder = {
         var list = vendorList.concat(bundleList.concat(appList));*/
 
         scriptList = helper.replaceInArray(scriptList, './', '/');
-        var style = helper.generateStyleTags(styleList);
+        styleList = helper.replaceInArray(styleList, './', '/');
         var code = helper.generateScriptTags(scriptList);
+        var style = helper.generateStyleTags(styleList);
         gulp.src([config.src.path + '/index.html'])
             .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
             .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
@@ -65,8 +66,12 @@ var build = {
         builder.buildStyle(src.style, './dist/assets/style', 'build.css', true);
         builder.buildScript(src.all, './dist/assets/script', 'build.js', true);
 
-        var scriptList = ['/assets/script/build-min.js'];
-        var styleList = ['/assets/style/build.css'];
+        var scriptList = ['assets/script/build-min.js'];
+        var styleList = ['assets/style/build.css'];
+
+        scriptList = helper.replaceInArray(scriptList, '/src/', '/');
+        styleList = helper.replaceInArray(styleList, '/src/', '/');
+
         builder.buildPage(scriptList, styleList, './dist');
     },
 
