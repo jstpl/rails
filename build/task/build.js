@@ -67,3 +67,26 @@ var build = {
 };
 
 module.exports = build;
+
+
+/*
+var replace = require('gulp-replace');
+gulp.task('renderScripts', function() {
+
+    var html = '';
+    for(var k in src.all) {
+        var url = src.all[k];
+        var item = '<script src="'+url+'"></script>';
+        html = html + "\n" + item;
+    }
+
+    //console.log(html);
+
+    gulp.src([config.src.path + '/index.html'])
+        .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', html))
+        .pipe(gulp.dest('.'));
+
+    //console(gulp.src('./dist/script/all.js').sourcemaps());
+
+});
+*/
