@@ -20,23 +20,11 @@ $(function () {
         ],
     };
 
-    var helper = {
-        template: function () {
-            var html = '<p class="pull-right" v-if="rightLinks">\n' +
-                '            <span v-for="link in rightLinks">\n' +
-                '                <a v-bind:href="link.url">{{link.title}}</a> |\n' +
-                '            </span>\n' +
-                '        </p>\n' +
-                '        <p>{{brand}}</p>';
-            return html;
-        }
-    };
-
     bundle.module.app.controller.footerController = {
         el: '#app-footer',
         data: data,
         created: function () {
-            $('#app-footer').html(helper.template());
+            $('#app-footer').html(bundle.module.app.view.footerTemplate.template());
         }
     };
 
