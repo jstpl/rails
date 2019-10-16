@@ -5,8 +5,8 @@ var concatCss = require('gulp-concat-css');
 var replace = require('gulp-replace');
 var csso = require('gulp-csso');
 var clean = require('gulp-clean');
-var config = require('../../config/config');
-var src = require('../../config/src');
+var config = require('../config/config');
+var src = require('../config/src');
 
 var build = {
     firstCharExp: /^([\s\S]{1})/g,
@@ -48,8 +48,7 @@ var build = {
             var item = ''+url+'';
             listFiles = listFiles + "\n" + item;
         }
-        var listFilesDocBlock = '/**\nIncluded files:'+listFiles+'\n*/';
-        return listFilesDocBlock;
+        return '/**\nIncluded files:'+listFiles+'\n*/';
     },
     vendor: function () {
         var listFilesDocBlock = build.renderIncludedList(src.vendor);

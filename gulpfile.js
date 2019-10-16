@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var build = require('./build/task/build');
+var build = require('./build/script/build');
 
 gulp.task('build', build.main);
 gulp.task('build-min', build.min);
@@ -14,5 +14,3 @@ gulp.task('build-all', function() {
     build.vendor();
 
 });
-
-
