@@ -11,18 +11,36 @@ var src = require('../config/src');
 var helper = require('./helper');
 
 var builder = {
-    buildScript: function (sourceMap, targetDest, targetFileName) {
+    buildScript: function (sourceMap, targetDest, targetFileName, isMinify) {
         var listFilesDocBlockRails = helper.renderIncludedList(sourceMap);
-        gulp.src(sourceMap, { sourcemaps: true })
+        var gulp1 = gulp.src(sourceMap, { sourcemaps: true })
             .pipe(concat(targetFileName))
-            .pipe(replace(build.firstCharExp, listFilesDocBlockRails + '\n\n$1'))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockRails + '\n\n$1'));
+        if(isMinify === true) {
+            gulp1 = gulp1.pipe(minify());
+        }
+        gulp1.pipe(gulp.dest(targetDest));
+    },
+    buildStyle: function (sourceMap, targetDest, targetFileName, isMinify) {
+        var listFilesDocBlockStyle = helper.renderIncludedList(sourceMap);
+        var gulp1 = gulp.src(sourceMap)
+            .pipe(concatCss(targetFileName))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockStyle + '\n\n$1'));
+        if(isMinify === true) {
+            gulp1 = gulp1
+                .pipe(csso())
+                .pipe(minify());
+        }
+        gulp1.pipe(gulp.dest(targetDest));
+    },
+    minifyScript: function (sourceMap, targetDest) {
+        gulp.src(sourceMap)
+
             .pipe(gulp.dest(targetDest));
     },
-    buildStyle: function (sourceMap, targetDest, targetFileName) {
-        var listFilesDocBlockStyle = helper.renderIncludedList(sourceMap);
+    minifyStyle: function (sourceMap, targetDest) {
         gulp.src(sourceMap)
-            .pipe(concatCss(targetFileName))
-            .pipe(replace(build.firstCharExp, listFilesDocBlockStyle + '\n\n$1'))
+
             .pipe(gulp.dest(targetDest));
     },
 };
@@ -40,9 +58,11 @@ var build = {
      * - мнифицируем
      */
     prod: function () {
-        //config.temp.path
-        builder.buildStyle(src.style, './dist/assets/style', 'build.css');
-        builder.buildScript(src.all, './dist/assets/script', 'build.js');
+        builder.buildStyle(src.style, './dist/assets/style', 'build.css', true);
+        builder.buildScript(src.all, './dist/assets/script', 'build.js', true);
+
+        //builder.minifyStyle('./dist/assets/style/build.css', './dist/assets/style/min');
+        //builder.minifyScript('./dist/assets/script/build.js', './dist/assets/script/min');
     },
 
     /**
@@ -91,16 +111,19 @@ var build = {
             .pipe(gulp.dest(config.min.styleOutputPath));
     },
     page: function () {
-        //var vendorList = helper.getFileList(src.vendor);
+        var vendorList = ['./src/vendor/vendor.js'];
         var bundleList = helper.getFileList(src.bundle);
         var appList = helper.getFileList(src.app);
-        var list = bundleList.concat(appList);
+        var list = vendorList.concat(bundleList.concat(appList));
 
         list = helper.replaceInArray(list, './', '/');
+
+        var style = helper.generateStyleTags(['./src/vendor/vendor.css']);
 
         var code = helper.generateScriptTags(list);
         gulp.src([config.src.path + '/index.html'])
             .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
+            .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
             .pipe(gulp.dest('.'));
     },
     vendor: function () {

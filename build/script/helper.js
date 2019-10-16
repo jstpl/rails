@@ -26,6 +26,14 @@ var helper = {
         }
         return code;
     },
+    generateStyleTags: function (list) {
+        var code = [];
+        for(var k in list) {
+            var url = list[k];
+            code = code + '<link  href="'+url+'" rel="stylesheet">\n';
+        }
+        return code;
+    },
     renderIncludedList: function (fileMap) {
         var list = helper.getFileList(fileMap);
         var listFiles = '';
