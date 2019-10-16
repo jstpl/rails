@@ -33,15 +33,19 @@ var builder = {
         }
         gulp1.pipe(gulp.dest(targetDest));
     },
-    minifyScript: function (sourceMap, targetDest) {
-        gulp.src(sourceMap)
+    buildPage: function (jsList, cssList) {
+        /*var vendorList = ['./src/vendor/vendor.js'];
+        var bundleList = helper.getFileList(src.bundle);
+        var appList = helper.getFileList(src.app);
+        var list = vendorList.concat(bundleList.concat(appList));*/
 
-            .pipe(gulp.dest(targetDest));
-    },
-    minifyStyle: function (sourceMap, targetDest) {
-        gulp.src(sourceMap)
-
-            .pipe(gulp.dest(targetDest));
+        jsList = helper.replaceInArray(jsList, './', '/');
+        var style = helper.generateStyleTags(cssList);
+        var code = helper.generateScriptTags(jsList);
+        gulp.src([config.src.path + '/index.html'])
+            .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
+            .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
+            .pipe(gulp.dest('.'));
     },
 };
 
@@ -60,9 +64,6 @@ var build = {
     prod: function () {
         builder.buildStyle(src.style, './dist/assets/style', 'build.css', true);
         builder.buildScript(src.all, './dist/assets/script', 'build.js', true);
-
-        //builder.minifyStyle('./dist/assets/style/build.css', './dist/assets/style/min');
-        //builder.minifyScript('./dist/assets/script/build.js', './dist/assets/script/min');
     },
 
     /**
@@ -75,7 +76,14 @@ var build = {
     dev: function () {
         builder.buildStyle(src.style, './src/assets/style', 'vendor.css');
         builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
-        builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+        //builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+
+        var vendorList = ['./src/assets/script/vendor.js'];
+        var bundleList = helper.getFileList(src.bundle);
+        var appList = helper.getFileList(src.app);
+        var jsList = vendorList.concat(bundleList.concat(appList));
+        var cssList = ['./src/assets/style/vendor.css'];
+        builder.buildPage(jsList, cssList);
     },
     
     
