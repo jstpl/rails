@@ -14,9 +14,9 @@ var config = {
 
 config.src.path = './src';
 
-config.dev.path = './dev';
-config.dev.scriptOutputPath = config.dev.path + '/script/';
-config.dev.styleOutputPath = config.dev.path + '/style/';
+config.dev.path = './src/vendor';
+config.dev.scriptOutputPath = config.dev.path + '/';
+config.dev.styleOutputPath = config.dev.path + '/';
 config.dev.scriptFileName = 'app.js';
 config.dev.styleFileName = 'app.css';
 
@@ -105,7 +105,7 @@ gulp.task('build', function() {
 
 });
 
-gulp.task('build-dev', function() {
+gulp.task('build-vendor', function() {
 
     gulp.src(vendorSrc, { sourcemaps: true })
         .pipe(concat('vendor.js'))
@@ -117,7 +117,7 @@ gulp.task('build-dev', function() {
 
 });
 
-gulp.task('min', function() {
+gulp.task('build-min', function() {
 
     gulp.src(config.dist.scriptOutputPath + config.dev.scriptFileName)
         .pipe(minify())
