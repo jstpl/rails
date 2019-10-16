@@ -94,74 +94,13 @@ var build = {
         var styleList = ['./src/assets/style/vendor.css'];
         builder.buildPage(scriptList, styleList, '.');
     },
-    
-    
+
     clean: function () {
         return gulp.src([
-            config.dist.path,
-            config.dev.path,
+            './src/assets',
+            './dist',
         ], {read: false})
             .pipe(clean());
-    },
-    main: function () {
-        gulp.src(src.style)
-            .pipe(concatCss(config.dev.styleFileName))
-            .pipe(gulp.dest(config.dist.styleOutputPath));
-
-        gulp.src(src.all, { sourcemaps: true })
-            .pipe(concat(config.dev.scriptFileName))
-            .pipe(gulp.dest(config.dist.scriptOutputPath));
-    },
-    min: function () {
-        gulp.src(config.dist.scriptOutputPath + config.dev.scriptFileName)
-            .pipe(minify())
-            .pipe(gulp.dest(config.min.scriptOutputPath));
-
-        gulp.src([
-            config.dist.styleOutputPath + config.dev.styleFileName,
-        ])
-            .pipe(minify())
-            .pipe(gulp.dest(config.dist.styleOutputPath));
-
-        gulp.src(config.dist.styleOutputPath + config.dev.styleFileName)
-            .pipe(csso())
-            .pipe(gulp.dest(config.min.styleOutputPath));
-    },
-    page: function () {
-        var vendorList = ['./src/vendor/vendor.js'];
-        var bundleList = helper.getFileList(src.bundle);
-        var appList = helper.getFileList(src.app);
-        var list = vendorList.concat(bundleList.concat(appList));
-
-        list = helper.replaceInArray(list, './', '/');
-
-        var style = helper.generateStyleTags(['./src/vendor/vendor.css']);
-
-        var code = helper.generateScriptTags(list);
-        gulp.src([config.src.path + '/index.html'])
-            .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
-            .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
-            .pipe(gulp.dest('.'));
-    },
-    vendor: function () {
-        var listFilesDocBlock = helper.renderIncludedList(src.vendor);
-        gulp.src(src.vendor, { sourcemaps: true })
-            .pipe(concat('vendor.js'))
-            .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.scriptOutputPath));
-
-        var listFilesDocBlockStyle = helper.renderIncludedList(src.style);
-        gulp.src(src.style)
-            .pipe(concatCss('vendor.css'))
-            .pipe(replace(build.firstCharExp,  listFilesDocBlockStyle + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.styleOutputPath));
-    },
-    rails: function () {
-        var listFilesDocBlock = helper.renderIncludedList(src.bundle);
-        gulp.src(src.bundle, { sourcemaps: true })
-            .pipe(concat('rails.js'))
-            .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.scriptOutputPath));
     },
 };
 
