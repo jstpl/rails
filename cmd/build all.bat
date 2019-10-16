@@ -1,5 +1,3 @@
 cd ..
-gulp build
-gulp build-min
-gulp build-vendor
+gulp build-all
 pause

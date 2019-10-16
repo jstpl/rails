@@ -4,6 +4,7 @@ var minify = require('gulp-minify');
 var concatCss = require('gulp-concat-css');
 var replace = require('gulp-replace');
 var csso = require('gulp-csso');
+var clean = require('gulp-clean');
 
 var config = {
     dev: {},
@@ -95,6 +96,13 @@ var allSrc = vendorSrc.concat(bundleSrc).concat(appSrc);
 
 var build = {
     firstCharExp: /^([\s\S]{1})/g,
+    clean: function () {
+        return gulp.src([
+            config.dist.path,
+            config.dev.path,
+        ], {read: false})
+            .pipe(clean());
+    },
     main: function () {
         gulp.src(styleSrc)
             .pipe(concatCss(config.dev.styleFileName))
@@ -147,9 +155,11 @@ var build = {
 gulp.task('build', build.main);
 gulp.task('build-min', build.min);
 gulp.task('build-vendor', build.vendor);
+gulp.task('clean', build.clean);
 
 gulp.task('build-all', function() {
 
+    build.clean();
     build.main();
     build.min();
     build.vendor();
