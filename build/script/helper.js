@@ -10,6 +10,14 @@ var helper = {
         }
         return fileArray;
     },
+    replaceInArray: function (list, from, to) {
+        var code = [];
+        for(var k in list) {
+            var item = list[k];
+            list[k] = item.replace(from, to);
+        }
+        return list;
+    },
     generateScriptTags: function (list) {
         var code = [];
         for(var k in list) {

@@ -48,6 +48,9 @@ var build = {
         var bundleList = helper.getFileList(src.bundle);
         var appList = helper.getFileList(src.app);
         var list = bundleList.concat(appList);
+
+        list = helper.replaceInArray(list, './', '/');
+
         var code = helper.generateScriptTags(list);
         gulp.src([config.src.path + '/index.html'])
             .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
