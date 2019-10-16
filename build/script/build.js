@@ -33,19 +33,19 @@ var builder = {
         }
         gulp1.pipe(gulp.dest(targetDest));
     },
-    buildPage: function (jsList, cssList) {
+    buildPage: function (scriptList, styleList, targetDest) {
         /*var vendorList = ['./src/vendor/vendor.js'];
         var bundleList = helper.getFileList(src.bundle);
         var appList = helper.getFileList(src.app);
         var list = vendorList.concat(bundleList.concat(appList));*/
 
-        jsList = helper.replaceInArray(jsList, './', '/');
-        var style = helper.generateStyleTags(cssList);
-        var code = helper.generateScriptTags(jsList);
+        scriptList = helper.replaceInArray(scriptList, './', '/');
+        var style = helper.generateStyleTags(styleList);
+        var code = helper.generateScriptTags(scriptList);
         gulp.src([config.src.path + '/index.html'])
             .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
             .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
-            .pipe(gulp.dest('.'));
+            .pipe(gulp.dest(targetDest));
     },
 };
 
@@ -64,6 +64,10 @@ var build = {
     prod: function () {
         builder.buildStyle(src.style, './dist/assets/style', 'build.css', true);
         builder.buildScript(src.all, './dist/assets/script', 'build.js', true);
+
+        var scriptList = ['/assets/script/build-min.js'];
+        var styleList = ['/assets/style/build.css'];
+        builder.buildPage(scriptList, styleList, './dist');
     },
 
     /**
@@ -78,12 +82,12 @@ var build = {
         builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
         //builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
 
-        var vendorList = ['./src/assets/script/vendor.js'];
-        var bundleList = helper.getFileList(src.bundle);
-        var appList = helper.getFileList(src.app);
-        var jsList = vendorList.concat(bundleList.concat(appList));
-        var cssList = ['./src/assets/style/vendor.css'];
-        builder.buildPage(jsList, cssList);
+        var vendorScriptList = ['./src/assets/script/vendor.js'];
+        var bundleScriptList = helper.getFileList(src.bundle);
+        var appScriptList = helper.getFileList(src.app);
+        var scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
+        var styleList = ['./src/assets/style/vendor.css'];
+        builder.buildPage(scriptList, styleList, '.');
     },
     
     
