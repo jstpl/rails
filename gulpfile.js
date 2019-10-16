@@ -8,6 +8,9 @@ gulp.task('build-page', build.page);
 gulp.task('build-rails', build.rails);
 gulp.task('clean', build.clean);
 
+gulp.task('build-dev', build.dev);
+gulp.task('build-prod', build.prod);
+
 gulp.task('build-all', function() {
 
     //build.clean();

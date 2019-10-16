@@ -10,8 +10,55 @@ var config = require('../config/config');
 var src = require('../config/src');
 var helper = require('./helper');
 
+var builder = {
+    buildScript: function (sourceMap, targetDest, targetFileName) {
+        var listFilesDocBlockRails = helper.renderIncludedList(sourceMap);
+        gulp.src(sourceMap, { sourcemaps: true })
+            .pipe(concat(targetFileName))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockRails + '\n\n$1'))
+            .pipe(gulp.dest(targetDest));
+    },
+    buildStyle: function (sourceMap, targetDest, targetFileName) {
+        var listFilesDocBlockStyle = helper.renderIncludedList(sourceMap);
+        gulp.src(sourceMap)
+            .pipe(concatCss(targetFileName))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockStyle + '\n\n$1'))
+            .pipe(gulp.dest(targetDest));
+    },
+};
+
 var build = {
     firstCharExp: /^([\s\S]{1})/g,
+
+    /**
+     * Собираем проект для продакшн
+     * 
+     * Шаги:
+     * - собираем стили
+     * - собираем скрипты
+     * - собираем шаблоны
+     * - мнифицируем
+     */
+    prod: function () {
+        //config.temp.path
+        builder.buildStyle(src.style, './dist/assets/style', 'build.css');
+        builder.buildScript(src.all, './dist/assets/script', 'build.js');
+    },
+
+    /**
+     * Собираем проект для разработки
+     * 
+     * Шаги:
+     * - собираем стили в разные файлы (вендоры, рельсы)
+     * - собираем скрипты в разные файлы (вендоры, рельсы)
+     */
+    dev: function () {
+        builder.buildStyle(src.style, './src/assets/style', 'vendor.css');
+        builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
+        builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+    },
+    
+    
     clean: function () {
         return gulp.src([
             config.dist.path,
