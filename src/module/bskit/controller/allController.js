@@ -52,10 +52,21 @@ $(function () {
                 title: 'table',
                 id: 'table',
             },
-
             {
                 title: 'typography',
                 id: 'typography',
+            },
+            {
+                title: 'thumbnail',
+                id: 'thumbnail',
+            },
+            {
+                title: 'label',
+                id: 'label',
+            },
+            {
+                title: 'badge',
+                id: 'badge',
             },
         ],
     };
