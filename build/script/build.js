@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var glob = require('glob');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var concatCss = require('gulp-concat-css');
@@ -7,6 +8,7 @@ var csso = require('gulp-csso');
 var clean = require('gulp-clean');
 var config = require('../config/config');
 var src = require('../config/src');
+var helper = require('./helper');
 
 var build = {
     firstCharExp: /^([\s\S]{1})/g,
@@ -41,23 +43,24 @@ var build = {
             .pipe(csso())
             .pipe(gulp.dest(config.min.styleOutputPath));
     },
-    renderIncludedList: function (fileMap) {
-        var listFiles = '';
-        for(var k in fileMap) {
-            var url = fileMap[k];
-            var item = ''+url+'';
-            listFiles = listFiles + "\n" + item;
-        }
-        return '/**\nIncluded files:'+listFiles+'\n*/';
+    page: function () {
+        //var vendorList = helper.getFileList(src.vendor);
+        var bundleList = helper.getFileList(src.bundle);
+        var appList = helper.getFileList(src.app);
+        var list = bundleList.concat(appList);
+        var code = helper.generateScriptTags(list);
+        gulp.src([config.src.path + '/index.html'])
+            .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
+            .pipe(gulp.dest('.'));
     },
     vendor: function () {
-        var listFilesDocBlock = build.renderIncludedList(src.vendor);
+        var listFilesDocBlock = helper.renderIncludedList(src.vendor);
         gulp.src(src.vendor, { sourcemaps: true })
             .pipe(concat('vendor.js'))
             .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
             .pipe(gulp.dest(config.dev.scriptOutputPath));
 
-        var listFilesDocBlockStyle = build.renderIncludedList(src.style);
+        var listFilesDocBlockStyle = helper.renderIncludedList(src.style);
         gulp.src(src.style)
             .pipe(concatCss('vendor.css'))
             .pipe(replace(build.firstCharExp,  listFilesDocBlockStyle + '\n\n$1'))
@@ -66,7 +69,7 @@ var build = {
     rails: function () {
         //gulp.src(src.bundle, { sourcemaps: true }).glob();
 
-        var listFilesDocBlock = build.renderIncludedList(src.bundle);
+        var listFilesDocBlock = helper.renderIncludedList(src.bundle);
         gulp.src(src.bundle, { sourcemaps: true })
             .pipe(concat('rails.js'))
             .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
