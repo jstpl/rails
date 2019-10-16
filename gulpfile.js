@@ -71,9 +71,6 @@ var bundleSrc = [
 ];
 
 var appSrc = [
-
-    config.src.path + '/module/navbar/**/*.js',
-
     config.src.path + '/module/user/store/*.js',
     config.src.path + '/module/user/service/*.js',
     config.src.path + '/module/user/lang/ru/*.js',
@@ -87,6 +84,9 @@ var appSrc = [
     config.src.path + '/module/bootstrap/**/*.js',
 
     config.src.path + '/module/**/config/*.js',
+    config.src.path + '/module/app/controller/*.js',
+    config.src.path + '/module/app/view/*.js',
+
     config.src.path + '/module/app/bootstrap.js',
     config.src.path + '/module/app/run.js',
 ];

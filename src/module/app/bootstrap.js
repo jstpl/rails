@@ -60,6 +60,7 @@ $(function() {
             this.initContainer();
             this.initConfig();
 
+            $('body').append(bundle.module.app.view.bodyTemplate.template());
             bundle.spa.router.init();
             bundle.vue.vm.ensure(bundle.module.app.controller.navbarController);
             bundle.vue.vm.ensure(bundle.module.app.controller.footerController);
