@@ -3,7 +3,7 @@ $(function() {
     namespace.define('bundle.notify.driver');
 
     /**
-     * Работа с пользовательскими уведомлениями
+     * Драйвер уведомлений для вендора toastr
      */
     window.bundle.notify.driver.toastrDriver = {
 
