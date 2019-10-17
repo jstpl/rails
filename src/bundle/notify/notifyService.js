@@ -8,6 +8,11 @@ $(function() {
     window.bundle.notify.notifyService = {
 
         /**
+         * Драйвер показа уведомлений
+         */
+        driver: null,
+
+        /**
          * Показать сообщение с информацией
          * @param message текст сообщения
          */
@@ -20,7 +25,7 @@ $(function() {
          * @param message текст сообщения
          */
         warning: function (message, options) {
-            this.show(typeEnum.warning, message, options);
+            this.show(bundle.notify.notifyTypeEnum.info, message, options);
         },
 
         /**
@@ -53,10 +58,14 @@ $(function() {
          * @param message текст сообщения
          */
         show: function (type, message) {
-            intel.notify({
+            this.driver.show({
+                type: type,
+                message: message,
+            });
+            /*intel.notify({
                 status: type,
                 text: message,
-            });
+            });*/
         },
 
     };

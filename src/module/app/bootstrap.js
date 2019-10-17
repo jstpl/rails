@@ -19,7 +19,9 @@ $(function() {
                 selector: '.js-loader',
             });*/
             container.authService = bundle.module.user.service.authService;
-            container.notify = bundle.module.notify.service.notifyService;
+            //container.notify = bundle.module.notify.service.notifyService;
+            container.notify = bundle.notify.notifyService;
+            container.notify.driver = bundle.notify.driver.toastrDriver;
             container.modal = bundle.module.bootstrap.modal.modalService;
             container.restClient = container.instance(bundle.rest.client);
             container.restClient.setBaseUrl(module.app.config.main.apiServer);

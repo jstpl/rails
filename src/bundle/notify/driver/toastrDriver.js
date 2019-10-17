@@ -7,16 +7,16 @@ $(function() {
      */
     window.bundle.notify.driver.toastrDriver = {
 
+        options: {},
+
         /**
          * Показать сообщение любого типа
-         * @param type тип сообщения (перечнь типов смотреть в классе bundle.notify.notifyTypeEnum)
-         * @param message текст сообщения
+         * @param entity сущность уведомления
          */
-        show: function (type, message) {
-            intel.notify({
-                status: type,
-                text: message,
-            });
+        show: function (entity) {
+            entity.options = _.defaultTo(entity.options, this.options);
+            var method = toastr[entity.type];
+            method(entity.message, entity.options);
         },
 
     };
