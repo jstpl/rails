@@ -206,19 +206,29 @@
         },
     };
 
-    var onDomLaded = function (func) {
-        document.addEventListener('DOMContentLoaded', func);
+    var isDomLoaded = false;
+
+    var onDomLoaded = function (func) {
+        if(isDomLoaded) {
+            func();
+        } else {
+            document.addEventListener('DOMContentLoaded', func);
+        }
     };
+
+    window.addEventListener('load', function() {
+        isDomLoaded = true;
+    });
 
     window.space = function (funcOrClassName, func) {
         //document.addEventListener('DOMContentLoaded', func);
 
         if(_.isFunction(funcOrClassName)) {
             //$(funcOrClassName);
-            $(funcOrClassName);
+            onDomLoaded(funcOrClassName);
             //document.addEventListener('DOMContentLoaded', funcOrClassName);
         } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
-            $(function() {
+            onDomLoaded(function() {
                 //console.log(_.get(window, 'bundle.helper.class'));
                 //namespace.define(funcOrClassName);
                 //var args = [];
