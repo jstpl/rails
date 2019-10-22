@@ -76,8 +76,14 @@
         },
         use: function (className) {
             var func = _.get(registry.classList, className);
+            if(_.isObject(func)) {
+                console.log(func);
+                return func;
+            }
             if(_.isFunction(func)) {
                 func = func();
+                //
+                _.set(registry.classList, className, func);
             }
             return func;
         },
@@ -91,8 +97,9 @@
                     var classDefinition = func();
                     //classList[funcOrClassName] = classDefinition;
                     _.set(window, funcOrClassName, classDefinition);
+                    _.set(registry.classList, funcOrClassName, classDefinition);
                 });
-                _.set(registry.classList, funcOrClassName, func);
+
             }
 
             //registry.classList[funcOrClassName] = func;
@@ -102,51 +109,6 @@
     window.addEventListener('load', registry.onWindowLoad);
     window.use = registry.use;
     window.space = registry.define;
-
-})();
-
-(function() {
-
-    /**
-     * Приватный хэлпер
-     */
-    var helper = {
-
-    };
-
-    /**
-     * Пространства имен
-     */
-    window.namespace = {
-
-        /**
-         * Объявлено ли пространство имен
-         * @param path путь
-         * @param value в каком значении искать
-         * @returns {*|boolean}
-         */
-        /*isDefined: function(path, value) {
-            //path = this.getAlias(path);
-            value = value === undefined ? window : value;
-            //value = bundle.helper.value.default(value, window);
-            var arr = path.split('.');
-            return helper.isDefined(arr, value);
-        },*/
-
-        /**
-         * Объявить пространство имен
-         *
-         * Назначает объект по заданному пути
-         * @param namespace
-         */
-        /*define: function(namespace) {
-            //namespace = this.getAlias(namespace);
-            var arr = namespace.split('.');
-            helper.forgeNamespaceRecursive(arr, window);
-        },*/
-
-
-    };
 
 })();
 

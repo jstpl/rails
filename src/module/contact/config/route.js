@@ -1,14 +1,17 @@
 space(function() {
 
-    bundle.spa.router.addRoute('/contact', function () {
-        bundle.spa.module.run({
+    var router = use('bundle.spa.router');
+    var module = use('bundle.spa.module');
+
+    router.addRoute('/contact', function () {
+        module.run({
             controller: 'contact',
             action: 'all',
         });
     });
 
-    bundle.spa.router.addRoute('/contact/view/:id', function (id) {
-        bundle.spa.module.run({
+    router.addRoute('/contact/view/:id', function (id) {
+        module.run({
             controller: 'contact',
             action: 'one',
             query: {
@@ -17,8 +20,8 @@ space(function() {
         });
     });
 
-    bundle.spa.router.addRoute('/contact/update/:id', function (id) {
-        bundle.spa.module.run({
+    router.addRoute('/contact/update/:id', function (id) {
+        module.run({
             controller: 'contact',
             action: 'update',
             query: {
@@ -27,8 +30,8 @@ space(function() {
         });
     });
 
-    bundle.spa.router.addRoute('/contact/delete/:id', function (id) {
-        bundle.spa.module.run({
+    router.addRoute('/contact/delete/:id', function (id) {
+        module.run({
             controller: 'contact',
             action: 'delete',
             query: {

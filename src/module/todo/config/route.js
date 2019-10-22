@@ -1,20 +1,22 @@
 space(function() {
 
-    bundle.spa.router.addRoute('/todo', function () {
+    var router = use('bundle.spa.router');
+
+    router.addRoute('/todo', function () {
         bundle.vue.loader.run({
             controller: 'todo',
             action: 'all',
         });
     });
 
-    bundle.spa.router.addRoute('/todo/create', function (id) {
+    router.addRoute('/todo/create', function (id) {
         bundle.vue.loader.run({
             controller: 'todo',
             action: 'create',
         });
     });
 
-    bundle.spa.router.addRoute('/todo/view/:id', function (id) {
+    router.addRoute('/todo/view/:id', function (id) {
         bundle.vue.loader.run({
             controller: 'todo',
             action: 'one',
@@ -24,7 +26,7 @@ space(function() {
         });
     });
 
-    bundle.spa.router.addRoute('/todo/update/:id', function (id) {
+    router.addRoute('/todo/update/:id', function (id) {
         bundle.vue.loader.run({
             controller: 'todo',
             action: 'update',
@@ -34,7 +36,7 @@ space(function() {
         });
     });
 
-    bundle.spa.router.addRoute('/todo/delete/:id', function (id) {
+    router.addRoute('/todo/delete/:id', function (id) {
         bundle.vue.loader.run({
             controller: 'todo',
             action: 'delete',
