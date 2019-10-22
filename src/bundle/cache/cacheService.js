@@ -1,4 +1,4 @@
-space('window.bundle.cache.cacheService', function() {
+space('bundle.cache.cacheService', function() {
 
     /**
      * Приватный контейнер для данных

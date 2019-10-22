@@ -1,4 +1,4 @@
-space('window.bundle.legalbet.component.bootstrap', function() {
+space('bundle.legalbet.component.bootstrap', function() {
 
     /**
      * Ядро приложения

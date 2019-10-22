@@ -1,4 +1,4 @@
-space('window.bundle.notify.notifyService', function() {
+space('bundle.notify.notifyService', function() {
 
     /**
      * Работа с пользовательскими уведомлениями

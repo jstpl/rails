@@ -1,4 +1,4 @@
-space('window.bundle.module.app.view.footerTemplate', function() {
+space('bundle.module.app.view.footerTemplate', function() {
 
     return {
         template: function () {

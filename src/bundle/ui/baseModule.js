@@ -1,4 +1,4 @@
-space('window.bundle.ui.baseModule', function() {
+space('bundle.ui.baseModule', function() {
 
     /**
      * Базовый класс модуля

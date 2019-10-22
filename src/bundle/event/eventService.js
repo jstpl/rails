@@ -1,4 +1,4 @@
-space('window.bundle.event.eventService', function() {
+space('bundle.event.eventService', function() {
 
     /**
      * Работа с событиями

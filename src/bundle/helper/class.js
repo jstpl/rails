@@ -1,4 +1,4 @@
-space('window.bundle.helper.class', function() {
+space('bundle.helper.class', function() {
 
     /**
      * Работа с классами

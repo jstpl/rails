@@ -1,4 +1,4 @@
-space('window.bundle.helper.func', function() {
+space('bundle.helper.func', function() {
 
     var callAtIntervalHelper = {
 

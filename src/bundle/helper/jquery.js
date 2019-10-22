@@ -1,4 +1,4 @@
-space('window.bundle.helper.jqueryUi', function() {
+space('bundle.helper.jqueryUi', function() {
 
     /**
      * Работа с JQuery

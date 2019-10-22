@@ -1,4 +1,4 @@
-space('window.app', function() {
+space('app', function() {
 
     /**
      * Приватный контейнер для данных

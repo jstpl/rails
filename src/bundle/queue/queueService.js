@@ -1,4 +1,4 @@
-space('window.bundle.queue.queueService', function() {
+space('bundle.queue.queueService', function() {
 
     /**
      * Базовый класс очередей

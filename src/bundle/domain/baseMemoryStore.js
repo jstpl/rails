@@ -1,4 +1,4 @@
-space('window.bundle.domain.baseMemoryStore', function() {
+space('bundle.domain.baseMemoryStore', function() {
 
     /**
      * Базовый класс для хранилища состояния в ОЗУ

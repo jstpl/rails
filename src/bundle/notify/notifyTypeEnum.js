@@ -1,4 +1,4 @@
-space('window.bundle.notify.notifyTypeEnum', function() {
+space('bundle.notify.notifyTypeEnum', function() {
 
     /**
      * Список типов уведомлений

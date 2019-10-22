@@ -1,4 +1,4 @@
-space('window.bundle.notify.driver.toastrDriver', function() {
+space('bundle.notify.driver.toastrDriver', function() {
 
     /**
      * Драйвер уведомлений для вендора toastr

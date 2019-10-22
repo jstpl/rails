@@ -1,4 +1,4 @@
-space('window.bundle.helper.value', function() {
+space('bundle.helper.value', function() {
 
     /**
      * Работа с данными

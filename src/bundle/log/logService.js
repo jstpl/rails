@@ -1,4 +1,4 @@
-space('window.bundle.log.logService', function() {
+space('bundle.log.logService', function() {
 
     /**
      * Логер

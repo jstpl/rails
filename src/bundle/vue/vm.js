@@ -1,4 +1,4 @@
-space('window.bundle.vue.vm', function() {
+space('bundle.vue.vm', function() {
 
     var store = {};
 

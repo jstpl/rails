@@ -1,4 +1,4 @@
-space('window.bundle.spa.layer', function() {
+space('bundle.spa.layer', function() {
 
     /**
      *
@@ -56,7 +56,7 @@ space('window.bundle.spa.layer', function() {
 
 });
 
-space('window.bundle.spa.template', function() {
+space('bundle.spa.template', function() {
 
     return {
 
@@ -75,7 +75,7 @@ space('window.bundle.spa.template', function() {
 
 });
 
-space('window.bundle.spa.helper', function() {
+space('bundle.spa.helper', function() {
 
     return {
 
@@ -126,7 +126,7 @@ space('window.bundle.spa.helper', function() {
 });
 
 
-space('window.bundle.spa.module', function() {
+space('bundle.spa.module', function() {
 
     /**
      *

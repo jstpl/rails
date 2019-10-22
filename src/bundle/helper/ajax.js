@@ -1,4 +1,4 @@
-space('window.bundle.helper.ajax', function() {
+space('bundle.helper.ajax', function() {
 
     /**
      * Работа с AJAX-запросами

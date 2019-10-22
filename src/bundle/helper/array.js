@@ -28,7 +28,7 @@ space('bundle.helper.localStorage', function () {
 
 });
 
-space('window.bundle.helper.dom', function() {
+space('bundle.helper.dom', function() {
 
     /**
      * Работа с DOM
@@ -85,7 +85,7 @@ space('window.bundle.helper.dom', function() {
 
 });
 
-space('window.bundle.helper.string', function() {
+space('bundle.helper.string', function() {
 
     /**
      * Работа со строками
@@ -122,7 +122,7 @@ space('window.bundle.helper.string', function() {
 
 });
 
-space('window.bundle.helper.array', function() {
+space('bundle.helper.array', function() {
 
     /**
      * Работа с массивами и объектами

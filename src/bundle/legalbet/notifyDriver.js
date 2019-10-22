@@ -1,4 +1,4 @@
-space('window.bundle.notify.driver.notifyDriver', function() {
+space('bundle.notify.driver.notifyDriver', function() {
 
     /**
      * Драйвер уведомлений для Legalbet

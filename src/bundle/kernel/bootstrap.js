@@ -1,4 +1,4 @@
-space('window.bundle.kernel.bootstrap', function() {
+space('bundle.kernel.bootstrap', function() {
 
     /**
      * Ядро приложения

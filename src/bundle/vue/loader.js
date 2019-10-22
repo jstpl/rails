@@ -1,4 +1,4 @@
-space('window.bundle.vue.loader', function() {
+space('bundle.vue.loader', function() {
 
     var helper = {
 

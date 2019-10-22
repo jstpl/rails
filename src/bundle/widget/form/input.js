@@ -2,7 +2,7 @@
  * Дайвера для работы с input-элементами
  */
 
-space('window.bundle.widget.form.interface.driver', function() {
+space('bundle.widget.form.interface.driver', function() {
 
     /**
      * Интерфейс драйвера
@@ -15,7 +15,7 @@ space('window.bundle.widget.form.interface.driver', function() {
 
 });
 
-space('window.bundle.widget.form.helper.element', function() {
+space('bundle.widget.form.helper.element', function() {
 
     /**
      * Хэлпер
@@ -43,7 +43,7 @@ space('window.bundle.widget.form.helper.element', function() {
 
 });
 
-space('window.bundle.widget.form.input.checkbox', function() {
+space('bundle.widget.form.input.checkbox', function() {
 
     /**
      * Checkbox-элемент
@@ -107,7 +107,7 @@ space('window.bundle.widget.form.input.checkbox', function() {
 
 });
 
-space('window.bundle.widget.form.input.radio', function() {
+space('bundle.widget.form.input.radio', function() {
 
     /**
      * Radio-элемент
@@ -142,7 +142,7 @@ space('window.bundle.widget.form.input.radio', function() {
 
 });
 
-space('window.bundle.widget.form.input.text', function() {
+space('bundle.widget.form.input.text', function() {
 
     /**
      * Text-элемент
@@ -167,7 +167,7 @@ space('window.bundle.widget.form.input.text', function() {
 
 });
 
-space('window.bundle.widget.form.input.hidden', function() {
+space('bundle.widget.form.input.hidden', function() {
 
     /**
      * Hidden-элемент
@@ -176,7 +176,7 @@ space('window.bundle.widget.form.input.hidden', function() {
 
 });
 
-space('window.bundle.widget.form.input.number', function() {
+space('bundle.widget.form.input.number', function() {
 
     /**
      * Number-элемент

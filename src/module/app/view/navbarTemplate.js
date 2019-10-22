@@ -1,4 +1,4 @@
-space('window.bundle.module.app.view.navbarTemplate', function() {
+space('bundle.module.app.view.navbarTemplate', function() {
 
     return {
         template: function () {

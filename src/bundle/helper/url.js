@@ -1,4 +1,4 @@
-space('window.bundle.helper.url', function() {
+space('bundle.helper.url', function() {
 
     /**
      * Работа с ссылками

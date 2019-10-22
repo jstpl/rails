@@ -1,4 +1,4 @@
-space('window.bundle.ui.baseElementService', function() {
+space('bundle.ui.baseElementService', function() {
 
     /**
      * Визуальные элементы управления (кнопки, поля ввода)
