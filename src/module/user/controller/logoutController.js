@@ -1,7 +1,5 @@
 space('bundle.module.user.controller.logoutController', function() {
 
-    namespace.define('bundle.module.user.controller');
-
     return {
 
         data: {},

@@ -1,7 +1,5 @@
 space('window.bundle.helper.value', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с данными
      */

@@ -1,7 +1,5 @@
 space('window.bundle.module.app.bootstrap', function() {
 
-    namespace.define('bundle.module.app');
-
     /**
      * Ядро приложения
      *

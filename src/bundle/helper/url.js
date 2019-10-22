@@ -1,7 +1,5 @@
 space('window.bundle.helper.url', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с ссылками
      */

@@ -1,7 +1,5 @@
 space('bundle.module.user.controller.authController', function() {
 
-    namespace.define('bundle.module.user.controller');
-
     var data = {
         entity: {},
         errors: {

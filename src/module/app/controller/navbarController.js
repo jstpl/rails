@@ -1,7 +1,5 @@
 space('bundle.module.app.controller.navbarController', function() {
 
-    namespace.define('bundle.module.app.controller');
-
     var data = {
         isLogin: false,
         username: '',

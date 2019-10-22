@@ -1,7 +1,5 @@
 space('window.bundle.vue.loader', function() {
 
-    namespace.define('bundle.vue');
-
     var helper = {
 
         checkAccess: function (controller) {

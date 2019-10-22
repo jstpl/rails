@@ -1,7 +1,5 @@
 space('window.bundle.spa.layer', function() {
 
-    namespace.define('bundle.spa');
-
     /**
      *
      */

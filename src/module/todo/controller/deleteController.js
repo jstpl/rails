@@ -1,7 +1,5 @@
 space('bundle.module.todo.controller.deleteController', function() {
 
-    namespace.define('bundle.module.todo.controller');
-
     var data = {
         entity: {},
     };

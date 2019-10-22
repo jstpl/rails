@@ -1,7 +1,5 @@
 space('window.bundle.helper.ajax', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с AJAX-запросами
      */

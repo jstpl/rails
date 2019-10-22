@@ -1,7 +1,5 @@
 space('window.bundle.helper.jqueryUi', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с JQuery
      */

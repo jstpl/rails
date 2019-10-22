@@ -1,7 +1,5 @@
 space('window.bundle.helper.func', function() {
 
-    namespace.define('bundle.helper');
-
     var callAtIntervalHelper = {
 
         _lastTime: {},

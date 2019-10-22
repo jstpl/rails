@@ -1,7 +1,5 @@
 space('bundle.module.todo.store.contactStore', function() {
 
-    namespace.define('bundle.module.todo.store');
-
     var localStore = bundle.helper.class.extends(bundle.domain.baseLocalStorage, {
 
         storageKey: 'todo3',

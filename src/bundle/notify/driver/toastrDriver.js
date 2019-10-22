@@ -1,7 +1,5 @@
 space('window.bundle.notify.driver.toastrDriver', function() {
 
-    namespace.define('bundle.notify.driver');
-
     /**
      * Драйвер уведомлений для вендора toastr
      */

@@ -1,7 +1,5 @@
 space('bundle.module.user.service.authService', function() {
 
-    namespace.define('bundle.module.user.service');
-
     var identityStore = bundle.module.user.store.identityStore;
 
     return {

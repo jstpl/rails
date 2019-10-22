@@ -1,7 +1,5 @@
 space('window.bundle.notify.notifyTypeEnum', function() {
 
-    namespace.define('bundle.notify');
-
     /**
      * Список типов уведомлений
      */

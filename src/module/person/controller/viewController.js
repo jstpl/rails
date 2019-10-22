@@ -1,7 +1,5 @@
 space('bundle.module.person.controller.viewController', function() {
 
-    namespace.define('bundle.module.person.controller');
-
     var data = {
         entity: {},
     };

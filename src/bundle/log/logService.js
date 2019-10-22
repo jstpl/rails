@@ -1,7 +1,5 @@
 space('window.bundle.log.logService', function() {
 
-    namespace.define('bundle.log');
-
     /**
      * Логер
      */

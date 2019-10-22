@@ -1,7 +1,5 @@
 space('window.bundle.legalbet.component.bootstrap', function() {
 
-    namespace.define('bundle.legalbet.component');
-
     /**
      * Ядро приложения
      *

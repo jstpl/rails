@@ -1,7 +1,5 @@
 space('window.bundle.ui.baseElementService', function() {
 
-    namespace.define('bundle.ui');
-
     /**
      * Визуальные элементы управления (кнопки, поля ввода)
      */

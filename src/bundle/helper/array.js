@@ -30,8 +30,6 @@ space('bundle.helper.localStorage', function () {
 
 space('window.bundle.helper.dom', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с DOM
      */
@@ -89,8 +87,6 @@ space('window.bundle.helper.dom', function() {
 
 space('window.bundle.helper.string', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа со строками
      */
@@ -127,8 +123,6 @@ space('window.bundle.helper.string', function() {
 });
 
 space('window.bundle.helper.array', function() {
-
-    namespace.define('bundle.helper');
 
     /**
      * Работа с массивами и объектами

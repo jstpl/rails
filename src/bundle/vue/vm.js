@@ -1,7 +1,5 @@
 space('window.bundle.vue.vm', function() {
 
-    namespace.define('bundle.vue');
-
     var store = {};
 
     return {

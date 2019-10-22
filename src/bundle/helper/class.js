@@ -1,7 +1,5 @@
 space('window.bundle.helper.class', function() {
 
-    namespace.define('bundle.helper');
-
     /**
      * Работа с классами
      */

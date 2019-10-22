@@ -1,7 +1,5 @@
 space('bundle.module.person.service.personService', function() {
 
-    namespace.define('bundle.module.person.service');
-
     return {
 
         oneSelf: function () {

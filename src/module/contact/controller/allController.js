@@ -1,7 +1,5 @@
 space('bundle.module.contact.controller.allController', function() {
 
-    namespace.define('bundle.module.contact.controller');
-
     return {
 
         run: function (request) {
