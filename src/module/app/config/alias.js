@@ -1,6 +1,6 @@
 space(function() {
 
-    //namespace.setAlias('bundle', 'scripts');
-    namespace.setAlias('bundle.module', 'src.module');
+    //bundle.kernel.loader.setAlias('bundle', 'scripts');
+    bundle.kernel.loader.setAlias('bundle.module', 'src.module');
 
 });

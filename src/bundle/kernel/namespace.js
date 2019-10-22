@@ -107,16 +107,68 @@
 
 (function() {
 
+    /**
+     * Приватный хэлпер
+     */
+    var helper = {
+
+    };
+
+    /**
+     * Пространства имен
+     */
+    window.namespace = {
+
+        /**
+         * Объявлено ли пространство имен
+         * @param path путь
+         * @param value в каком значении искать
+         * @returns {*|boolean}
+         */
+        /*isDefined: function(path, value) {
+            //path = this.getAlias(path);
+            value = value === undefined ? window : value;
+            //value = bundle.helper.value.default(value, window);
+            var arr = path.split('.');
+            return helper.isDefined(arr, value);
+        },*/
+
+        /**
+         * Объявить пространство имен
+         *
+         * Назначает объект по заданному пути
+         * @param namespace
+         */
+        /*define: function(namespace) {
+            //namespace = this.getAlias(namespace);
+            var arr = namespace.split('.');
+            helper.forgeNamespaceRecursive(arr, window);
+        },*/
+
+
+    };
+
+})();
+
+space('bundle.kernel.loader', function() {
+
     var store = {
         loaded: {},
         aliases: {},
     };
 
-
-    /**
-     * Приватный хэлпер
-     */
     var helper = {
+        isDefined: function (namespaceArray, object) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] === "object") {
+                    object = object[item];
+                } else if(typeof object[item] === "undefined") {
+                    return false;
+                }
+            }
+            return true;
+        },
         define: function (namespaceArray, object, value) {
             for (var key in namespaceArray) {
                 var item = namespaceArray[key];
@@ -137,24 +189,34 @@
             }
             return object;
         },
-        isDefined: function (namespaceArray, object) {
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] === "object") {
-                    object = object[item];
-                } else if(typeof object[item] === "undefined") {
-                    return false;
-                }
-            }
-            return true;
+
+        /**
+         * Получить значение по пути
+         * @param namespace
+         * @returns {*}
+         */
+        get: function(namespace) {
+            //namespace = this.getAlias(namespace);
+            var arr = namespace.split('.');
+            return helper.forgeNamespaceRecursive(arr, window);
         },
+
     };
 
-    /**
-     * Пространства имен
-     */
-    window.namespace = {
-
+    return {
+        /**
+         * Объявлено ли пространство имен
+         * @param path путь
+         * @param value в каком значении искать
+         * @returns {*|boolean}
+         */
+        isDefined: function(path, value) {
+            //path = this.getAlias(path);
+            value = value === undefined ? window : value;
+            //value = bundle.helper.value.default(value, window);
+            var arr = path.split('.');
+            return helper.isDefined(arr, value);
+        },
         _getAlias: function (className) {
             for(var i in store.aliases) {
                 var from = i;
@@ -210,7 +272,7 @@
             this.requireScript(scriptUrl, callback);
             store.loaded[scriptUrl] = true;
             console.info('Script loaded "' + scriptUrl + '"!');
-            return this.get(classNameSource);
+            return helper.get(classNameSource);
         },
 
         requireScript: function(url, callback) {
@@ -223,42 +285,6 @@
             //$('body').append('<script src="' + url + '"></script>');
         },
 
-        /**
-         * Объявлено ли пространство имен
-         * @param path путь
-         * @param value в каком значении искать
-         * @returns {*|boolean}
-         */
-        isDefined: function(path, value) {
-            //path = this.getAlias(path);
-            value = value === undefined ? window : value;
-            //value = bundle.helper.value.default(value, window);
-            var arr = path.split('.');
-            return helper.isDefined(arr, value);
-        },
-
-        /**
-         * Объявить пространство имен
-         *
-         * Назначает объект по заданному пути
-         * @param namespace
-         */
-        define: function(namespace) {
-            //namespace = this.getAlias(namespace);
-            var arr = namespace.split('.');
-            helper.forgeNamespaceRecursive(arr, window);
-        },
-
-        /**
-         * Получить значение по пути
-         * @param namespace
-         * @returns {*}
-         */
-        get: function(namespace) {
-            //namespace = this.getAlias(namespace);
-            var arr = namespace.split('.');
-            return helper.forgeNamespaceRecursive(arr, window);
-        },
     };
 
-})();
+});

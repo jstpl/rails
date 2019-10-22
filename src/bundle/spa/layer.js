@@ -165,7 +165,7 @@ space('bundle.spa.module', function() {
             };
             for(var k in controller.depends) {
                 var dependClass = controller.depends[k];
-                namespace.requireClass(dependClass, cb);
+                bundle.kernel.loader.requireClass(dependClass, cb);
             }
         },
 
@@ -177,7 +177,7 @@ space('bundle.spa.module', function() {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
                 bundle.spa.layer.show(request);
                 var cb = function () {
-                    var controller = namespace.get(className);
+                    var controller = use(className);
                     if( ! _.isEmpty(controller)) {
                         if(_.isEmpty(controller.isInit)) {
                             controller.isInit = true;
@@ -186,7 +186,7 @@ space('bundle.spa.module', function() {
                     }
                     bundle.spa.helper.registerEventHandlers(request);
                 };
-                namespace.requireClass(className, cb);
+                bundle.kernel.loader.requireClass(className, cb);
             };
             this.doRequest(request, callback);
         },

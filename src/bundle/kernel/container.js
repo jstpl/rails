@@ -34,7 +34,7 @@ space(function() {
          * @returns {Boolean}
          */
         has: function (className) {
-            return namespace.isDefined(className, this);
+            return bundle.kernel.loader.isDefined(className, this);
         },
 
     };
