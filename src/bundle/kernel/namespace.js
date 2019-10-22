@@ -211,58 +211,45 @@
 
 (function() {
 
-    var isDomLoaded = false;
-    var classList = {};
-
-    /**
-     * Приватный хэлпер
-     */
-    var helper = {
-        define: function (np, object, value) {
-            var namespaceArray = np.split('.');
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] !== "object") {
-                    object[item] = {};
-                }
-                object = object[item];
+    var registry = {
+        isDomLoaded: false,
+        classList: {},
+        onDomLoaded: function (func) {
+            if(this.isDomLoaded) {
+                func();
+            } else {
+                document.addEventListener('DOMContentLoaded', func);
             }
-
-            object = value;
-            //console.log(np, object);
-        }
+        },
+        onWindowLoad: function() {
+            registry.isDomLoaded = true;
+            //console.log(classList);
+        },
+        use: function (className) {
+            var func = _.get(registry.classList, className);
+            if(_.isFunction(func)) {
+                func = func();
+            }
+            return func;
+        },
+        define: function (funcOrClassName, func) {
+            if(_.isFunction(funcOrClassName)) {
+                registry.onDomLoaded(funcOrClassName);
+            } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
+                registry.onDomLoaded(function() {
+                    //var args = [];
+                    //var classDefinition = func.apply({}, args);
+                    var classDefinition = func();
+                    //classList[funcOrClassName] = classDefinition;
+                    _.set(window, funcOrClassName, classDefinition);
+                });
+            }
+            registry.classList[funcOrClassName] = func;
+        },
     };
 
-    var onDomLoaded = function (func) {
-        if(isDomLoaded) {
-            func();
-        } else {
-            document.addEventListener('DOMContentLoaded', func);
-        }
-    };
-
-    window.addEventListener('load', function() {
-        isDomLoaded = true;
-        console.log(classList);
-    });
-
-    window.use = function (className) {
-        return _.get(classList, className);
-    };
-
-    window.space = function (funcOrClassName, func) {
-        if(_.isFunction(funcOrClassName)) {
-            onDomLoaded(funcOrClassName);
-        } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
-            onDomLoaded(function() {
-                //var args = [];
-                //var classDefinition = func.apply({}, args);
-                var classDefinition = func();
-                classList[funcOrClassName] = classDefinition;
-                //helper.define(funcOrClassName, window, classDefinition);
-                _.set(window, funcOrClassName, classDefinition);
-            });
-        }
-    };
+    window.addEventListener('load', registry.onWindowLoad);
+    window.use = registry.use;
+    window.space = registry.define;
 
 })();
