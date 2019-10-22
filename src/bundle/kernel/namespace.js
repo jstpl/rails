@@ -72,7 +72,7 @@
         },
         onWindowLoad: function() {
             registry.isDomLoaded = true;
-            console.log(registry.classList);
+            //console.log(registry.classList);
         },
         use: function (className) {
             var func = _.get(registry.classList, className);
