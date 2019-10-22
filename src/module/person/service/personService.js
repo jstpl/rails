@@ -1,8 +1,8 @@
-space(function() {
+space('bundle.module.person.service.personService', function() {
 
     namespace.define('bundle.module.person.service');
 
-    bundle.module.person.service.personService = {
+    return {
 
         oneSelf: function () {
             var promise = container.restClient.get('person');

@@ -1,6 +1,4 @@
-space(function() {
-
-    namespace.define('bundle.cache');
+space('window.bundle.cache.cacheService', function() {
 
     /**
      * Приватный контейнер для данных
@@ -10,7 +8,7 @@ space(function() {
     /**
      * Работа с кешированием данных
      */
-    window.bundle.cache.cacheService = {
+    return {
 
         /**
          * Сохранить данные в кэш

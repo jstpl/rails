@@ -1,11 +1,9 @@
-space(function() {
-
-    namespace.define('bundle.env');
+space('bundle.env.envEnum', function() {
 
     /**
      * Список режимов работы приложения
      */
-    window.bundle.env.envEnum = {
+    return {
         develop: 'develop',
         production: 'production',
         test: 'test',

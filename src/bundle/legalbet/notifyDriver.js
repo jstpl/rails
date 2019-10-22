@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.notify.driver.notifyDriver', function() {
 
     namespace.define('bundle.notify.driver');
 
     /**
      * Драйвер уведомлений для Legalbet
      */
-    window.bundle.notify.driver.notifyDriver = {
+    return {
 
         options: {},
 

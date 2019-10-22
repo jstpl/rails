@@ -1,8 +1,8 @@
-space(function() {
+space('bundle.module.contact.controller.updateController', function() {
 
     namespace.define('bundle.module.contact.controller');
 
-    bundle.module.contact.controller.updateController = {
+    return {
 
         run: function (request) {
 

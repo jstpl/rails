@@ -1,10 +1,10 @@
-space(function() {
+space('bundle.module.user.service.authService', function() {
 
     namespace.define('bundle.module.user.service');
 
     var identityStore = bundle.module.user.store.identityStore;
 
-    bundle.module.user.service.authService = {
+    return {
 
         authRequired: function () {
             container.event.trigger('user.auth.authRequired');

@@ -1,8 +1,8 @@
-space(function() {
+space('bundle.module.user.controller.logoutController', function() {
 
     namespace.define('bundle.module.user.controller');
 
-    bundle.module.user.controller.logoutController = {
+    return {
 
         data: {},
         depends: [

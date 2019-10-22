@@ -1,7 +1,7 @@
-space(function() {
+space('module.app.config.main', function() {
 
-    namespace.define('module.app.config.main');
-
-    module.app.config.main.apiServer = 'http://test-api.union.yuwert.kz/v1';
+    return {
+        apiServer: 'http://test-api.union.yuwert.kz/v1',
+    };
 
 });

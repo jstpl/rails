@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.spa.layer', function() {
 
     namespace.define('bundle.spa');
 
     /**
      *
      */
-    window.bundle.spa.layer = {
+    return {
 
         wrapperId: 'app',
         wrapperInstance: null,
@@ -58,9 +58,9 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.spa.template', function() {
 
-    window.bundle.spa.template = {
+    return {
 
         compileElement: function (moduleElement, params) {
             var template = moduleElement.html();
@@ -77,9 +77,9 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.spa.helper', function() {
 
-    window.bundle.spa.helper = {
+    return {
 
         /*getVueInstance: function (definition) {
             var el = definition.el;
@@ -123,10 +123,17 @@ space(function() {
 
     };
 
+
+
+});
+
+
+space('window.bundle.spa.module', function() {
+
     /**
      *
      */
-    window.bundle.spa.module = {
+    return {
 
         request: null,
 
@@ -199,6 +206,7 @@ space(function() {
     };
 
 });
+
 
 /*$("a").each(function(index, element) {
             $(element).click(function (event) {

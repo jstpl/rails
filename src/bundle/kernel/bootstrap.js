@@ -1,4 +1,4 @@
-space(function() {
+space('window.bundle.kernel.bootstrap', function() {
 
     namespace.define('bundle.kernel.component');
 
@@ -7,7 +7,7 @@ space(function() {
      *
      * Запускается 1 раз при запуске приложения
      */
-    window.bundle.kernel.bootstrap = {
+    return {
         /**
          * Регистрация сервисов в контейнере
          */

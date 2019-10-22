@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.todo.controller.createController', function() {
 
     namespace.define('bundle.module.todo.controller');
 
@@ -9,7 +9,7 @@ space(function() {
         },
     };
 
-    bundle.module.todo.controller.createController = {
+    return {
 
         data: data,
         methods: {

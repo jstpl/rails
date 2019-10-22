@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.todo.controller.updateController', function() {
 
     namespace.define('bundle.module.todo.controller');
 
@@ -6,7 +6,7 @@ space(function() {
         entity: {},
     };
 
-    bundle.module.todo.controller.updateController = {
+    return {
 
         data: data,
         methods: {

@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.person.controller.updateController', function() {
 
     namespace.define('bundle.module.person.controller');
 
@@ -7,7 +7,7 @@ space(function() {
         entity: {},
     };
 
-    bundle.module.person.controller.updateController = {
+    return {
 
         data: data,
         depends: [

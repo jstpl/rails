@@ -1,4 +1,4 @@
-space(function() {
+space('window.bundle.helper.jqueryUi', function() {
 
     namespace.define('bundle.helper');
 
@@ -12,7 +12,7 @@ space(function() {
     /**
      * Работа с JQuery UI
      */
-    window.bundle.helper.jqueryUi = {
+    return {
 
         eventTrigger: function (widget, eventType, data) {
             var names = this.getElementEventNames(widget, eventType);

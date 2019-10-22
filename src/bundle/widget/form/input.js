@@ -2,14 +2,14 @@
  * Дайвера для работы с input-элементами
  */
 
-space(function() {
+space('window.bundle.widget.form.interface.driver', function() {
 
     namespace.define('bundle.widget.form.interface');
 
     /**
      * Интерфейс драйвера
      */
-    window.bundle.widget.form.interface.driver = {
+    return {
         removeValue: function (formInstance, name) {},
         getValue: function (formInstance, name) {},
         setValue: function (formInstance, name, value) {},
@@ -17,14 +17,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.widget.form.helper.element', function() {
 
     namespace.define('bundle.widget.form.helper');
 
     /**
      * Хэлпер
      */
-    window.bundle.widget.form.helper.element = {
+    return {
 
         getByName: function (formInstance, name) {
             return $(formInstance).find('input[name='+name+']');
@@ -47,14 +47,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.widget.form.input.checkbox', function() {
 
     namespace.define('bundle.widget.form.input');
 
     /**
      * Checkbox-элемент
      */
-    window.bundle.widget.form.input.checkbox = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, []);
@@ -113,14 +113,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.widget.form.input.radio', function() {
 
     namespace.define('bundle.widget.form.input');
 
     /**
      * Radio-элемент
      */
-    window.bundle.widget.form.input.radio = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, undefined);
@@ -150,14 +150,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.widget.form.input.text', function() {
 
     namespace.define('bundle.widget.form.input');
 
     /**
      * Text-элемент
      */
-    window.bundle.widget.form.input.text = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, '');
@@ -175,21 +175,25 @@ space(function() {
 
     };
 
+});
+
+space('window.bundle.widget.form.input.hidden', function() {
+
     /**
      * Hidden-элемент
      */
-    window.bundle.widget.form.input.hidden = window.bundle.widget.form.input.text;
+    return _.clone(window.bundle.widget.form.input.text);
 
 });
 
-space(function() {
+space('window.bundle.widget.form.input.number', function() {
 
     namespace.define('bundle.widget.form.input');
 
     /**
      * Number-элемент
      */
-    window.bundle.widget.form.input.number = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, 0);

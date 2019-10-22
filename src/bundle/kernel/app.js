@@ -1,4 +1,4 @@
-space(function() {
+space('window.app', function() {
 
     /**
      * Приватный контейнер для данных
@@ -11,7 +11,7 @@ space(function() {
      * Приложение
      * @deprecated
      */
-    window.app = {
+    return {
         config: {},
 
         /**

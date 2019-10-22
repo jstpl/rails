@@ -1,6 +1,4 @@
-space(function() {
-
-    namespace.define('bundle.module.bskit.controller');
+space('bundle.module.bskit.controller.allController', function() {
 
     var data = {
         collection: [
@@ -71,7 +69,7 @@ space(function() {
         ],
     };
 
-    bundle.module.bskit.controller.allController = {
+    return {
 
         data: data,
 

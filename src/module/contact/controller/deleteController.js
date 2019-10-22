@@ -1,8 +1,8 @@
-space(function() {
+space('bundle.module.contact.controller.deleteController', function() {
 
     namespace.define('bundle.module.contact.controller');
 
-    bundle.module.contact.controller.deleteController = {
+    return {
 
         run: function (request) {
 

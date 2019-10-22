@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.notify.notifyService', function() {
 
     namespace.define('bundle.notify');
 
     /**
      * Работа с пользовательскими уведомлениями
      */
-    window.bundle.notify.notifyService = {
+    return {
 
         /**
          * Драйвер показа уведомлений

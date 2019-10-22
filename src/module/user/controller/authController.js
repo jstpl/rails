@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.user.controller.authController', function() {
 
     namespace.define('bundle.module.user.controller');
 
@@ -10,7 +10,7 @@ space(function() {
         },
     };
 
-    bundle.module.user.controller.authController = {
+    return {
 
         data: data,
         depends: [

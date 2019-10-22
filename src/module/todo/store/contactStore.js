@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.todo.store.contactStore', function() {
 
     namespace.define('bundle.module.todo.store');
 
@@ -8,7 +8,7 @@ space(function() {
 
     });
 
-    bundle.module.todo.store.contactStore = {
+    return {
 
         collection: undefined,
 

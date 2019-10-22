@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.helper.value', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с данными
      */
-    window.bundle.helper.value = {
+    return {
 
         /**
          * Получить значение по умолчанию, если значение не назначенное

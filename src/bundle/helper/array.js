@@ -28,14 +28,14 @@ space('bundle.helper.localStorage', function () {
 
 });
 
-space(function() {
+space('window.bundle.helper.dom', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с DOM
      */
-    window.bundle.helper.dom = {
+    return {
 
         appendToBody: function (element) {
             var bodyElement = $('body');
@@ -87,14 +87,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.helper.string', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа со строками
      */
-    window.bundle.helper.string = {
+    return {
 
         escapeHtml: function (unsafe) {
             return unsafe
@@ -126,14 +126,14 @@ space(function() {
 
 });
 
-space(function() {
+space('window.bundle.helper.array', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с массивами и объектами
      */
-    window.bundle.helper.array = {
+    return {
 
         /**
          * Получить уникальные ключи объекта

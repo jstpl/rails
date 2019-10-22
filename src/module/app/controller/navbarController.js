@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.app.controller.navbarController', function() {
 
     namespace.define('bundle.module.app.controller');
 
@@ -14,7 +14,7 @@ space(function() {
         },
     };
 
-    bundle.module.app.controller.navbarController = {
+    return {
         el: '#app-navbar',
         data: data,
         created: function () {

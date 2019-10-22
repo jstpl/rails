@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.legalbet.config', function() {
 
 
 

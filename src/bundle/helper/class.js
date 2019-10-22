@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.helper.class', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с классами
      */
-    window.bundle.helper.class = {
+    return {
 
         /**
          * Выполнить метод в массиве классов поочередно

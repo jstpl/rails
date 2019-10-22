@@ -1,7 +1,5 @@
 space('bundle.helper.php', function() {
 
-    //namespace.define('bundle.helper');
-
     /**
      * Аналоги функций из PHP SPL
      */

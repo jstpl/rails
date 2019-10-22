@@ -1,4 +1,4 @@
-space(function() {
+space('window.bundle.vue.loader', function() {
 
     namespace.define('bundle.vue');
 
@@ -33,7 +33,7 @@ space(function() {
 
     };
 
-    window.bundle.vue.loader = {
+    return {
 
         request: null,
 

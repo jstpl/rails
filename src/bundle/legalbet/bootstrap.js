@@ -1,4 +1,4 @@
-space(function() {
+space('window.bundle.legalbet.component.bootstrap', function() {
 
     namespace.define('bundle.legalbet.component');
 
@@ -9,7 +9,7 @@ space(function() {
      *
      * Todo: переименовать в bundle.legalbet.bootstrap
      */
-    window.bundle.legalbet.component.bootstrap = {
+    return {
 
         /**
          * Регистрация сервисов в контейнере

@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.log.logService', function() {
 
     namespace.define('bundle.log');
 
     /**
      * Логер
      */
-    window.bundle.log.logService = {
+    return {
         config: {},
 
         /**

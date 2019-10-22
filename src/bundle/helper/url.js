@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.helper.url', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с ссылками
      */
-    window.bundle.helper.url = {
+    return {
 
         /**
          * Изменить URL страницы без перезагрузки

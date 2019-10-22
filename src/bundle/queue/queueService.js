@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.queue.queueService', function() {
 
     namespace.define('bundle.queue');
 
     /**
      * Базовый класс очередей
      */
-    window.bundle.queue.queueService = {
+    return {
         collection: [],
 
         /**

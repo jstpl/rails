@@ -1,8 +1,6 @@
-space(function() {
+space('window.bundle.module.app.view.navbarTemplate', function() {
 
-    namespace.define('bundle.module.app.view');
-
-    window.bundle.module.app.view.navbarTemplate = {
+    return {
         template: function () {
             return '<div class="container">\n' +
                 '        <div class="navbar-header">\n' +

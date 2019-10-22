@@ -1,4 +1,4 @@
-space(function() {
+space('window.bundle.helper.func', function() {
 
     namespace.define('bundle.helper');
 
@@ -25,7 +25,7 @@ space(function() {
     /**
      * Работа с функциями
      */
-    window.bundle.helper.func = {
+    return {
 
         /**
          * Вызвать метод не чаще, чем указано в интервале.

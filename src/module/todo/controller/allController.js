@@ -1,4 +1,4 @@
-space(function() {
+space('bundle.module.todo.controller.allController', function() {
 
     namespace.define('bundle.module.todo.controller');
 
@@ -6,7 +6,7 @@ space(function() {
         collection: {},
     };
 
-    bundle.module.todo.controller.allController = {
+    return {
 
         data: data,
         depends: [

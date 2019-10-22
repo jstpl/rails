@@ -1,11 +1,9 @@
-space(function() {
-
-    namespace.define('bundle.domain');
+space('window.bundle.domain.baseMemoryStore', function() {
 
     /**
      * Базовый класс для хранилища состояния в ОЗУ
      */
-    window.bundle.domain.baseMemoryStore = {
+    return {
 
         /**
          * Сохранить значение

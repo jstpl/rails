@@ -1,11 +1,11 @@
-space(function() {
+space('window.bundle.helper.ajax', function() {
 
     namespace.define('bundle.helper');
 
     /**
      * Работа с AJAX-запросами
      */
-    window.bundle.helper.ajax = {
+    return {
 
         errorCallback: function (jqXHR, exception) {
             var msg = window.bundle.helper.ajax.getErrorMessage(jqXHR, exception);
