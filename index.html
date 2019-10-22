@@ -5,145 +5,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  href="/vendor/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet">
-    <link  href="/vendor/bootstrap/3.3.7/bootstrap-theme.min.css" rel="stylesheet">
+    <link  href="/src/assets/style/vendor.css" rel="stylesheet">
+
+    <script src="/src/assets/script/vendor.js"></script>
+<script src="/src/bundle/kernel/namespace.js"></script>
+<script src="/src/bundle/kernel/container.js"></script>
+<script src="/src/bundle/kernel/bootstrap.js"></script>
+<script src="/src/bundle/kernel/func.js"></script>
+<script src="/src/bundle/helper/ajax.js"></script>
+<script src="/src/bundle/helper/array.js"></script>
+<script src="/src/bundle/helper/class.js"></script>
+<script src="/src/bundle/helper/func.js"></script>
+<script src="/src/bundle/helper/jquery.js"></script>
+<script src="/src/bundle/helper/php.js"></script>
+<script src="/src/bundle/helper/url.js"></script>
+<script src="/src/bundle/helper/value.js"></script>
+<script src="/src/bundle/env/envEnum.js"></script>
+<script src="/src/bundle/env/envService.js"></script>
+<script src="/src/bundle/event/eventService.js"></script>
+<script src="/src/bundle/log/logService.js"></script>
+<script src="/src/bundle/queue/queueService.js"></script>
+<script src="/src/bundle/ui/baseElementService.js"></script>
+<script src="/src/bundle/ui/baseModule.js"></script>
+<script src="/src/bundle/notify/notifyService.js"></script>
+<script src="/src/bundle/notify/notifyTypeEnum.js"></script>
+<script src="/src/bundle/notify/driver/toastrDriver.js"></script>
+<script src="/src/bundle/domain/baseLocalStorage.js"></script>
+<script src="/src/bundle/domain/baseMemoryStore.js"></script>
+<script src="/src/bundle/cache/cacheService.js"></script>
+<script src="/src/bundle/rest/client.js"></script>
+<script src="/src/bundle/legalbet/bootstrap.js"></script>
+<script src="/src/bundle/legalbet/config.js"></script>
+<script src="/src/bundle/legalbet/notifyDriver.js"></script>
+<script src="/src/bundle/spa/layer.js"></script>
+<script src="/src/bundle/spa/router.js"></script>
+<script src="/src/bundle/vue/loader.js"></script>
+<script src="/src/bundle/vue/vm.js"></script>
+<script src="/src/bundle/bootstrap/modal/modalService.js"></script>
+<script src="/src/module/user/store/identityStore.js"></script>
+<script src="/src/module/user/service/authService.js"></script>
+<script src="/src/module/user/lang/ru/auth.js"></script>
+<script src="/src/module/contact/store/contactStore.js"></script>
+<script src="/src/module/person/service/personService.js"></script>
+<script src="/src/module/app/config/alias.js"></script>
+<script src="/src/module/app/config/main.js"></script>
+<script src="/src/module/app/config/route.js"></script>
+<script src="/src/module/bskit/config/route.js"></script>
+<script src="/src/module/contact/config/route.js"></script>
+<script src="/src/module/person/config/route.js"></script>
+<script src="/src/module/todo/config/route.js"></script>
+<script src="/src/module/user/config/route.js"></script>
+<script src="/src/module/app/controller/footerController.js"></script>
+<script src="/src/module/app/controller/navbarController.js"></script>
+<script src="/src/module/app/view/bodyTemplate.js"></script>
+<script src="/src/module/app/view/footerTemplate.js"></script>
+<script src="/src/module/app/view/navbarTemplate.js"></script>
+<script src="/src/module/app/bootstrap.js"></script>
+<script src="/src/module/app/run.js"></script>
+
 </head>
-<body>
-
-<script src="/vendor/jquery/jquery-2.2.4.min.js"></script>
-<script src="/vendor/jquery/jquery-ui-1.12.1.min.js"></script>
-<script src="/vendor/lodash/4.17.15/lodash.js"></script>
-<script src="/vendor/bootstrap/3.3.7/bootstrap.min.js"></script>
-
-<script src="/bundle/kernel/namespace.js"></script>
-
-<script src="/bundle/helper/ajax.js"></script>
-<script src="/bundle/helper/array.js"></script>
-<script src="/bundle/helper/class.js"></script>
-<script src="/bundle/helper/func.js"></script>
-<script src="/bundle/helper/php.js"></script>
-<script src="/bundle/helper/url.js"></script>
-<script src="/bundle/helper/value.js"></script>
-<script src="/bundle/helper/jquery.js"></script>
-
-<script src="/bundle/log/logService.js"></script>
-<script src="/bundle/notify/notifyService.js"></script>
-<script src="/bundle/notify/notifyTypeEnum.js"></script>
-<script src="/bundle/queue/queueService.js"></script>
-<script src="/bundle/ui/baseElementService.js"></script>
-<script src="/bundle/ui/baseModule.js"></script>
-
-<script src="/bundle/env/envEnum.js"></script>
-<script src="/bundle/env/envService.js"></script>
-
-<script src="/bundle/kernel/container.js"></script>
-<script src="/bundle/kernel/bootstrap.js"></script>
-<script src="/bundle/kernel/func.js"></script>
-
-<script src="/bundle/domain/baseMemoryStore.js"></script>
-<script src="/bundle/domain/baseLocalStorage.js"></script>
-<script src="/bundle/cache/cacheService.js"></script>
-<script src="/bundle/event/eventService.js"></script>
-<script src="/bundle/rest/client.js"></script>
-
-<!--Module-->
-
-<script src="/bundle/legalbet/bootstrap.js"></script>
-<script src="/bundle/widget/form/input.js"></script>
-<script src="/bundle/widget/form/formWidget.js"></script>
-<script src="/bundle/widget/tabs/tabsWidget.js"></script>
-<script src="/bundle/widget/action/actionWidget.js"></script>
-
-<script src="/vendor/director/director-1.2.6.min.js"></script>
-
-<script src="/bundle/spa/layer.js"></script>
-<script src="/bundle/spa/router.js"></script>
-<script src="/bundle/vue/loader.js"></script>
-<script src="/bundle/vue/vm.js"></script>
-
-<script src="/module/app/config/route.js"></script>
-<script src="/module/contact/config/route.js"></script>
-<script src="/module/todo/config/route.js"></script>
-<script src="/module/user/config/route.js"></script>
-<script src="/module/person/config/route.js"></script>
-<script src="/module/user/store/identityStore.js"></script>
-<script src="/module/user/service/authService.js"></script>
-<script src="/module/user/lang/ru/auth.js"></script>
-
-<script src="/module/notify/enum/notifyTypeEnum.js"></script>
-<script src="/module/notify/service/notifyService.js"></script>
-
-<script src="/module/navbar/navbarController.js"></script>
-
-<script src="/module/app/config/alias.js"></script>
-<script src="/module/app/bootstrap.js"></script>
-
-<script src="/vendor/redux/redux-3.5.2.min.js"></script>
-<script src="/vendor/vue/vue-2.6.10.js"></script>
-
-<script src="/vendor/toastr/toastr-2.1.4.min.js"></script>
-<link  href="/vendor/toastr/toastr-2.1.4.min.css" rel="stylesheet">
-
-<script>
-    $(function () {
-        /** Запуск приложения */
-        bundle.module.app.bootstrap.run();
-    });
-</script>
-
-<div id="toastjs"></div>
-
-<div id="navbar" class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#todo">Todo</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li v-if=" ! isLogin"><a href="#user/auth">Auth</a></li>
-                <li v-if="isLogin" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li v-if="isLogin"><a href="#person/view">Person</a></li>
-                        <li v-if="isLogin"><a href="#user/logout">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div id="app">
-
-        <div id="app-default-index" class="page-layer jumbotron" style="display: none">
-            <h1>Default</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-primary" href="/scripts/bundle/test.htm" role="button">Run bundle tests</a></p>
-        </div>
-
-        <div id="app-about-index" class="page-layer jumbotron" style="display: none">
-            <h1>about</h1>
-        </div>
-
-        <div id="app-main-index" class="page-layer jumbotron" style="display: none">
-            <h1>main</h1>
-        </div>
-
-    </div>
-</div>
-
-</body>
+<body></body>
 </html>
