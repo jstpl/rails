@@ -52,6 +52,61 @@
 
 (function() {
 
+    var registry = {
+        isDomLoaded: false,
+        classList: {},
+        onDomLoaded: function (func) {
+
+            var callback = function () {
+                var classDefinition = func();
+                if(_.isObject(classDefinition) && _.isFunction(classDefinition._onLoad)) {
+                    classDefinition._onLoad();
+                }
+            };
+
+            if(this.isDomLoaded) {
+                callback();
+            } else {
+                document.addEventListener('DOMContentLoaded', callback);
+            }
+        },
+        onWindowLoad: function() {
+            registry.isDomLoaded = true;
+            console.log(registry.classList);
+        },
+        use: function (className) {
+            var func = _.get(registry.classList, className);
+            if(_.isFunction(func)) {
+                func = func();
+            }
+            return func;
+        },
+        define: function (funcOrClassName, func) {
+            if(_.isFunction(funcOrClassName)) {
+                registry.onDomLoaded(funcOrClassName);
+            } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
+                registry.onDomLoaded(function() {
+                    //var args = [];
+                    //var classDefinition = func.apply({}, args);
+                    var classDefinition = func();
+                    //classList[funcOrClassName] = classDefinition;
+                    _.set(window, funcOrClassName, classDefinition);
+                });
+                _.set(registry.classList, funcOrClassName, func);
+            }
+
+            //registry.classList[funcOrClassName] = func;
+        },
+    };
+
+    window.addEventListener('load', registry.onWindowLoad);
+    window.use = registry.use;
+    window.space = registry.define;
+
+})();
+
+(function() {
+
     var store = {
         loaded: {},
         aliases: {},
@@ -205,51 +260,5 @@
             return helper.forgeNamespaceRecursive(arr, window);
         },
     };
-
-})();
-
-
-(function() {
-
-    var registry = {
-        isDomLoaded: false,
-        classList: {},
-        onDomLoaded: function (func) {
-            if(this.isDomLoaded) {
-                func();
-            } else {
-                document.addEventListener('DOMContentLoaded', func);
-            }
-        },
-        onWindowLoad: function() {
-            registry.isDomLoaded = true;
-            //console.log(classList);
-        },
-        use: function (className) {
-            var func = _.get(registry.classList, className);
-            if(_.isFunction(func)) {
-                func = func();
-            }
-            return func;
-        },
-        define: function (funcOrClassName, func) {
-            if(_.isFunction(funcOrClassName)) {
-                registry.onDomLoaded(funcOrClassName);
-            } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
-                registry.onDomLoaded(function() {
-                    //var args = [];
-                    //var classDefinition = func.apply({}, args);
-                    var classDefinition = func();
-                    //classList[funcOrClassName] = classDefinition;
-                    _.set(window, funcOrClassName, classDefinition);
-                });
-            }
-            registry.classList[funcOrClassName] = func;
-        },
-    };
-
-    window.addEventListener('load', registry.onWindowLoad);
-    window.use = registry.use;
-    window.space = registry.define;
 
 })();

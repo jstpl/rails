@@ -26,8 +26,10 @@ space(function() {
 
             var restClient = use('bundle.rest.client');
 
-            container.restClient = container.instance(restClient);
-            container.restClient.setBaseUrl(module.app.config.main.apiServer);
+            container.restClient = container.instance('bundle.rest.client', null, {
+                baseUrl: module.app.config.main.apiServer,
+            });
+            //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 
         /**

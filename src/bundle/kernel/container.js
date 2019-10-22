@@ -1,9 +1,9 @@
-space('container', function() {
+space(function() {
 
     /**
      * Контейнер
      */
-    return {
+    window.container =  {
         widget: {},
         dom: {},
         service: {},
@@ -21,6 +21,9 @@ space('container', function() {
          * @returns {Object}
          */
         instance: function (className, attributes, params) {
+            if(_.isString(className)) {
+                className = use(className);
+            }
             return bundle.helper.class.create(className, attributes, params);
         },
 

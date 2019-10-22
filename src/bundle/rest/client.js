@@ -15,6 +15,13 @@ space('bundle.rest.client', function() {
 
         baseUrl: null,
 
+        __construct: function(params) {
+            if(_.isEmpty(params.baseUrl)) {
+                throw 'bundle.rest.client.__construct: baseUrl param not defined';
+            }
+            this.baseUrl = params.baseUrl;
+        },
+
         get: function (url, query, headers) {
             var request = {
                 url: url,
@@ -60,9 +67,9 @@ space('bundle.rest.client', function() {
             return this.sendRequest(request);
         },
 
-        setBaseUrl: function (baseUrl) {
+        /*setBaseUrl: function (baseUrl) {
             this.baseUrl = baseUrl;
-        },
+        },*/
 
         sendRequest: function (requestSource) {
             var request = _.clone(requestSource);
