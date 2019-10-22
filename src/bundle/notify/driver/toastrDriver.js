@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.notify.driver');
+space('bundle.notify.driver.toastrDriver', function() {
 
     /**
      * Драйвер уведомлений для вендора toastr
      */
-    window.bundle.notify.driver.toastrDriver = {
+    return {
 
         options: {},
 

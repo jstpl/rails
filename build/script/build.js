@@ -95,6 +95,17 @@ var build = {
         builder.buildPage(scriptList, styleList, '.');
     },
 
+    /**
+     * Собираем рельсы
+     *
+     * Шаги:
+     * - собираем стили отдельно
+     * - собираем скрипты отдельно
+     */
+    rails: function () {
+        builder.buildScript(src.bundle, './src/assets/script', 'rails.js', true);
+    },
+
     clean: function () {
         return gulp.src([
             './src/assets',

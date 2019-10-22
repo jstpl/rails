@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.class', function() {
 
     /**
      * Работа с классами
      */
-    window.bundle.helper.class = {
+    return {
 
         /**
          * Выполнить метод в массиве классов поочередно

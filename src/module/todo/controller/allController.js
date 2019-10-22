@@ -1,12 +1,10 @@
-$(function () {
-
-    namespace.define('bundle.module.todo.controller');
+space('bundle.module.todo.controller.allController', function() {
 
     var data = {
         collection: {},
     };
 
-    bundle.module.todo.controller.allController = {
+    return {
 
         data: data,
         depends: [

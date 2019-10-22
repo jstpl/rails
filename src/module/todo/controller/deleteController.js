@@ -1,12 +1,10 @@
-$(function () {
-
-    namespace.define('bundle.module.todo.controller');
+space('bundle.module.todo.controller.deleteController', function() {
 
     var data = {
         entity: {},
     };
 
-    bundle.module.todo.controller.deleteController = {
+    return {
 
         data: data,
         methods: {

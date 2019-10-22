@@ -1,13 +1,11 @@
-$(function () {
-
-    namespace.define('bundle.spa');
+space('bundle.spa.router', function() {
 
     var store = {
         routes: {},
         routerInstance: null,
     };
 
-    window.bundle.spa.router = {
+    return {
 
         go: function (uri) {
             uri = _.defaultTo(uri, '');

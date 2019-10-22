@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.ui');
+space('bundle.ui.baseElementService', function() {
 
     /**
      * Визуальные элементы управления (кнопки, поля ввода)
      */
-    window.bundle.ui.baseElementService = {
+    return {
 
         id: null,
         instance: null,

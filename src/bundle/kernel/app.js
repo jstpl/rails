@@ -1,4 +1,4 @@
-$(function() {
+space('app', function() {
 
     /**
      * Приватный контейнер для данных
@@ -11,7 +11,7 @@ $(function() {
      * Приложение
      * @deprecated
      */
-    window.app = {
+    return {
         config: {},
 
         /**

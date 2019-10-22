@@ -2,14 +2,12 @@
  * Дайвера для работы с input-элементами
  */
 
-$(function() {
-
-    namespace.define('bundle.widget.form.interface');
+space('bundle.widget.form.interface.driver', function() {
 
     /**
      * Интерфейс драйвера
      */
-    window.bundle.widget.form.interface.driver = {
+    return {
         removeValue: function (formInstance, name) {},
         getValue: function (formInstance, name) {},
         setValue: function (formInstance, name, value) {},
@@ -17,14 +15,12 @@ $(function() {
 
 });
 
-$(function() {
-
-    namespace.define('bundle.widget.form.helper');
+space('bundle.widget.form.helper.element', function() {
 
     /**
      * Хэлпер
      */
-    window.bundle.widget.form.helper.element = {
+    return {
 
         getByName: function (formInstance, name) {
             return $(formInstance).find('input[name='+name+']');
@@ -47,14 +43,12 @@ $(function() {
 
 });
 
-$(function() {
-
-    namespace.define('bundle.widget.form.input');
+space('bundle.widget.form.input.checkbox', function() {
 
     /**
      * Checkbox-элемент
      */
-    window.bundle.widget.form.input.checkbox = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, []);
@@ -90,6 +84,7 @@ $(function() {
                 var input = $(this);
                 var key = input.attr('value');
                 //var val = $.inArray(key, value) != -1 ? 1 : 0;
+                //var val = _.findIndex(value, key);
                 var val = bundle.helper.php.in_array(key, value);
                 bundle.widget.form.helper.element.setCheckedValue(input, val);
             });
@@ -112,14 +107,12 @@ $(function() {
 
 });
 
-$(function() {
-
-    namespace.define('bundle.widget.form.input');
+space('bundle.widget.form.input.radio', function() {
 
     /**
      * Radio-элемент
      */
-    window.bundle.widget.form.input.radio = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, undefined);
@@ -149,14 +142,12 @@ $(function() {
 
 });
 
-$(function() {
-
-    namespace.define('bundle.widget.form.input');
+space('bundle.widget.form.input.text', function() {
 
     /**
      * Text-элемент
      */
-    window.bundle.widget.form.input.text = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, '');
@@ -174,21 +165,23 @@ $(function() {
 
     };
 
+});
+
+space('bundle.widget.form.input.hidden', function() {
+
     /**
      * Hidden-элемент
      */
-    window.bundle.widget.form.input.hidden = window.bundle.widget.form.input.text;
+    return _.clone(window.bundle.widget.form.input.text);
 
 });
 
-$(function() {
-
-    namespace.define('bundle.widget.form.input');
+space('bundle.widget.form.input.number', function() {
 
     /**
      * Number-элемент
      */
-    window.bundle.widget.form.input.number = {
+    return {
 
         removeValue: function (formInstance, name) {
             this.setValue(formInstance, name, 0);

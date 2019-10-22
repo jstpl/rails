@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.app.controller');
+space('bundle.module.app.controller.footerController', function() {
 
     var data = {
         brand: '© JS Rails 2019',
@@ -20,7 +18,7 @@ $(function () {
         ],
     };
 
-    bundle.module.app.controller.footerController = {
+    return {
         el: '#app-footer',
         data: data,
         created: function () {

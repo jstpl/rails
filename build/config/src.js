@@ -50,7 +50,7 @@ var src = {
         //config.src.path + '/module/notify/service/*.js',
 
         config.src.path + '/module/person/service/*.js',
-        config.src.path + '/module/person/controller/*.js',
+        //config.src.path + '/module/person/controller/*.js',
         config.src.path + '/module/person/lang/*.js',
 
         config.src.path + '/module/**/config/*.js',

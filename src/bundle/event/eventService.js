@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.event');
+space('bundle.event.eventService', function() {
 
     /**
      * Работа с событиями
      */
-    window.bundle.event.eventService = {
+    return {
 
         handlers: {},
         holdList: {},

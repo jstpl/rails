@@ -1,13 +1,11 @@
-$(function() {
-
-    namespace.define('bundle.module.app');
+space('bundle.module.app.bootstrap', function() {
 
     /**
      * Ядро приложения
      *
      * Запускается 1 раз при запуске приложения
      */
-    window.bundle.module.app.bootstrap = {
+    return {
         /**
          * Регистрация сервисов в контейнере
          */
@@ -23,8 +21,13 @@ $(function() {
             container.notify = bundle.notify.notifyService;
             container.notify.driver = bundle.notify.driver.toastrDriver;
             container.modal = bundle.module.bootstrap.modal.modalService;
-            container.restClient = container.instance(bundle.rest.client);
-            container.restClient.setBaseUrl(module.app.config.main.apiServer);
+
+            var restClient = use('bundle.rest.client');
+
+            container.restClient = container.instance('bundle.rest.client', null, {
+                baseUrl: module.app.config.main.apiServer,
+            });
+            //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 
         /**

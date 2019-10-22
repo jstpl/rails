@@ -49,18 +49,136 @@
  *     bundle.helper - пространство имен
  *     setUrl - метод класса
  */
-$(function() {
+
+(function() {
+
+    var registry = {
+        isDomLoaded: false,
+        classList: {},
+        onDomLoaded: function (func) {
+
+            var callback = function () {
+                var classDefinition = func();
+                if(_.isObject(classDefinition) && _.isFunction(classDefinition._onLoad)) {
+                    classDefinition._onLoad();
+                }
+            };
+
+            if(this.isDomLoaded) {
+                callback();
+            } else {
+                document.addEventListener('DOMContentLoaded', callback);
+            }
+        },
+        onWindowLoad: function() {
+            registry.isDomLoaded = true;
+            //console.log(registry.classList);
+        },
+        use: function (className) {
+            var func = _.get(registry.classList, className);
+            if(_.isObject(func)) {
+                console.log(func);
+                return func;
+            }
+            if(_.isFunction(func)) {
+                func = func();
+                //
+                _.set(registry.classList, className, func);
+            }
+            return func;
+        },
+        define: function (funcOrClassName, func) {
+            if(_.isFunction(funcOrClassName)) {
+                registry.onDomLoaded(funcOrClassName);
+            } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
+                registry.onDomLoaded(function() {
+                    //var args = [];
+                    //var classDefinition = func.apply({}, args);
+                    var classDefinition = func();
+                    //classList[funcOrClassName] = classDefinition;
+                    _.set(window, funcOrClassName, classDefinition);
+                    _.set(registry.classList, funcOrClassName, classDefinition);
+                });
+
+            }
+
+            //registry.classList[funcOrClassName] = func;
+        },
+    };
+
+    window.addEventListener('load', registry.onWindowLoad);
+    window.use = registry.use;
+    window.space = registry.define;
+
+})();
+
+space('bundle.kernel.loader', function() {
 
     var store = {
         loaded: {},
         aliases: {},
     };
 
-    /**
-     * Пространства имен
-     */
-    window.namespace = {
+    var helper = {
+        isDefined: function (namespaceArray, object) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] === "object") {
+                    object = object[item];
+                } else if(typeof object[item] === "undefined") {
+                    return false;
+                }
+            }
+            return true;
+        },
+        define: function (namespaceArray, object, value) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] !== "object") {
+                    object[item] = {};
+                }
+                object = object[item];
+            }
+            object = value;
+        },
+        forgeNamespaceRecursive: function (namespaceArray, object) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] !== "object") {
+                    object[item] = {};
+                }
+                object = object[item];
+            }
+            return object;
+        },
 
+        /**
+         * Получить значение по пути
+         * @param namespace
+         * @returns {*}
+         */
+        get: function(namespace) {
+            //namespace = this.getAlias(namespace);
+            var arr = namespace.split('.');
+            return helper.forgeNamespaceRecursive(arr, window);
+        },
+
+    };
+
+    return {
+        /**
+         * Объявлено ли пространство имен
+         * @param path путь
+         * @param value в каком значении искать
+         * @returns {*|boolean}
+         */
+        isDefined: function(path, value) {
+            //path = this.getAlias(path);
+            value = value === undefined ? window : value;
+            //value = bundle.helper.value.default(value, window);
+            var arr = path.split('.');
+            return helper.isDefined(arr, value);
+        },
         _getAlias: function (className) {
             for(var i in store.aliases) {
                 var from = i;
@@ -116,7 +234,7 @@ $(function() {
             this.requireScript(scriptUrl, callback);
             store.loaded[scriptUrl] = true;
             console.info('Script loaded "' + scriptUrl + '"!');
-            return this.get(classNameSource);
+            return helper.get(classNameSource);
         },
 
         requireScript: function(url, callback) {
@@ -129,79 +247,6 @@ $(function() {
             //$('body').append('<script src="' + url + '"></script>');
         },
 
-        /**
-         * Объявлено ли пространство имен
-         * @param path путь
-         * @param value в каком значении искать
-         * @returns {*|boolean}
-         */
-        isDefined: function(path, value) {
-            //path = this.getAlias(path);
-            value = value === undefined ? window : value;
-            //value = bundle.helper.value.default(value, window);
-            var arr = path.split('.');
-            return helper.isDefined(arr, value);
-        },
-
-        /**
-         * Объявить пространство имен
-         *
-         * Назначает объект по заданному пути
-         * @param namespace
-         */
-        define: function(namespace) {
-            //namespace = this.getAlias(namespace);
-            var arr = namespace.split('.');
-            helper.forgeNamespaceRecursive(arr, window);
-        },
-
-        /**
-         * Получить значение по пути
-         * @param namespace
-         * @returns {*}
-         */
-        get: function(namespace) {
-            //namespace = this.getAlias(namespace);
-            var arr = namespace.split('.');
-            return helper.forgeNamespaceRecursive(arr, window);
-        },
     };
-
-    /**
-     * Приватный хэлпер
-     */
-    var helper = {
-        forgeNamespaceRecursive: function (namespaceArray, object) {
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] !== "object") {
-                    object[item] = {};
-                }
-                object = object[item];
-            }
-            return object;
-        },
-        isDefined: function (namespaceArray, object) {
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] === "object") {
-                    object = object[item];
-                } else if(typeof object[item] === "undefined") {
-                    return false;
-                }
-            }
-            return true;
-        },
-    };
-
-    //console.log(namespace.isDefined('namespace'));
-    //console.log(namespace.isDefined('bundle.helper444'));
-
-    //var ff = namespace.define('component.rrr11.eee22.ttt33.uuu44');
-    //d(ff);
 
 });
-
-/*window.space = function (func) {
-    document.addEventListener('DOMContentLoaded', func);
-};*/

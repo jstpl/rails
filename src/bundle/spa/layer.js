@@ -1,11 +1,9 @@
-$(function () {
-
-    namespace.define('bundle.spa');
+space('bundle.spa.layer', function() {
 
     /**
      *
      */
-    window.bundle.spa.layer = {
+    return {
 
         wrapperId: 'app',
         wrapperInstance: null,
@@ -58,9 +56,9 @@ $(function () {
 
 });
 
-$(function () {
+space('bundle.spa.template', function() {
 
-    window.bundle.spa.template = {
+    return {
 
         compileElement: function (moduleElement, params) {
             var template = moduleElement.html();
@@ -77,9 +75,9 @@ $(function () {
 
 });
 
-$(function () {
+space('bundle.spa.helper', function() {
 
-    window.bundle.spa.helper = {
+    return {
 
         /*getVueInstance: function (definition) {
             var el = definition.el;
@@ -123,10 +121,17 @@ $(function () {
 
     };
 
+
+
+});
+
+
+space('bundle.spa.module', function() {
+
     /**
      *
      */
-    window.bundle.spa.module = {
+    return {
 
         request: null,
 
@@ -160,7 +165,7 @@ $(function () {
             };
             for(var k in controller.depends) {
                 var dependClass = controller.depends[k];
-                namespace.requireClass(dependClass, cb);
+                bundle.kernel.loader.requireClass(dependClass, cb);
             }
         },
 
@@ -172,7 +177,7 @@ $(function () {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
                 bundle.spa.layer.show(request);
                 var cb = function () {
-                    var controller = namespace.get(className);
+                    var controller = use(className);
                     if( ! _.isEmpty(controller)) {
                         if(_.isEmpty(controller.isInit)) {
                             controller.isInit = true;
@@ -181,7 +186,7 @@ $(function () {
                     }
                     bundle.spa.helper.registerEventHandlers(request);
                 };
-                namespace.requireClass(className, cb);
+                bundle.kernel.loader.requireClass(className, cb);
             };
             this.doRequest(request, callback);
         },
@@ -199,6 +204,7 @@ $(function () {
     };
 
 });
+
 
 /*$("a").each(function(index, element) {
             $(element).click(function (event) {

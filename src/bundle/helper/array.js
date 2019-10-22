@@ -1,11 +1,9 @@
-$(function () {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.localStorage', function () {
 
     /**
      * Работа с Local Storage
      */
-    window.bundle.helper.localStorage = {
+    return {
 
         get: function (key, defaultValue) {
             var data = null;
@@ -30,14 +28,12 @@ $(function () {
 
 });
 
-$(function () {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.dom', function() {
 
     /**
      * Работа с DOM
      */
-    window.bundle.helper.dom = {
+    return {
 
         appendToBody: function (element) {
             var bodyElement = $('body');
@@ -89,14 +85,12 @@ $(function () {
 
 });
 
-$(function () {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.string', function() {
 
     /**
      * Работа со строками
      */
-    window.bundle.helper.string = {
+    return {
 
         escapeHtml: function (unsafe) {
             return unsafe
@@ -128,14 +122,12 @@ $(function () {
 
 });
 
-$(function() {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.array', function() {
 
     /**
      * Работа с массивами и объектами
      */
-    window.bundle.helper.array = {
+    return {
 
         /**
          * Получить уникальные ключи объекта

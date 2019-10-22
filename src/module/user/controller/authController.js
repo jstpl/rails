@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.user.controller');
+space('bundle.module.user.controller.authController', function() {
 
     var data = {
         entity: {},
@@ -10,7 +8,7 @@ $(function () {
         },
     };
 
-    bundle.module.user.controller.authController = {
+    return {
 
         data: data,
         depends: [

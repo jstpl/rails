@@ -1,4 +1,4 @@
-$(function() {
+space(function() {
 
     $.widget( "legalbet.formWidget", {
 

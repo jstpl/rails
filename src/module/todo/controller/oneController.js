@@ -1,12 +1,10 @@
-$(function () {
-
-    namespace.define('bundle.module.todo.controller');
+space('bundle.module.todo.controller.oneController', function() {
 
     var data = {
         entity: {},
     };
 
-    bundle.module.todo.controller.oneController = {
+    return {
 
         data: data,
         depends: [
