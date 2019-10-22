@@ -1,8 +1,6 @@
-$(function () {
+space('bundle.module.app.view.footerTemplate', function() {
 
-    namespace.define('bundle.module.app.view');
-
-    window.bundle.module.app.view.footerTemplate = {
+    return {
         template: function () {
             return '<p class="pull-right" v-if="rightLinks">\n' +
                 '            <span v-for="link in rightLinks">\n' +

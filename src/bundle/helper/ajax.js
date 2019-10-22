@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.ajax', function() {
 
     /**
      * Работа с AJAX-запросами
      */
-    window.bundle.helper.ajax = {
+    return {
 
         errorCallback: function (jqXHR, exception) {
             var msg = window.bundle.helper.ajax.getErrorMessage(jqXHR, exception);

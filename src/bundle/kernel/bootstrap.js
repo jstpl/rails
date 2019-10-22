@@ -1,13 +1,11 @@
-$(function() {
-
-    namespace.define('bundle.kernel.component');
+space('bundle.kernel.bootstrap', function() {
 
     /**
      * Ядро приложения
      *
      * Запускается 1 раз при запуске приложения
      */
-    window.bundle.kernel.bootstrap = {
+    return {
         /**
          * Регистрация сервисов в контейнере
          */

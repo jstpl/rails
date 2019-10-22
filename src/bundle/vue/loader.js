@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.vue');
+space('bundle.vue.loader', function() {
 
     var helper = {
 
@@ -33,7 +31,7 @@ $(function () {
 
     };
 
-    window.bundle.vue.loader = {
+    return {
 
         request: null,
 
@@ -74,9 +72,9 @@ $(function () {
             for(var k in controller.depends) {
                 var dependClass = controller.depends[k];
                 if(dependClass.search(/\//g) !== -1) {
-                    namespace.requireScript(dependClass, cb);
+                    bundle.kernel.loader.requireScript(dependClass, cb);
                 } else {
-                    namespace.requireClass(dependClass, cb);
+                    bundle.kernel.loader.requireClass(dependClass, cb);
                 }
             }
         },
@@ -90,18 +88,21 @@ $(function () {
                 var className = window.bundle.spa.helper.getClassName(request, 'controller');
                 bundle.spa.layer.show(request);
                 var cb = function () {
-                    var controller = namespace.get(className);
+                    var controller = use(className);
                     if( ! _.isEmpty(controller)) {
                         if(_.isEmpty(controller.isInit)) {
                             controller.isInit = true;
                             controller.el = '#app-'+request.controller+'-'+request.action;
-                            //d();
                             bundle.vue.loader.loadDepends(request, controller);
                         }
                     }
                     bundle.spa.helper.registerEventHandlers(request);
                 };
-                namespace.requireClass(className, cb);
+                if(bundle.kernel.loader.isDefined(className)) {
+                    cb();
+                } else {
+                    bundle.kernel.loader.requireClass(className, cb);
+                }
             };
             this.doRequest(request, callback);
         },

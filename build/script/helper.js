@@ -11,7 +11,6 @@ var helper = {
         return fileArray;
     },
     replaceInArray: function (list, from, to) {
-        var code = [];
         for(var k in list) {
             var item = list[k];
             list[k] = item.replace(from, to);
@@ -23,6 +22,14 @@ var helper = {
         for(var k in list) {
             var url = list[k];
             code = code + '<script src="'+url+'"></script>\n';
+        }
+        return code;
+    },
+    generateStyleTags: function (list) {
+        var code = [];
+        for(var k in list) {
+            var url = list[k];
+            code = code + '<link  href="'+url+'" rel="stylesheet">\n';
         }
         return code;
     },

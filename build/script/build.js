@@ -10,71 +10,108 @@ var config = require('../config/config');
 var src = require('../config/src');
 var helper = require('./helper');
 
-var build = {
-    firstCharExp: /^([\s\S]{1})/g,
-    clean: function () {
-        return gulp.src([
-            config.dist.path,
-            config.dev.path,
-        ], {read: false})
-            .pipe(clean());
+var builder = {
+    buildScript: function (sourceMap, targetDest, targetFileName, isMinify) {
+        var listFilesDocBlockRails = helper.renderIncludedList(sourceMap);
+        var gulp1 = gulp.src(sourceMap, { sourcemaps: true })
+            .pipe(concat(targetFileName))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockRails + '\n\n$1'));
+        if(isMinify === true) {
+            gulp1 = gulp1.pipe(minify());
+        }
+        gulp1.pipe(gulp.dest(targetDest));
     },
-    main: function () {
-        gulp.src(src.style)
-            .pipe(concatCss(config.dev.styleFileName))
-            .pipe(gulp.dest(config.dist.styleOutputPath));
-
-        gulp.src(src.all, { sourcemaps: true })
-            .pipe(concat(config.dev.scriptFileName))
-            .pipe(gulp.dest(config.dist.scriptOutputPath));
+    buildStyle: function (sourceMap, targetDest, targetFileName, isMinify) {
+        var listFilesDocBlockStyle = helper.renderIncludedList(sourceMap);
+        var gulp1 = gulp.src(sourceMap)
+            .pipe(concatCss(targetFileName))
+            .pipe(replace(build.firstCharExp, listFilesDocBlockStyle + '\n\n$1'));
+        if(isMinify === true) {
+            gulp1 = gulp1
+                .pipe(csso())
+                .pipe(minify());
+        }
+        gulp1.pipe(gulp.dest(targetDest));
     },
-    min: function () {
-        gulp.src(config.dist.scriptOutputPath + config.dev.scriptFileName)
-            .pipe(minify())
-            .pipe(gulp.dest(config.min.scriptOutputPath));
-
-        gulp.src([
-            config.dist.styleOutputPath + config.dev.styleFileName,
-        ])
-            .pipe(minify())
-            .pipe(gulp.dest(config.dist.styleOutputPath));
-
-        gulp.src(config.dist.styleOutputPath + config.dev.styleFileName)
-            .pipe(csso())
-            .pipe(gulp.dest(config.min.styleOutputPath));
-    },
-    page: function () {
-        //var vendorList = helper.getFileList(src.vendor);
+    buildPage: function (scriptList, styleList, targetDest) {
+        /*var vendorList = ['./src/vendor/vendor.js'];
         var bundleList = helper.getFileList(src.bundle);
         var appList = helper.getFileList(src.app);
-        var list = bundleList.concat(appList);
+        var list = vendorList.concat(bundleList.concat(appList));*/
 
-        list = helper.replaceInArray(list, './', '/');
-
-        var code = helper.generateScriptTags(list);
+        scriptList = helper.replaceInArray(scriptList, './', '/');
+        styleList = helper.replaceInArray(styleList, './', '/');
+        var code = helper.generateScriptTags(scriptList);
+        var style = helper.generateStyleTags(styleList);
         gulp.src([config.src.path + '/index.html'])
             .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', code))
-            .pipe(gulp.dest('.'));
+            .pipe(replace('<!--STYLE_PLACEHOLDER-->', style))
+            .pipe(gulp.dest(targetDest));
     },
-    vendor: function () {
-        var listFilesDocBlock = helper.renderIncludedList(src.vendor);
-        gulp.src(src.vendor, { sourcemaps: true })
-            .pipe(concat('vendor.js'))
-            .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.scriptOutputPath));
+};
 
-        var listFilesDocBlockStyle = helper.renderIncludedList(src.style);
-        gulp.src(src.style)
-            .pipe(concatCss('vendor.css'))
-            .pipe(replace(build.firstCharExp,  listFilesDocBlockStyle + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.styleOutputPath));
+var build = {
+    firstCharExp: /^([\s\S]{1})/g,
+
+    /**
+     * Собираем проект для продакшн
+     * 
+     * Шаги:
+     * - собираем стили
+     * - собираем скрипты
+     * - собираем шаблоны
+     * - мнифицируем
+     */
+    prod: function () {
+        builder.buildStyle(src.style, './dist/assets/style', 'build.css', true);
+        builder.buildScript(src.all, './dist/assets/script', 'build.js', true);
+
+        var scriptList = ['assets/script/build-min.js'];
+        var styleList = ['assets/style/build.css'];
+
+        scriptList = helper.replaceInArray(scriptList, '/src/', '/');
+        styleList = helper.replaceInArray(styleList, '/src/', '/');
+
+        builder.buildPage(scriptList, styleList, './dist');
     },
+
+    /**
+     * Собираем проект для разработки
+     * 
+     * Шаги:
+     * - собираем стили в разные файлы (вендоры, рельсы)
+     * - собираем скрипты в разные файлы (вендоры, рельсы)
+     */
+    dev: function () {
+        builder.buildStyle(src.style, './src/assets/style', 'vendor.css');
+        builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
+        //builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+
+        var vendorScriptList = ['./src/assets/script/vendor.js'];
+        var bundleScriptList = helper.getFileList(src.bundle);
+        var appScriptList = helper.getFileList(src.app);
+        var scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
+        var styleList = ['./src/assets/style/vendor.css'];
+        builder.buildPage(scriptList, styleList, '.');
+    },
+
+    /**
+     * Собираем рельсы
+     *
+     * Шаги:
+     * - собираем стили отдельно
+     * - собираем скрипты отдельно
+     */
     rails: function () {
-        var listFilesDocBlock = helper.renderIncludedList(src.bundle);
-        gulp.src(src.bundle, { sourcemaps: true })
-            .pipe(concat('rails.js'))
-            .pipe(replace(build.firstCharExp, listFilesDocBlock + '\n\n$1'))
-            .pipe(gulp.dest(config.dev.scriptOutputPath));
+        builder.buildScript(src.bundle, './src/assets/script', 'rails.js', true);
+    },
+
+    clean: function () {
+        return gulp.src([
+            './src/assets',
+            './dist',
+        ], {read: false})
+            .pipe(clean());
     },
 };
 

@@ -1,8 +1,6 @@
-$(function () {
+space('bundle.module.app.view.bodyTemplate', function() {
 
-    namespace.define('bundle.module.app.view');
-
-    window.bundle.module.app.view.bodyTemplate = {
+    return {
         template: function () {
             return '<div id="app-navbar" class="navbar navbar-inverse" role="navigation"></div>\n' +
                 '<div class="container">\n' +
@@ -16,4 +14,5 @@ $(function () {
                 '</div>';
         }
     };
+
 });

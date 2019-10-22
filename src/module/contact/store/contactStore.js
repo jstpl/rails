@@ -1,4 +1,4 @@
-$(function () {
+space('bundle.module.contact.store.contactStore', function() {
 
     var actionEnum = {
         update: 'update',
@@ -17,9 +17,7 @@ $(function () {
 
     var store = Redux.createStore(userReducer);
 
-    namespace.define('bundle.module.contact.store');
-
-    bundle.module.contact.store.contactStore = {
+    return {
         update: function (contactEntity) {
             store.dispatch({
                 type: actionEnum.update,

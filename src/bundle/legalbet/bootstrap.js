@@ -1,6 +1,4 @@
-$(function() {
-
-    namespace.define('bundle.legalbet.component');
+space('bundle.legalbet.component.bootstrap', function() {
 
     /**
      * Ядро приложения
@@ -9,7 +7,7 @@ $(function() {
      *
      * Todo: переименовать в bundle.legalbet.bootstrap
      */
-    window.bundle.legalbet.component.bootstrap = {
+    return {
 
         /**
          * Регистрация сервисов в контейнере

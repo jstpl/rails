@@ -1,8 +1,6 @@
-$(function () {
+space('lang.user.auth', function() {
 
-    namespace.define('lang.user');
-
-    lang.user.auth = {
+    return {
 
         successAuthorizationMessage: 'Вы авторизованы',
         successLogoutMessage: 'Вы вышли из аккаунта',

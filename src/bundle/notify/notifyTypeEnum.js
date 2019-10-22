@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.notify');
+space('bundle.notify.notifyTypeEnum', function() {
 
     /**
      * Список типов уведомлений
      */
-    window.bundle.notify.notifyTypeEnum = {
+    return {
         success: 'success',
         info: 'info',
         warning: 'warning',

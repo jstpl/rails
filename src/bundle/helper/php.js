@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.php', function() {
 
     /**
      * Аналоги функций из PHP SPL
      */
-    window.bundle.helper.php = {
+    return {
 
         /**
          * Является ли целым числом

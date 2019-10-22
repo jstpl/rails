@@ -1,11 +1,9 @@
-$(function() {
-
-    namespace.define('bundle.ui');
+space('bundle.ui.baseModule', function() {
 
     /**
      * Базовый класс модуля
      */
-    window.bundle.ui.baseModule = {
+    return {
 
         controllerNamespace: null,
 

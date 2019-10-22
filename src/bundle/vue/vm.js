@@ -1,10 +1,8 @@
-$(function () {
-
-    namespace.define('bundle.vue');
+space('bundle.vue.vm', function() {
 
     var store = {};
 
-    window.bundle.vue.vm = {
+    return {
 
         has: function (key) {
             return ! _.isEmpty(store[key]);

@@ -1,10 +1,26 @@
-$(function () {
+space('bundle.rest.client', function() {
 
-    namespace.define('bundle.rest');
+    var helper = {
 
-    window.bundle.rest.client = {
+        prepareRequestAuthorization: function (request) {
+            var token = container.authService.getToken();
+            if(token) {
+                request.headers.Authorization = token;
+            }
+        },
+
+    };
+
+    return  {
 
         baseUrl: null,
+
+        __construct: function(params) {
+            if(_.isEmpty(params.baseUrl)) {
+                throw 'bundle.rest.client.__construct: baseUrl param not defined';
+            }
+            this.baseUrl = params.baseUrl;
+        },
 
         get: function (url, query, headers) {
             var request = {
@@ -51,9 +67,9 @@ $(function () {
             return this.sendRequest(request);
         },
 
-        setBaseUrl: function (baseUrl) {
+        /*setBaseUrl: function (baseUrl) {
             this.baseUrl = baseUrl;
-        },
+        },*/
 
         sendRequest: function (requestSource) {
             var request = _.clone(requestSource);
@@ -103,14 +119,4 @@ $(function () {
 
     };
 
-    var helper = {
-
-        prepareRequestAuthorization: function (request) {
-            var token = container.authService.getToken();
-            if(token) {
-                request.headers.Authorization = token;
-            }
-        },
-
-    };
 });

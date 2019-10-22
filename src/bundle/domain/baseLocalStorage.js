@@ -1,13 +1,11 @@
-$(function() {
-
-    namespace.define('bundle.domain');
+space('bundle.domain.baseLocalStorage', function() {
 
     var localStorageHelper = bundle.helper.localStorage;
 
     /**
      * Базовый класс для хранилища состояния в Local Storage
      */
-    window.bundle.domain.baseLocalStorage = {
+    return {
 
         storageKey: null,
 

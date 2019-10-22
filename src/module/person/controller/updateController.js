@@ -1,13 +1,11 @@
-$(function () {
-
-    namespace.define('bundle.module.person.controller');
+space('bundle.module.person.controller.updateController', function() {
 
     var data = {
         errors: {},
         entity: {},
     };
 
-    bundle.module.person.controller.updateController = {
+    return {
 
         data: data,
         depends: [

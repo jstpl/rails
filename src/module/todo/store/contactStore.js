@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.todo.store');
+space('bundle.module.todo.store.contactStore', function() {
 
     var localStore = bundle.helper.class.extends(bundle.domain.baseLocalStorage, {
 
@@ -8,7 +6,7 @@ $(function () {
 
     });
 
-    bundle.module.todo.store.contactStore = {
+    return {
 
         collection: undefined,
 

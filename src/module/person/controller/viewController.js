@@ -1,12 +1,10 @@
-$(function () {
-
-    namespace.define('bundle.module.person.controller');
+space('bundle.module.person.controller.viewController', function() {
 
     var data = {
         entity: {},
     };
 
-    bundle.module.person.controller.viewController = {
+    return {
 
         data: data,
         depends: [

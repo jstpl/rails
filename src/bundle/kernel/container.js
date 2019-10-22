@@ -1,9 +1,9 @@
-$(function() {
+space(function() {
 
     /**
      * Контейнер
      */
-    window.container = {
+    window.container =  {
         widget: {},
         dom: {},
         service: {},
@@ -21,6 +21,9 @@ $(function() {
          * @returns {Object}
          */
         instance: function (className, attributes, params) {
+            if(_.isString(className)) {
+                className = use(className);
+            }
             return bundle.helper.class.create(className, attributes, params);
         },
 
@@ -31,7 +34,7 @@ $(function() {
          * @returns {Boolean}
          */
         has: function (className) {
-            return namespace.isDefined(className, this);
+            return bundle.kernel.loader.isDefined(className, this);
         },
 
     };

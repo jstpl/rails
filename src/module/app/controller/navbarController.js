@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.app.controller');
+space('bundle.module.app.controller.navbarController', function() {
 
     var data = {
         isLogin: false,
@@ -14,7 +12,7 @@ $(function () {
         },
     };
 
-    bundle.module.app.controller.navbarController = {
+    return {
         el: '#app-navbar',
         data: data,
         created: function () {

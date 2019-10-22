@@ -29,6 +29,7 @@ var src = {
         config.src.path + '/bundle/queue/*.js',
         config.src.path + '/bundle/ui/*.js',
         config.src.path + '/bundle/notify/*.js',
+        config.src.path + '/bundle/notify/driver/*.js',
         config.src.path + '/bundle/domain/*.js',
         config.src.path + '/bundle/cache/*.js',
         config.src.path + '/bundle/rest/*.js',
@@ -46,8 +47,11 @@ var src = {
         config.src.path + '/module/contact/store/*.js',
         config.src.path + '/module/contact/service/*.js',
 
-        //config.src.path + '/module/notify/enum/*.js',
-        config.src.path + '/module/notify/service/*.js',
+        //config.src.path + '/module/notify/service/*.js',
+
+        config.src.path + '/module/person/service/*.js',
+        //config.src.path + '/module/person/controller/*.js',
+        config.src.path + '/module/person/lang/*.js',
 
         config.src.path + '/module/**/config/*.js',
         config.src.path + '/module/app/controller/*.js',

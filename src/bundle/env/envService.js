@@ -1,13 +1,11 @@
-$(function() {
-
-    namespace.define('bundle.env');
+space('bundle.env.envService', function() {
 
     var config = {};
 
     /**
      * Режим окружения
      */
-    window.bundle.env.envService = {
+    return {
 
         /**
          * Является ли режимом для разработки

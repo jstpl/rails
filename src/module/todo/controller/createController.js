@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.todo.controller');
+space('bundle.module.todo.controller.createController', function() {
 
     var data = {
         entity: {
@@ -9,7 +7,7 @@ $(function () {
         },
     };
 
-    bundle.module.todo.controller.createController = {
+    return {
 
         data: data,
         methods: {

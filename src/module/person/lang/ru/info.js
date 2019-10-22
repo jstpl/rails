@@ -1,8 +1,6 @@
-$(function () {
+space('lang.person.info', function() {
 
-    namespace.define('lang.person');
-
-    lang.person.info = {
+    return {
 
         infoUpdatedMessage: 'Данные сохранены!',
 

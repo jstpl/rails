@@ -1,6 +1,4 @@
-$(function() {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.func', function() {
 
     var callAtIntervalHelper = {
 
@@ -25,7 +23,7 @@ $(function() {
     /**
      * Работа с функциями
      */
-    window.bundle.helper.func = {
+    return {
 
         /**
          * Вызвать метод не чаще, чем указано в интервале.

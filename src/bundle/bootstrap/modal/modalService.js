@@ -1,6 +1,4 @@
-$(function () {
-
-    namespace.define('bundle.module.bootstrap.modal');
+space('bundle.module.bootstrap.modal.modalService', function() {
 
     var helper = {
         renderHeader: function (content) {
@@ -33,7 +31,7 @@ $(function () {
         },
     };
 
-    bundle.module.bootstrap.modal.modalService = {
+    return {
         show: function (data, options) {
             var modalHtml = helper.renderModal(data);
             var modalEl = $(modalHtml);
