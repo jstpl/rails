@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     var actionEnum = {
         update: 'update',

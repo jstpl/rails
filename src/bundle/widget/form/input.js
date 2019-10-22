@@ -2,7 +2,7 @@
  * Дайвера для работы с input-элементами
  */
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.interface');
 
@@ -17,7 +17,7 @@ $(function() {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.helper');
 
@@ -47,7 +47,7 @@ $(function() {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.input');
 
@@ -90,6 +90,7 @@ $(function() {
                 var input = $(this);
                 var key = input.attr('value');
                 //var val = $.inArray(key, value) != -1 ? 1 : 0;
+                //var val = _.findIndex(value, key);
                 var val = bundle.helper.php.in_array(key, value);
                 bundle.widget.form.helper.element.setCheckedValue(input, val);
             });
@@ -112,7 +113,7 @@ $(function() {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.input');
 
@@ -149,7 +150,7 @@ $(function() {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.input');
 
@@ -181,7 +182,7 @@ $(function() {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.widget.form.input');
 

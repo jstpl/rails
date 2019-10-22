@@ -49,11 +49,50 @@
  *     bundle.helper - пространство имен
  *     setUrl - метод класса
  */
-$(function() {
+
+(function() {
 
     var store = {
         loaded: {},
         aliases: {},
+    };
+
+
+    /**
+     * Приватный хэлпер
+     */
+    var helper = {
+        define: function (namespaceArray, object, value) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] !== "object") {
+                    object[item] = {};
+                }
+                object = object[item];
+            }
+            object = value;
+        },
+        forgeNamespaceRecursive: function (namespaceArray, object) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] !== "object") {
+                    object[item] = {};
+                }
+                object = object[item];
+            }
+            return object;
+        },
+        isDefined: function (namespaceArray, object) {
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] === "object") {
+                    object = object[item];
+                } else if(typeof object[item] === "undefined") {
+                    return false;
+                }
+            }
+            return true;
+        },
     };
 
     /**
@@ -167,41 +206,27 @@ $(function() {
         },
     };
 
-    /**
-     * Приватный хэлпер
-     */
-    var helper = {
-        forgeNamespaceRecursive: function (namespaceArray, object) {
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] !== "object") {
-                    object[item] = {};
-                }
-                object = object[item];
-            }
-            return object;
-        },
-        isDefined: function (namespaceArray, object) {
-            for (var key in namespaceArray) {
-                var item = namespaceArray[key];
-                if (typeof object[item] === "object") {
-                    object = object[item];
-                } else if(typeof object[item] === "undefined") {
-                    return false;
-                }
-            }
-            return true;
-        },
+    var onDomLaded = function (func) {
+        document.addEventListener('DOMContentLoaded', func);
     };
 
-    //console.log(namespace.isDefined('namespace'));
-    //console.log(namespace.isDefined('bundle.helper444'));
+    window.space = function (funcOrClassName, func) {
+        //document.addEventListener('DOMContentLoaded', func);
 
-    //var ff = namespace.define('component.rrr11.eee22.ttt33.uuu44');
-    //d(ff);
+        if(_.isFunction(funcOrClassName)) {
+            //$(funcOrClassName);
+            $(funcOrClassName);
+            //document.addEventListener('DOMContentLoaded', funcOrClassName);
+        } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
+            $(function() {
+                //console.log(_.get(window, 'bundle.helper.class'));
+                //namespace.define(funcOrClassName);
+                //var args = [];
+                //var classDefinition = func.apply({}, args);
+                var classDefinition = func();
+                _.set(window, funcOrClassName, classDefinition);
+            });
+        }
+    };
 
-});
-
-/*window.space = function (func) {
-    document.addEventListener('DOMContentLoaded', func);
-};*/
+})();

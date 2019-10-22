@@ -1,11 +1,9 @@
-$(function () {
-
-    namespace.define('bundle.helper');
+space('bundle.helper.localStorage', function () {
 
     /**
      * Работа с Local Storage
      */
-    window.bundle.helper.localStorage = {
+    return {
 
         get: function (key, defaultValue) {
             var data = null;
@@ -30,7 +28,7 @@ $(function () {
 
 });
 
-$(function () {
+space(function() {
 
     namespace.define('bundle.helper');
 
@@ -89,7 +87,7 @@ $(function () {
 
 });
 
-$(function () {
+space(function() {
 
     namespace.define('bundle.helper');
 
@@ -128,7 +126,7 @@ $(function () {
 
 });
 
-$(function() {
+space(function() {
 
     namespace.define('bundle.helper');
 

@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     namespace.define('bundle.spa');
 
@@ -58,7 +58,7 @@ $(function () {
 
 });
 
-$(function () {
+space(function() {
 
     window.bundle.spa.template = {
 
@@ -77,7 +77,7 @@ $(function () {
 
 });
 
-$(function () {
+space(function() {
 
     window.bundle.spa.helper = {
 

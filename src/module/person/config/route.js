@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     bundle.spa.router.addRoute('/person/view', function () {
         bundle.vue.loader.run({

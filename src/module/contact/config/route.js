@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     bundle.spa.router.addRoute('/contact', function () {
         bundle.spa.module.run({

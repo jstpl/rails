@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     namespace.define('lang.person');
 

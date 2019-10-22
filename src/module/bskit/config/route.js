@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     bundle.spa.router.addRoute('/bskit', function () {
         bundle.vue.loader.run({

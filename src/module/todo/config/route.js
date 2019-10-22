@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     bundle.spa.router.addRoute('/todo', function () {
         bundle.vue.loader.run({

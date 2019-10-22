@@ -1,9 +1,9 @@
-$(function() {
+space('container', function() {
 
     /**
      * Контейнер
      */
-    window.container = {
+    return {
         widget: {},
         dom: {},
         service: {},

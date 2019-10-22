@@ -1,4 +1,4 @@
-$(function () {
+space(function() {
 
     namespace.define('bundle.module.person.service');
 
