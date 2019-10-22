@@ -1,8 +1,17 @@
-space(function() {
+space('bundle.rest.client', function() {
 
-    namespace.define('bundle.rest');
+    var helper = {
 
-    window.bundle.rest.client = {
+        prepareRequestAuthorization: function (request) {
+            var token = container.authService.getToken();
+            if(token) {
+                request.headers.Authorization = token;
+            }
+        },
+
+    };
+
+    return  {
 
         baseUrl: null,
 
@@ -103,14 +112,4 @@ space(function() {
 
     };
 
-    var helper = {
-
-        prepareRequestAuthorization: function (request) {
-            var token = container.authService.getToken();
-            if(token) {
-                request.headers.Authorization = token;
-            }
-        },
-
-    };
 });

@@ -206,7 +206,32 @@
         },
     };
 
+})();
+
+
+(function() {
+
     var isDomLoaded = false;
+    var classList = {};
+
+    /**
+     * Приватный хэлпер
+     */
+    var helper = {
+        define: function (np, object, value) {
+            var namespaceArray = np.split('.');
+            for (var key in namespaceArray) {
+                var item = namespaceArray[key];
+                if (typeof object[item] !== "object") {
+                    object[item] = {};
+                }
+                object = object[item];
+            }
+
+            object = value;
+            //console.log(np, object);
+        }
+    };
 
     var onDomLoaded = function (func) {
         if(isDomLoaded) {
@@ -218,22 +243,23 @@
 
     window.addEventListener('load', function() {
         isDomLoaded = true;
+        console.log(classList);
     });
 
-    window.space = function (funcOrClassName, func) {
-        //document.addEventListener('DOMContentLoaded', func);
+    window.use = function (className) {
+        return _.get(classList, className);
+    };
 
+    window.space = function (funcOrClassName, func) {
         if(_.isFunction(funcOrClassName)) {
-            //$(funcOrClassName);
             onDomLoaded(funcOrClassName);
-            //document.addEventListener('DOMContentLoaded', funcOrClassName);
         } else if(_.isString(funcOrClassName) && _.isFunction(func)) {
             onDomLoaded(function() {
-                //console.log(_.get(window, 'bundle.helper.class'));
-                //namespace.define(funcOrClassName);
                 //var args = [];
                 //var classDefinition = func.apply({}, args);
                 var classDefinition = func();
+                classList[funcOrClassName] = classDefinition;
+                //helper.define(funcOrClassName, window, classDefinition);
                 _.set(window, funcOrClassName, classDefinition);
             });
         }

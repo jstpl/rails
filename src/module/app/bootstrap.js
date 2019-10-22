@@ -23,7 +23,10 @@ space(function() {
             container.notify = bundle.notify.notifyService;
             container.notify.driver = bundle.notify.driver.toastrDriver;
             container.modal = bundle.module.bootstrap.modal.modalService;
-            container.restClient = container.instance(bundle.rest.client);
+
+            var restClient = use('bundle.rest.client');
+
+            container.restClient = container.instance(restClient);
             container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 
