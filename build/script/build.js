@@ -85,7 +85,7 @@ var build = {
     dev: function () {
         builder.buildStyle(src.style, './src/assets/style', 'vendor.css');
         builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
-        //builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+        builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
 
         var vendorScriptList = ['./src/assets/script/vendor.js'];
         var bundleScriptList = helper.getFileList(src.bundle);
@@ -93,6 +93,17 @@ var build = {
         var scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
         var styleList = ['./src/assets/style/vendor.css'];
         builder.buildPage(scriptList, styleList, '.');
+    },
+
+    /**
+     * Собираем рельсы
+     *
+     * Шаги:
+     * - собираем стили отдельно
+     * - собираем скрипты отдельно
+     */
+    rails: function () {
+        builder.buildScript(src.bundle, './src/assets/script', 'rails.js', true);
     },
 
     clean: function () {
