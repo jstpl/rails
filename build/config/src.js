@@ -16,7 +16,7 @@ var src = {
         './node_modules/toastr/build/toastr.min.js',
         './node_modules/jquery-ui/jquery-ui.min.js',
     ],
-    bundle: [
+    rails: [
         config.src.path + '/bundle/kernel/namespace.js',
         config.src.path + '/bundle/kernel/container.js',
         config.src.path + '/bundle/kernel/bootstrap.js',
@@ -26,7 +26,7 @@ var src = {
         //config.src.path + '/bundle/env/*.js',
         config.src.path + '/bundle/event/*.js',
         //config.src.path + '/bundle/log/*.js',
-        config.src.path + '/bundle/queue/*.js',
+        //config.src.path + '/bundle/queue/*.js',
         config.src.path + '/bundle/ui/*.js',
         config.src.path + '/bundle/notify/*.js',
         config.src.path + '/bundle/notify/driver/*.js',
@@ -62,6 +62,6 @@ var src = {
     ],
 };
 
-src.all = src.vendor.concat(src.bundle).concat(src.app);
+src.all = src.vendor.concat(src.rails).concat(src.app);
 
 module.exports = src;

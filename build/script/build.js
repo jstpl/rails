@@ -35,7 +35,7 @@ var builder = {
     },
     buildPage: function (scriptList, styleList, targetDest) {
         /*var vendorList = ['./src/vendor/vendor.js'];
-        var bundleList = helper.getFileList(src.bundle);
+        var bundleList = helper.getFileList(src.rails);
         var appList = helper.getFileList(src.app);
         var list = vendorList.concat(bundleList.concat(appList));*/
 
@@ -85,10 +85,10 @@ var build = {
     dev: function () {
         builder.buildStyle(src.style, './src/assets/style', 'vendor.css');
         builder.buildScript(src.vendor, './src/assets/script', 'vendor.js');
-        //builder.buildScript(src.bundle, './src/assets/script', 'rails.js');
+        //builder.buildScript(src.rails, './src/assets/script', 'rails.js');
 
         var vendorScriptList = ['./src/assets/script/vendor.js'];
-        var bundleScriptList = helper.getFileList(src.bundle);
+        var bundleScriptList = helper.getFileList(src.rails);
         var appScriptList = helper.getFileList(src.app);
         var scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
         var styleList = ['./src/assets/style/vendor.css'];
@@ -103,7 +103,7 @@ var build = {
      * - собираем скрипты отдельно
      */
     rails: function () {
-        builder.buildScript(src.bundle, './src/assets/script', 'rails.js', true);
+        builder.buildScript(src.rails, './src/assets/script', 'rails.js', true);
     },
 
     clean: function () {

@@ -16,7 +16,7 @@ space('bundle.legalbet.component.bootstrap', function() {
             container.cache = bundle.cache.cacheService;
             container.event = bundle.event.eventService;
             container.notify = bundle.notify.notifyService;
-            container.queue = bundle.queue.queueService;
+            //container.queue = bundle.queue.queueService;
             container.loader = container.instance(bundle.ui.baseElementService, {
                 selector: '.js-loader',
             });
