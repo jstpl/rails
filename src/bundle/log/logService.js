@@ -11,9 +11,6 @@ space('bundle.log.logService', function() {
          * @param value
          */
         info: function (value) {
-           /* if(container.env.isProd()) {
-                return;
-            }*/
             window.console.info(value);
         },
 
@@ -22,9 +19,6 @@ space('bundle.log.logService', function() {
          * @param value
          */
         dump: function (value) {
-            /*if(container.env.isProd()) {
-                return;
-            }*/
             window.console.log(value);
         },
     };

@@ -10,8 +10,8 @@ space('bundle.kernel.bootstrap', function() {
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
-            container.env = bundle.env.envService;
-            container.log = bundle.log.logService;
+            //container.env = bundle.env.envService;
+            //container.log = bundle.log.logService;
         },
 
         /**
@@ -19,7 +19,6 @@ space('bundle.kernel.bootstrap', function() {
          */
         initConfig: function () {
             /** Конфигурация приложения */
-            //container.env.setMode(bundle.env.envEnum.develop);
         },
 
         /**
@@ -29,7 +28,7 @@ space('bundle.kernel.bootstrap', function() {
         run: function (params) {
             this.initContainer();
             this.initConfig();
-            container.log.info('default kernel launch');
+            console.info('default kernel launch');
 
             /** Запуск приложения */
             //app.run();

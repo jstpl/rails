@@ -23,7 +23,7 @@ space('bundle.event.eventService', function() {
             }
             this._initEventArray(eventName);
             this.handlers[eventName].push(handler);
-            container.log.info('Register handler (' + bundle.helper.php.get_type(handler) + ') for event "' + eventName + '"');
+            console.info('Register handler (' + bundle.helper.php.get_type(handler) + ') for event "' + eventName + '"');
         },
 
         /**
@@ -36,7 +36,7 @@ space('bundle.event.eventService', function() {
             this._initEventArray(eventName);
             var isRemoved = bundle.helper.array.removeByValue(this.handlers[eventName], handler);
             if(isRemoved) {
-                container.log.info('Remove handler for event "' + eventName + '"');
+                console.info('Remove handler for event "' + eventName + '"');
             }
         },
 
@@ -76,7 +76,7 @@ space('bundle.event.eventService', function() {
          */
         trigger: function(eventName, params) {
             if(this.isHold(eventName)) {
-                container.log.info('Event "' + eventName + '" is hold!');
+                console.info('Event "' + eventName + '" is hold!');
                 return;
             }
             this._initEventArray(eventName);
@@ -92,7 +92,7 @@ space('bundle.event.eventService', function() {
 
         _runHandlersForEvent: function (eventName, handlers, params) {
             if(bundle.helper.php.empty(handlers)) {
-                container.log.info('Not found handlers for event "' + eventName + '"');
+                console.info('Not found handlers for event "' + eventName + '"');
                 return;
             }
 
@@ -109,10 +109,10 @@ space('bundle.event.eventService', function() {
         _runHandler: function (eventName, handler, params) {
             if(bundle.helper.php.is_object(handler)) {
                 handler.run(params);
-                container.log.info('Run handler (object) for event "' + eventName + '"');
+                console.info('Run handler (object) for event "' + eventName + '"');
             } else if(bundle.helper.php.is_function(handler)) {
                 handler(params);
-                container.log.info('Run handler (function) for event "' + eventName + '"');
+                console.info('Run handler (function) for event "' + eventName + '"');
             }
         }
     };

@@ -76,13 +76,8 @@
         },
         use: function (className) {
             var func = _.get(registry.classList, className);
-            if(_.isObject(func)) {
-                console.log(func);
-                return func;
-            }
             if(_.isFunction(func)) {
                 func = func();
-                //
                 _.set(registry.classList, className, func);
             }
             return func;

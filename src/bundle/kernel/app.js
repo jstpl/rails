@@ -24,7 +24,7 @@ space('app', function() {
                 return;
             }
             store.init = true;
-            container.log.info('application launch');
+            console.info('application launch');
         },*/
 
         /**

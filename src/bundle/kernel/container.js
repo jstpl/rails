@@ -4,14 +4,6 @@ space(function() {
      * Контейнер
      */
     window.container =  {
-        widget: {},
-        dom: {},
-        service: {},
-        store: {},
-        config: {
-            mode: 'prod',
-        },
-
         /**
          * Создать экземпляр объекта
          *

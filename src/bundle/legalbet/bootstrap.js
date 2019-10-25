@@ -27,7 +27,6 @@ space('bundle.legalbet.component.bootstrap', function() {
          */
         initConfig: function () {
             /** Конфигурация приложения */
-            //container.env.setMode(bundle.env.envEnum.develop);
         },
 
         /**
@@ -38,7 +37,7 @@ space('bundle.legalbet.component.bootstrap', function() {
             bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
-            container.log.info('legalbet kernel launch');
+            console.info('legalbet kernel launch');
         }
     };
 

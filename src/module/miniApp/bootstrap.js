@@ -18,7 +18,6 @@ space('bundle.module.app.bootstrap', function() {
          */
         initConfig: function () {
             /** Конфигурация приложения */
-            //container.env.setMode(bundle.env.envEnum.develop);
         },
 
         /**
@@ -30,7 +29,7 @@ space('bundle.module.app.bootstrap', function() {
             this.initContainer();
             this.initConfig();
 
-            container.log.info('application kernel launch');
+            console.info('application kernel launch');
 
             alert('Hello World!');
         }

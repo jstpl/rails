@@ -23,9 +23,9 @@ var src = {
         config.src.path + '/bundle/kernel/func.js',
 
         config.src.path + '/bundle/helper/*.js',
-        config.src.path + '/bundle/env/*.js',
+        //config.src.path + '/bundle/env/*.js',
         config.src.path + '/bundle/event/*.js',
-        config.src.path + '/bundle/log/*.js',
+        //config.src.path + '/bundle/log/*.js',
         config.src.path + '/bundle/queue/*.js',
         config.src.path + '/bundle/ui/*.js',
         config.src.path + '/bundle/notify/*.js',

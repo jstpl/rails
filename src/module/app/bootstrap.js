@@ -35,7 +35,6 @@ space('bundle.module.app.bootstrap', function() {
          */
         initConfig: function () {
             /** Конфигурация приложения */
-            //container.env.setMode(bundle.env.envEnum.develop);
 
             container.event.registerHandler('api.request.send.error', function (response) {
                 if(response.status === 401) {
@@ -70,7 +69,7 @@ space('bundle.module.app.bootstrap', function() {
             bundle.vue.vm.ensure(bundle.module.app.controller.navbarController);
             bundle.vue.vm.ensure(bundle.module.app.controller.footerController);
 
-            container.log.info('application kernel launch');
+            console.info('application kernel launch');
         }
     };
 
