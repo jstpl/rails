@@ -2,6 +2,7 @@ space('bundle.cache.cacheService', function() {
 
     /**
      * Приватный контейнер для данных
+     * @deprecated
      */
     var store = {};
 

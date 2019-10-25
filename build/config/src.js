@@ -31,7 +31,7 @@ var src = {
         config.src.path + '/bundle/notify/*.js',
         config.src.path + '/bundle/notify/driver/*.js',
         config.src.path + '/bundle/domain/*.js',
-        config.src.path + '/bundle/cache/*.js',
+        //config.src.path + '/bundle/cache/*.js',
         config.src.path + '/bundle/rest/*.js',
         config.src.path + '/bundle/legalbet/*.js',
         config.src.path + '/bundle/widget/*.js',

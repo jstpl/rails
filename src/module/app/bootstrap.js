@@ -10,7 +10,7 @@ space('bundle.module.app.bootstrap', function() {
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
-            container.cache = bundle.cache.cacheService;
+            //container.cache = bundle.cache.cacheService;
             container.event = bundle.event.eventService;
             //container.queue = bundle.queue.queueService;
             /*container.loader = container.instance(bundle.ui.baseElementService, {

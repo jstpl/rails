@@ -4,6 +4,7 @@ space('bundle.env.envService', function() {
 
     /**
      * Режим окружения
+     * @deprecated
      */
     return {
 

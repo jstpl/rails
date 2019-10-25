@@ -2,6 +2,7 @@ space('bundle.queue.queueService', function() {
 
     /**
      * Базовый класс очередей
+     * @deprecated
      */
     return {
         collection: [],

@@ -13,7 +13,7 @@ space('bundle.legalbet.component.bootstrap', function() {
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
-            container.cache = bundle.cache.cacheService;
+            //container.cache = bundle.cache.cacheService;
             container.event = bundle.event.eventService;
             container.notify = bundle.notify.notifyService;
             //container.queue = bundle.queue.queueService;

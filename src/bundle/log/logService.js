@@ -2,6 +2,7 @@ space('bundle.log.logService', function() {
 
     /**
      * Логер
+     * @deprecated
      */
     return {
         config: {},
