@@ -19,13 +19,14 @@ var build = {
         builderTypeHelper.buildStyle(src.style.all, './dist/assets/style', 'build.css', true);
         builderTypeHelper.buildScript(src.script.all, './dist/assets/script', 'build.js', true);
 
-        var scriptList = ['assets/script/build-min.js'];
-        var styleList = ['assets/style/build.css'];
+        var data = {
+            scriptList: ['assets/script/build-min.js'],
+            styleList: ['assets/style/build.css']
+        };
+        data.scriptList = helper.replaceInArray(data.scriptList, '/src/', '/');
+        data.styleList = helper.replaceInArray(data.styleList, '/src/', '/');
 
-        scriptList = helper.replaceInArray(scriptList, '/src/', '/');
-        styleList = helper.replaceInArray(styleList, '/src/', '/');
-
-        builderTypeHelper.buildPage(scriptList, styleList, './dist');
+        builderTypeHelper.buildPage(data, './dist');
     },
 
     /**
@@ -43,9 +44,10 @@ var build = {
         var vendorScriptList = ['./src/assets/script/vendor.js'];
         var bundleScriptList = helper.getFileList(src.script.rails);
         var appScriptList = helper.getFileList(src.script.app);
-        var scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
-        var styleList = ['./src/assets/style/vendor.css'];
-        builderTypeHelper.buildPage(scriptList, styleList, '.');
+        var data = {};
+        data.scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
+        data.styleList = ['./src/assets/style/vendor.css'];
+        builderTypeHelper.buildPage(data, '.');
     },
 
     /**
