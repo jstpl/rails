@@ -4,10 +4,6 @@ space('bundle.module.app.controller.footerController', function() {
         brand: '© JS Rails 2019',
         rightLinks: [
             {
-                title: 'min',
-                url: '/min.html',
-            },
-            {
                 title: 'dist',
                 url: '/dist.html',
             },
