@@ -34,11 +34,6 @@ var builder = {
         gulp1.pipe(gulp.dest(targetDest));
     },
     buildPage: function (scriptList, styleList, targetDest) {
-        /*var vendorList = ['./src/vendor/vendor.js'];
-        var bundleList = helper.getFileList(src.rails);
-        var appList = helper.getFileList(src.app);
-        var list = vendorList.concat(bundleList.concat(appList));*/
-
         scriptList = helper.replaceInArray(scriptList, './', '/');
         styleList = helper.replaceInArray(styleList, './', '/');
         var code = helper.generateScriptTags(scriptList);
