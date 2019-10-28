@@ -22,9 +22,9 @@
     "gulp-concat": "^2.6.1",
     "jquery": "^2.2.4",
     "jquery-ui": "github:components/jqueryui#1.11.4",
-    "jrails": "0.0.1",
-    "lodash": "^4.17.15",
+    "jrails": "0.0.4",
     "redux": "^3.5.2",
+    "requirejs": "^2.3.6",
     "toastr": "^2.1.4",
     "vue": "^2.6.10"
   }
