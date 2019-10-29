@@ -1,11 +1,8 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
 
     router.addRoute('/', function () {
-        bundle.spa.module.run({
-            controller: 'main',
-        });
+        var controllerClassName = 'module/app/controller/mainController';
+        controllerFactory.createByClassName(controllerClassName);
     });
 
 });

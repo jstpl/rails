@@ -22,6 +22,7 @@ define(
 
         'module/bskit/config/route',
         'module/user/config/route',
+        'module/app/config/route'
     ],
     function(
         $,
@@ -46,6 +47,7 @@ define(
 
         bskitRouteConfig,
         userRouteConfig,
+        mainRouteConfig
     ) {
 
     /**
