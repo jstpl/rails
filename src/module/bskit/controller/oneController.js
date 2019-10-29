@@ -1,18 +1,19 @@
 define(['jrails/spa/query', 'jrails/spa/controllerFactory'], function(spaQuery, controllerFactory) {
 
-    var data = {
-
-    };
+    var data = {};
 
     return {
         el: '#app-bskit-one',
         data: data,
-        //templateFile: 'module/bskit/view/all.html',
+        templateFile: 'module/bskit/view/one.html',
         onReady: function () {
+            var self = this;
             var query = spaQuery.get();
-            //console.log(query);
-            this.templateFile = 'module/bskit/view/'+query.id+'.html';
-            //controllerFactory.loadTemplate(this, this.templateFile);
+            var templateFileName = 'text!module/bskit/view/'+query.id+'.html';
+            $(this.el).html('...');
+            require([templateFileName], function (templateHtml) {
+                $(self.el).html(templateHtml);
+            });
         },
     };
 
