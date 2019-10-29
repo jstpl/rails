@@ -34,8 +34,8 @@ define(
         bodyTemplate,
         vm,
         navbarController,
-        footerController
-        //bskitRouteConfig
+        footerController,
+        bskitRouteConfig
     ) {
 
     /**
@@ -102,8 +102,6 @@ define(
             //bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
-
-            router.init();
 
             $('body').append(bodyTemplate.template());
             router.init();
