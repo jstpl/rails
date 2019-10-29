@@ -1,4 +1,4 @@
-space('module.app.config.main', function() {
+define(function() {
 
     return {
         apiServer: 'http://test-api.union.yuwert.kz/v1',

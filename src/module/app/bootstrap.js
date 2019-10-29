@@ -1,4 +1,23 @@
-space('bundle.module.app.bootstrap', function() {
+define(
+    [
+        'jrails/spa/router',
+        'jrails/event/eventService',
+        'module/user/service/authService',
+        'jrails/notify/notifyService',
+        'jrails/notify/driver/toastrDriver',
+        'jrails/bootstrap/modal/modalService',
+        'app/config/main',
+        'jrails/kernel/container',
+    ],
+    function(
+        router,
+        eventService,
+        authService,
+        notifyService,
+        toastrDriver,
+        modalService,
+        mainConfig,
+        container) {
 
     /**
      * Ядро приложения
@@ -11,21 +30,25 @@ space('bundle.module.app.bootstrap', function() {
          */
         initContainer: function () {
             //container.cache = bundle.cache.cacheService;
-            container.event = bundle.event.eventService;
-            //container.queue = bundle.queue.queueService;
-            /*container.loader = container.instance(bundle.ui.baseElementService, {
-                selector: '.js-loader',
-            });*/
-            container.authService = bundle.module.user.service.authService;
+
+            console.log(eventService);
+
+            //window.container = {};
+
+            container.event = eventService;
+
+            container.authService = authService;
             //container.notify = bundle.module.notify.service.notifyService;
-            container.notify = bundle.notify.notifyService;
-            container.notify.driver = bundle.notify.driver.toastrDriver;
-            container.modal = bundle.module.bootstrap.modal.modalService;
 
-            var restClient = use('bundle.rest.client');
+            container.notify = notifyService;
+            container.notify.driver = toastrDriver;
 
-            container.restClient = container.instance('bundle.rest.client', null, {
-                baseUrl: module.app.config.main.apiServer,
+            container.modal = modalService;
+
+            //var restClient = use('bundle.rest.client');
+
+            container.restClient = container.instance('jrails/rest/client', null, {
+                baseUrl: mainConfig.apiServer,
             });
             //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
@@ -60,14 +83,16 @@ space('bundle.module.app.bootstrap', function() {
          * @param params
          */
         run: function (params) {
-            bundle.kernel.bootstrap.run(params);
+            //bundle.kernel.bootstrap.run(params);
             this.initContainer();
-            this.initConfig();
+            //this.initConfig();
 
-            $('body').append(bundle.module.app.view.bodyTemplate.template());
+            router.init();
+
+            /*$('body').append(bundle.module.app.view.bodyTemplate.template());
             bundle.spa.router.init();
             bundle.vue.vm.ensure(bundle.module.app.controller.navbarController);
-            bundle.vue.vm.ensure(bundle.module.app.controller.footerController);
+            bundle.vue.vm.ensure(bundle.module.app.controller.footerController);*/
 
             console.info('application kernel launch');
         }

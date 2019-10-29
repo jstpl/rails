@@ -1,12 +1,10 @@
 {
-    "appDir": "../../rjs",
-    "mainConfigFile": "../../rjs/src/index.js",
-    "dir": "../../dist-rjs",
-    // List the modules that will be optimized.
+    "appDir": "../../src",
+    "mainConfigFile": "../../src/module/app/index.js",
+    "dir": "../../dist",
     "modules": [
         {
-            // module names are relative to baseUrl
-            "name": "index"
+            "name": "app/index"
         }
     ]
 }

@@ -1,6 +1,4 @@
-space('bundle.module.user.service.authService', function() {
-
-    var identityStore = bundle.module.user.store.identityStore;
+define(['module/user/store/identityStore'], function(identityStore) {
 
     return {
 
