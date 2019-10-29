@@ -1,4 +1,16 @@
-space('bundle.module.user.controller.logoutController', function() {
+define([
+    'jrails/kernel/container',
+    'module/user/service/authService',
+    'jrails/notify/notifyService',
+    'jrails/spa/router',
+    'module/user/lang/ru/auth',
+], function(
+    container,
+    authService,
+    notifyService,
+    spaRouter,
+    authLang
+) {
 
     return {
 
@@ -12,9 +24,9 @@ space('bundle.module.user.controller.logoutController', function() {
             },
         },
         run: function () {
-            container.authService.logout();
-            container.notify.success(lang.user.auth.successLogoutMessage);
-            bundle.spa.router.goHome();
+            authService.logout();
+            notifyService.success(authLang.successLogoutMessage);
+            spaRouter.goHome();
         },
         access: function () {
             return {

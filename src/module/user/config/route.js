@@ -1,19 +1,13 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
 
     router.addRoute('/user/auth', function () {
-        bundle.vue.loader.run({
-            controller: 'user',
-            action: 'auth',
-        });
+        var controllerClassName = 'module/user/controller/authController';
+        controllerFactory.createByClassName(controllerClassName);
     });
 
     router.addRoute('/user/logout', function () {
-        bundle.vue.loader.run({
-            controller: 'user',
-            action: 'logout',
-        });
+        var controllerClassName = 'module/user/controller/logoutController';
+        controllerFactory.createByClassName(controllerClassName);
     });
 
 });

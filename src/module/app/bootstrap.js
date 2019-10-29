@@ -4,38 +4,48 @@ define(
         'twitterBootstrap',
         'jrails/spa/router',
         'jrails/event/eventService',
+
         'module/user/service/authService',
         'jrails/notify/notifyService',
         'jrails/notify/driver/toastrDriver',
         'jrails/bootstrap/modal/modalService',
+
         'app/config/main',
         'jrails/kernel/container',
         'jrails/rest/client',
         'module/user/lang/ru/auth',
+
         'module/app/view/bodyTemplate',
         'jrails/vue/vm',
         'module/app/controller/navbarController',
         'module/app/controller/footerController',
-        'module/bskit/config/route'
+
+        'module/bskit/config/route',
+        'module/user/config/route',
     ],
     function(
         $,
         twitterBootstrap,
         router,
         eventService,
+
         authService,
         notifyService,
         toastrDriver,
         modalService,
+
         mainConfig,
         container,
         restClient,
         authLang,
+
         bodyTemplate,
         vm,
         navbarController,
         footerController,
-        bskitRouteConfig
+
+        bskitRouteConfig,
+        userRouteConfig,
     ) {
 
     /**
@@ -64,9 +74,9 @@ define(
 
             //var restClient = use('bundle.rest.client');
 
-            container.restClient = container.instance('jrails/rest/client', null, {
-                baseUrl: mainConfig.apiServer
-            });
+            restClient.baseUrl = mainConfig.apiServer;
+
+            container.restClient = restClient;
             //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 

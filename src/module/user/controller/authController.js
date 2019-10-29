@@ -1,4 +1,16 @@
-space('bundle.module.user.controller.authController', function() {
+define([
+    'jrails/kernel/container',
+    'module/user/service/authService',
+    'jrails/notify/notifyService',
+    'jrails/spa/router',
+    'module/user/lang/ru/auth',
+], function(
+    container,
+    authService,
+    notifyService,
+    spaRouter,
+    authLang
+) {
 
     var data = {
         entity: {},
@@ -10,28 +22,31 @@ space('bundle.module.user.controller.authController', function() {
 
     return {
 
+        el: '#app-user-auth',
         data: data,
         depends: [
             //'bundle.module.user.store.authStore',
         ],
+        templateFile: 'module/user/view/auth.html',
         methods: {
             auth: function (event) {
-                var promise = container.authService.auth(bundle.module.user.controller.authController.data.entity);
+                var promise = authService.auth(data.entity);
                 promise.then(function (identity) {
-                    bundle.module.user.controller.authController.data.entity = {};
-                    bundle.spa.router.go();
+                    data.entity = {};
+                    spaRouter.go();
+
                     console.log(identity);
-                    container.notify.success(lang.user.auth.successAuthorizationMessage);
+                    notifyService.success(authLang.successAuthorizationMessage);
                 }).catch(function (err) {
                     if(err.status === 422) {
-                        bundle.module.user.controller.authController.data.errors = {};
+                        data.errors = {};
                         for(var k in err.responseJSON) {
                             var fieldName = err.responseJSON[k].field;
                             var fieldMessage = err.responseJSON[k].message;
-                            bundle.module.user.controller.authController.data.errors[fieldName] = fieldMessage;
+                            data.errors[fieldName] = fieldMessage;
                             //console.log([fieldName, fieldMessage]);
                         }
-                        console.log(bundle.module.user.controller.authController.data.errors);
+                        console.log(data.errors);
                     }
                 });
             },
