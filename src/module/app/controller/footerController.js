@@ -1,4 +1,4 @@
-space('bundle.module.app.controller.footerController', function() {
+define(['module/app/view/footerTemplate'], function(footerTemplate) {
 
     var data = {
         brand: '© JS Rails 2019',
@@ -18,7 +18,7 @@ space('bundle.module.app.controller.footerController', function() {
         el: '#app-footer',
         data: data,
         created: function () {
-            $('#app-footer').html(bundle.module.app.view.footerTemplate.template());
+            $('#app-footer').html(footerTemplate.template());
         }
     };
 

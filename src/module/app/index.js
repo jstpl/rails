@@ -11,7 +11,7 @@ requirejs.config({
         jquery: '../../node_modules/jquery/dist/jquery.min',
         //bootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
         //redux: '../../node_modules/redux/dist/redux.min',
-        //vue: '../../node_modules/vue/dist/vue.min',
+        vue: '../../node_modules/vue/dist/vue.min',
         toastr: '../../node_modules/toastr/build/toastr.min',
         //jqueryUi: '../../node_modules/jquery-ui/jquery-ui.min',
     },
@@ -27,7 +27,10 @@ requirejs.config({
         },
         'toastr': {
             exports: 'toastr'
-        }
+        },
+        'vue': {
+            exports: 'Vue'
+        },
     }
 });
 

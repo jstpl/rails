@@ -1,4 +1,4 @@
-space('bundle.module.app.view.bodyTemplate', function() {
+define(function() {
 
     return {
         template: function () {

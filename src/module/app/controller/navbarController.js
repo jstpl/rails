@@ -1,4 +1,4 @@
-space('bundle.module.app.controller.navbarController', function() {
+define(['module/app/view/navbarTemplate', 'jrails/kernel/container', 'jquery'], function(navbarTemplate, container, $) {
 
     var data = {
         isLogin: false,
@@ -16,7 +16,7 @@ space('bundle.module.app.controller.navbarController', function() {
         el: '#app-navbar',
         data: data,
         created: function () {
-            $('#app-navbar').html(bundle.module.app.view.navbarTemplate.template());
+            $('#app-navbar').html(navbarTemplate.template());
             helper.update();
             container.event.registerHandler(['user.auth.login', 'user.auth.logout'], helper.update);
         },
