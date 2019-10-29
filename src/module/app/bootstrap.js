@@ -34,8 +34,9 @@ define(
         bodyTemplate,
         vm,
         navbarController,
-        footerController,
-        bskitRouteConfig) {
+        footerController
+        //bskitRouteConfig
+    ) {
 
     /**
      * Ядро приложения
@@ -64,7 +65,7 @@ define(
             //var restClient = use('bundle.rest.client');
 
             container.restClient = container.instance('jrails/rest/client', null, {
-                baseUrl: mainConfig.apiServer,
+                baseUrl: mainConfig.apiServer
             });
             //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
@@ -96,9 +97,8 @@ define(
 
         /**
          * Запуск ядра приложения
-         * @param params
          */
-        run: function (params) {
+        run: function () {
             //bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
