@@ -72,7 +72,7 @@ define(function() {
     return {
         el: '#app-bskit-all',
         data: data,
-        templateFile: 'module/bskit/view/all.html'
+        templateFile: 'module/bskit/view/all.html',
     };
 
 });
