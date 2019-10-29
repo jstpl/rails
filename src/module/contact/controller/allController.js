@@ -1,4 +1,4 @@
-space('bundle.module.contact.controller.allController', function() {
+define(['jrails/spa/template', 'jrails/spa/layer'], function(spaTemplate, spaLayer) {
 
     return {
 
@@ -21,8 +21,8 @@ space('bundle.module.contact.controller.allController', function() {
                     },
                 ],
             };
-            var moduleElement = bundle.spa.layer.getModuleLayer(request);
-            bundle.spa.template.compileElement(moduleElement, value);
+            var moduleElement = spaLayer.getModuleLayer(request);
+            spaTemplate.compileElement(moduleElement, value);
         },
 
     };

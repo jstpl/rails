@@ -1,16 +1,19 @@
-space(function() {
-
-    var router = use('bundle.spa.router');
+define(['jrails/vue/vm', 'jrails/spa/router', 'jrails/vue/loader', 'module/bskit/controller/allController'], function(vm, router, vueLoader, allController) {
 
     router.addRoute('/bskit', function () {
-        bundle.vue.loader.run({
+        /*allController.el = '#app-bskit-all';
+        vm.ensure(allController);*/
+
+        //alert(111);
+        vueLoader.run({
+            controllerInstance: allController,
             controller: 'bskit',
             action: 'all',
         });
     });
 
     router.addRoute('/bskit/:id', function (id) {
-        bundle.vue.loader.run({
+        vueLoader.run({
             controller: 'bskit',
             action: id,
             query: {

@@ -15,6 +15,7 @@ define(
         'jrails/vue/vm',
         'module/app/controller/navbarController',
         'module/app/controller/footerController',
+        'module/bskit/config/route'
     ],
     function(
         $,
@@ -31,7 +32,8 @@ define(
         bodyTemplate,
         vm,
         navbarController,
-        footerController) {
+        footerController,
+        bskitRouteConfig) {
 
     /**
      * Ядро приложения
@@ -44,8 +46,6 @@ define(
          */
         initContainer: function () {
             //container.cache = bundle.cache.cacheService;
-
-            console.log(eventService);
 
             //window.container = {};
 

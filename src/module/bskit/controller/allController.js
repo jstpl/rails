@@ -1,4 +1,4 @@
-space('bundle.module.bskit.controller.allController', function() {
+define(['text!module/bskit/view/all.html'], function(template) {
 
     var data = {
         collection: [
@@ -72,6 +72,7 @@ space('bundle.module.bskit.controller.allController', function() {
     return {
 
         data: data,
+        template: template
 
     };
 

@@ -9,10 +9,12 @@ requirejs.config({
         DirectorRouter: '../../node_modules/director/build/director.min',
         lodash: '../../node_modules/lodash/lodash.min',
         jquery: '../../node_modules/jquery/dist/jquery.min',
+        text: '../module/app/text',
         //bootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
         //redux: '../../node_modules/redux/dist/redux.min',
         vue: '../../node_modules/vue/dist/vue.min',
         toastr: '../../node_modules/toastr/build/toastr.min',
+        myView: "../module/bskit/view/all.html"
         //jqueryUi: '../../node_modules/jquery-ui/jquery-ui.min',
     },
     shim: {
