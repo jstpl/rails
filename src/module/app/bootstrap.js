@@ -1,6 +1,7 @@
 define(
     [
         'jquery',
+        'twitterBootstrap',
         'jrails/spa/router',
         'jrails/event/eventService',
         'module/user/service/authService',
@@ -19,6 +20,7 @@ define(
     ],
     function(
         $,
+        twitterBootstrap,
         router,
         eventService,
         authService,

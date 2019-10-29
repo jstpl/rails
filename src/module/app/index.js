@@ -10,12 +10,11 @@ requirejs.config({
         lodash: '../../node_modules/lodash/lodash.min',
         jquery: '../../node_modules/jquery/dist/jquery.min',
         text: '../module/app/text',
-        //bootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
+        twitterBootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
         //redux: '../../node_modules/redux/dist/redux.min',
         vue: '../../node_modules/vue/dist/vue.min',
         toastr: '../../node_modules/toastr/build/toastr.min',
-        myView: "../module/bskit/view/all.html"
-        //jqueryUi: '../../node_modules/jquery-ui/jquery-ui.min',
+        jqueryUi: '../../node_modules/jquery-ui/jquery-ui.min',
     },
     shim: {
         'DirectorRouter': {
@@ -26,6 +25,13 @@ requirejs.config({
         },
         'jquery': {
             exports: '$'
+        },
+        "jqueryUi": {
+            exports: "$",
+            deps: ['jquery']
+        },
+        "twitterBootstrap": {
+            deps: ["jquery"]
         },
         'toastr': {
             exports: 'toastr'
