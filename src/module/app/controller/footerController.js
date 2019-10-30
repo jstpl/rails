@@ -5,11 +5,11 @@ define(['module/app/view/footerTemplate'], function(footerTemplate) {
         rightLinks: [
             {
                 title: 'dist',
-                url: '/dist.html',
+                url: '/dist',
             },
             {
-                title: 'dev',
-                url: '/.',
+                title: 'src',
+                url: '/src',
             },
         ],
     };

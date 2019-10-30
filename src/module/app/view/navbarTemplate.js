@@ -15,8 +15,6 @@ define(function() {
                 '        <div class="collapse navbar-collapse">\n' +
                 '            <ul class="nav navbar-nav">\n' +
                 '                <li><a href="#bskit">BS3 UIKit</a></li>\n' +
-                '                <li><a href="#contact">Contact</a></li>\n' +
-                '                <li><a href="#todo">Todo</a></li>\n' +
                 '            </ul>\n' +
                 '            <ul class="nav navbar-nav navbar-right">\n' +
                 '                <li v-if=" ! isLogin"><a href="#user/auth">Auth</a></li>\n' +
