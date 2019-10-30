@@ -1,4 +1,18 @@
-space('bundle.module.person.controller.updateController', function() {
+define([
+    'jrails/kernel/container',
+    'module/person/service/personService',
+    'jrails/notify/notifyService',
+    'jrails/event/eventService',
+    'jrails/spa/router',
+    'module/person/lang/ru/info',
+], function(
+    container,
+    personService,
+    notifyService,
+    eventService,
+    spaRouter,
+    personLang
+) {
 
     var data = {
         errors: {},
@@ -7,17 +21,15 @@ space('bundle.module.person.controller.updateController', function() {
 
     return {
 
+        el: '#app-person-update',
         data: data,
-        depends: [
-            'bundle.module.person.service.personService',
-            '/src/module/person/lang/ru/info.js',
-        ],
+        templateFile: 'module/person/view/update.html',
         methods: {
             save: function (event) {
-                var promise = bundle.module.person.service.personService.update(data.entity);
+                var promise = personService.update(data.entity);
                 promise.then(function (data) {
                     //container.event.trigger('person.info.update', data);
-                    bundle.spa.router.go('person/view');
+                    spaRouter.go('person/view');
                 }).catch(function (err) {
                     if(err.status === 422) {
                         var errors = {};
@@ -26,7 +38,7 @@ space('bundle.module.person.controller.updateController', function() {
                             var fieldMessage = err.responseJSON[k].message;
                             errors[fieldName] = fieldMessage;
                         }
-                        console.log(errors);
+                        //console.log(errors);
                         data.errors = errors;
 
                         //console.log(bundle.module.user.controller.authController.data.errors);
@@ -39,15 +51,15 @@ space('bundle.module.person.controller.updateController', function() {
                 auth: '@',
             };
         },
+        created: function () {
+            eventService.registerHandler('person.info.update', function (entity) {
+                notifyService.success(personLang.infoUpdatedMessage);
+            })
+        },
         run: function () {
-            bundle.module.person.service.personService.oneSelf().then(function (entity) {
+            personService.oneSelf().then(function (entity) {
                 data.entity = entity;
             });
-        },
-        created: function () {
-            container.event.registerHandler('person.info.update', function (entity) {
-                container.notify.success(lang.person.info.infoUpdatedMessage);
-            })
         },
     };
 

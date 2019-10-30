@@ -1,4 +1,16 @@
-space('bundle.module.person.controller.viewController', function() {
+define([
+    'jrails/kernel/container',
+    'module/person/service/personService',
+    'jrails/notify/notifyService',
+    'jrails/spa/router',
+    'module/user/lang/ru/auth',
+], function(
+    container,
+    personService,
+    notifyService,
+    spaRouter,
+    authLang
+) {
 
     var data = {
         entity: {},
@@ -6,18 +18,20 @@ space('bundle.module.person.controller.viewController', function() {
 
     return {
 
+        el: '#app-person-view',
         data: data,
-        depends: [
-            'bundle.module.person.service.personService',
-        ],
+        templateFile: 'module/person/view/view.html',
         access: function () {
             return {
                 auth: '@',
             };
         },
+        created: function () {
+
+        },
         run: function () {
-            bundle.module.person.service.personService.oneSelf().then(function (entity) {
-                d(entity);
+            personService.oneSelf().then(function (entity) {
+                //d(entity);
                 data.entity = entity;
             });
         },

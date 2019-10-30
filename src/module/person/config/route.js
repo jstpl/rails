@@ -1,19 +1,14 @@
-space(function() {
+define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
 
-    var router = use('bundle.spa.router');
 
     router.addRoute('/person/view', function () {
-        bundle.vue.loader.run({
-            controller: 'person',
-            action: 'view',
-        });
+        var controllerClassName = 'module/person/controller/viewController';
+        controllerFactory.createByClassName(controllerClassName);
     });
 
     router.addRoute('/person/update', function () {
-        bundle.vue.loader.run({
-            controller: 'person',
-            action: 'update',
-        });
+        var controllerClassName = 'module/person/controller/updateController';
+        controllerFactory.createByClassName(controllerClassName);
     });
 
 });
