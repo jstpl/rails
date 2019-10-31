@@ -64,26 +64,13 @@ define(
          * Регистрация сервисов в контейнере
          */
         initContainer: function () {
-            //container.cache = bundle.cache.cacheService;
-
-            //window.container = {};
-
             container.event = eventService;
-
             container.authService = authService;
-            //container.notify = bundle.module.notify.service.notifyService;
-
             container.notify = notifyService;
             container.notify.driver = toastrDriver;
-
             container.modal = modalService;
-
-            //var restClient = use('bundle.rest.client');
-
             restClient.baseUrl = mainConfig.apiServer;
-
             container.restClient = restClient;
-            //container.restClient.setBaseUrl(module.app.config.main.apiServer);
         },
 
         /**
