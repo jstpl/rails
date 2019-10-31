@@ -1,8 +1,6 @@
-define(['module/app/view/footerTemplate'], function(footerTemplate) {
+define(['text!module/app/view/main.html'], function() {
 
-    var data = {
-
-    };
+    var data = {};
 
     return {
         el: '#app-main',

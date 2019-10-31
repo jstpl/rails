@@ -1,4 +1,4 @@
-define(['module/app/view/navbarTemplate', 'jrails/kernel/container', 'jquery'], function(navbarTemplate, container, $) {
+define(['text!module/app/view/navbar.html', 'jrails/kernel/container', 'jquery'], function(templateCode, container, $) {
 
     var data = {
         isLogin: false,
@@ -16,7 +16,7 @@ define(['module/app/view/navbarTemplate', 'jrails/kernel/container', 'jquery'], 
         el: '#app-navbar',
         data: data,
         created: function () {
-            $('#app-navbar').html(navbarTemplate.template());
+            $('#app-navbar').html(templateCode);
             helper.update();
             container.event.registerHandler(['user.auth.login', 'user.auth.logout'], helper.update);
         },

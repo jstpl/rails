@@ -1,13 +1,21 @@
-define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/user/controller/authController',
+    'module/user/controller/logoutController'
+], function(
+    router,
+    controllerFactory,
+    authController,
+    logoutController
+) {
 
     router.addRoute('/user/auth', function () {
-        var controllerClassName = 'module/user/controller/authController';
-        controllerFactory.createByClassName(controllerClassName);
+        controllerFactory.createByClass(authController);
     });
 
     router.addRoute('/user/logout', function () {
-        var controllerClassName = 'module/user/controller/logoutController';
-        controllerFactory.createByClassName(controllerClassName);
+        controllerFactory.createByClass(logoutController);
     });
 
 });

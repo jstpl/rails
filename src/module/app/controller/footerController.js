@@ -1,4 +1,4 @@
-define(['module/app/view/footerTemplate'], function(footerTemplate) {
+define(['text!module/app/view/footer.html'], function(templateCode) {
 
     var data = {
         brand: '© JS Rails 2019',
@@ -17,8 +17,9 @@ define(['module/app/view/footerTemplate'], function(footerTemplate) {
     return {
         el: '#app-footer',
         data: data,
+        //templateFile: 'module/app/view/footer.html',
         created: function () {
-            $('#app-footer').html(footerTemplate.template());
+            $('#app-footer').html(templateCode);
         }
     };
 

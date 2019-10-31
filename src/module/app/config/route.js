@@ -1,8 +1,15 @@
-define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/app/controller/mainController',
+], function(
+    router,
+    controllerFactory,
+    mainController
+) {
 
     router.addRoute('/', function () {
-        var controllerClassName = 'module/app/controller/mainController';
-        controllerFactory.createByClassName(controllerClassName);
+        controllerFactory.createByClass(mainController);
     });
 
 });

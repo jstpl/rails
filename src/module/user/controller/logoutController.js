@@ -15,9 +15,6 @@ define([
     return {
 
         data: {},
-        depends: [
-            //'bundle.module.user.store.authStore',
-        ],
         methods: {
             out: function (event) {
 

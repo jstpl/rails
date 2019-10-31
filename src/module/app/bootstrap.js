@@ -15,15 +15,18 @@ define(
         'jrails/rest/client',
         'module/user/lang/ru/auth',
 
-        'module/app/view/bodyTemplate',
+        'text!module/app/view/body.html',
         'jrails/vue/vm',
         'module/app/controller/navbarController',
         'module/app/controller/footerController',
+
+        //
 
         'module/bskit/config/route',
         'module/user/config/route',
         'module/person/config/route',
         'module/app/config/route',
+
     ],
     function(
         $,
@@ -41,15 +44,14 @@ define(
         restClient,
         authLang,
 
-        bodyTemplate,
+        bodyTemplateCode,
         vm,
         navbarController,
-        footerController,
+        footerController
 
-        bskitRouteConfig,
-        userRouteConfig,
-        personRouteConfig,
-        mainRouteConfig
+        //
+
+
     ) {
 
     /**
@@ -88,8 +90,6 @@ define(
          * Конфигурация приложения
          */
         initConfig: function () {
-            /** Конфигурация приложения */
-
             container.event.registerHandler('api.request.send.error', function (response) {
                 if(response.status === 401) {
                     authService.logout();
@@ -106,7 +106,15 @@ define(
                 container.notify.info(authLang.authorizationRequiredMessage);
                 router.go('user/auth');
             });
+        },
 
+        /**
+         * Инициализация основного шаблона
+         */
+        initLayout: function () {
+            $('body').append(bodyTemplateCode);
+            vm.ensure(navbarController);
+            vm.ensure(footerController);
         },
 
         /**
@@ -116,11 +124,9 @@ define(
             //bundle.kernel.bootstrap.run(params);
             this.initContainer();
             this.initConfig();
+            this.initLayout();
 
-            $('body').append(bodyTemplate.template());
             router.init();
-            vm.ensure(navbarController);
-            vm.ensure(footerController);
 
             console.info('application kernel launch');
         }

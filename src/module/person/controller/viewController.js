@@ -4,6 +4,10 @@ define([
     'jrails/notify/notifyService',
     'jrails/spa/router',
     'module/user/lang/ru/auth',
+
+    //
+
+    'text!module/person/view/view.html',
 ], function(
     container,
     personService,

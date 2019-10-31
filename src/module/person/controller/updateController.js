@@ -5,6 +5,10 @@ define([
     'jrails/event/eventService',
     'jrails/spa/router',
     'module/person/lang/ru/info',
+
+    //
+
+    'text!module/person/view/update.html',
 ], function(
     container,
     personService,
@@ -12,6 +16,10 @@ define([
     eventService,
     spaRouter,
     personLang
+
+    //
+
+
 ) {
 
     var data = {

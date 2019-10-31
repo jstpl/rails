@@ -1,14 +1,21 @@
-define(['jrails/spa/router', 'jrails/spa/controllerFactory'], function(router, controllerFactory) {
-
+define([
+    'jrails/spa/router',
+    'jrails/spa/controllerFactory',
+    'module/person/controller/viewController',
+    'module/person/controller/updateController',
+], function(
+    router,
+    controllerFactory,
+    viewController,
+    updateController
+) {
 
     router.addRoute('/person/view', function () {
-        var controllerClassName = 'module/person/controller/viewController';
-        controllerFactory.createByClassName(controllerClassName);
+        controllerFactory.createByClass(viewController);
     });
 
     router.addRoute('/person/update', function () {
-        var controllerClassName = 'module/person/controller/updateController';
-        controllerFactory.createByClassName(controllerClassName);
+        controllerFactory.createByClass(updateController);
     });
 
 });
