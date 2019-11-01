@@ -21,7 +21,7 @@
         DirectorRouter: '../../node_modules/director/build/director.min',
         lodash: '../../node_modules/lodash/lodash.min',
         jquery: '../../node_modules/jquery/dist/jquery.min',
-        text: '../module/app/text',
+        text: '../../node_modules/text/text',
         twitterBootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
         //redux: '../../node_modules/redux/dist/redux.min',
         vue: '../../node_modules/vue/dist/vue.min',

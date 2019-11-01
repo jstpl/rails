@@ -28,6 +28,7 @@
     "marked": "^0.7.0",
     "redux": "^3.5.2",
     "requirejs": "^2.3.6",
+    "text": "github:requirejs/text",
     "toastr": "^2.1.4",
     "vue": "^2.6.10"
   }
