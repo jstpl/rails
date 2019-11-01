@@ -5,3 +5,4 @@ gulp.task('clean', build.clean);
 gulp.task('build-dev', build.dev);
 gulp.task('build-prod', build.prod);
 gulp.task('build-rails', build.rails);
+gulp.task('build-dev-style', build.devStyle);

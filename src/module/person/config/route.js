@@ -1,21 +1,21 @@
 define([
     'jrails/spa/router',
     'jrails/spa/controllerFactory',
-    'module/person/controller/viewController',
-    'module/person/controller/updateController',
+    'module/person/vm/viewVm',
+    'module/person/vm/updateVm',
 ], function(
     router,
     controllerFactory,
-    viewController,
-    updateController
+    viewVm,
+    updateVm
 ) {
 
     router.addRoute('/person/view', function () {
-        controllerFactory.createByClass(viewController);
+        controllerFactory.createByClass(viewVm);
     });
 
     router.addRoute('/person/update', function () {
-        controllerFactory.createByClass(updateController);
+        controllerFactory.createByClass(updateVm);
     });
 
 });

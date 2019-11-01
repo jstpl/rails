@@ -7,7 +7,7 @@ define([
 
     //
 
-    'text!module/person/view/view.html',
+    'text!module/person/template/view.html',
 ], function(
     container,
     personService,
@@ -24,7 +24,7 @@ define([
 
         el: '#app-person-view',
         data: data,
-        templateFile: 'module/person/view/view.html',
+        templateFile: 'module/person/template/view.html',
         access: function () {
             return {
                 auth: '@',

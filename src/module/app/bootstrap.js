@@ -15,17 +15,17 @@ define(
         'jrails/rest/client',
         'module/user/lang/ru/auth',
 
-        'text!module/app/view/body.html',
+        'text!module/app/template/body.html',
         'jrails/vue/vm',
-        'module/app/controller/navbarController',
-        'module/app/controller/footerController',
+        'module/app/vm/navbarVm',
+        'module/app/vm/footerVm',
 
         //
 
         'module/bskit/config/route',
         'module/user/config/route',
         'module/person/config/route',
-        'module/app/config/route',
+        'module/dashboard/config/route',
 
     ],
     function(
@@ -46,8 +46,8 @@ define(
 
         bodyTemplateCode,
         vm,
-        navbarController,
-        footerController
+        navbarVm,
+        footerVm
 
         //
 
@@ -100,8 +100,8 @@ define(
          */
         initLayout: function () {
             $('body').append(bodyTemplateCode);
-            vm.ensure(navbarController);
-            vm.ensure(footerController);
+            vm.ensure(navbarVm);
+            vm.ensure(footerVm);
         },
 
         /**

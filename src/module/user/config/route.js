@@ -1,21 +1,21 @@
 define([
     'jrails/spa/router',
     'jrails/spa/controllerFactory',
-    'module/user/controller/authController',
-    'module/user/controller/logoutController'
+    'module/user/vm/authVm',
+    'module/user/vm/logoutVm'
 ], function(
     router,
     controllerFactory,
-    authController,
-    logoutController
+    authVm,
+    logoutVm
 ) {
 
     router.addRoute('/user/auth', function () {
-        controllerFactory.createByClass(authController);
+        controllerFactory.createByClass(authVm);
     });
 
     router.addRoute('/user/logout', function () {
-        controllerFactory.createByClass(logoutController);
+        controllerFactory.createByClass(logoutVm);
     });
 
 });

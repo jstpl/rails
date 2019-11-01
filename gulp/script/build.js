@@ -50,6 +50,10 @@ var build = {
         builderTypeHelper.buildPage(data, '.');
     },
 
+    devStyle: function () {
+        builderTypeHelper.buildStyle(src.style.all, './src/assets/style', 'vendor.css', true);
+    },
+
     /**
      * Собираем рельсы
      *

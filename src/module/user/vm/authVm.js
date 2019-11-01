@@ -7,7 +7,7 @@ define([
 
     //
 
-    'text!module/user/view/auth.html',
+    'text!module/user/template/auth.html',
 ], function(
     container,
     authService,
@@ -31,7 +31,7 @@ define([
         depends: [
             //'bundle.module.user.store.authStore',
         ],
-        templateFile: 'module/user/view/auth.html',
+        templateFile: 'module/user/template/auth.html',
         methods: {
             auth: function (event) {
                 var promise = authService.auth(data.entity);

@@ -1,4 +1,4 @@
-define(['text!module/bskit/view/all.html'], function(templateCode) {
+define(['text!module/bskit/template/all.html'], function(templateCode) {
 
     var data = {
         collection: [
@@ -73,7 +73,7 @@ define(['text!module/bskit/view/all.html'], function(templateCode) {
         el: '#app-bskit-all',
         data: data,
         //template: templateCode,
-        templateFile: 'module/bskit/view/all.html',
+        templateFile: 'module/bskit/template/all.html',
     };
 
 });

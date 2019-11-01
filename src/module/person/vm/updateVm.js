@@ -8,7 +8,7 @@ define([
 
     //
 
-    'text!module/person/view/update.html',
+    'text!module/person/template/update.html',
 ], function(
     container,
     personService,
@@ -31,7 +31,7 @@ define([
 
         el: '#app-person-update',
         data: data,
-        templateFile: 'module/person/view/update.html',
+        templateFile: 'module/person/template/update.html',
         methods: {
             save: function (event) {
                 var promise = personService.update(data.entity);

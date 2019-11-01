@@ -1,4 +1,4 @@
-define(['text!module/app/view/navbar.html', 'jrails/kernel/container', 'jquery'], function(templateCode, container, $) {
+define(['text!module/app/template/navbar.html', 'jrails/kernel/container', 'jquery'], function(templateCode, container, $) {
 
     var data = {
         isLogin: false,

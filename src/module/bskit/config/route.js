@@ -1,21 +1,21 @@
 define([
     'jrails/spa/router',
     'jrails/spa/controllerFactory',
-    'module/bskit/controller/allController',
-    'module/bskit/controller/oneController',
+    'module/bskit/vm/allVm',
+    'module/bskit/vm/oneVm',
 ], function(
     router,
     controllerFactory,
-    allController,
-    oneController
+    allVm,
+    oneVm
 ) {
 
     router.addRoute('/bskit', function () {
-        controllerFactory.createByClass(allController);
+        controllerFactory.createByClass(allVm);
     });
 
     router.addRoute('/bskit/:id', function (id) {
-        controllerFactory.createByClass(oneController, {id: id});
+        controllerFactory.createByClass(oneVm, {id: id});
     });
 
 });
