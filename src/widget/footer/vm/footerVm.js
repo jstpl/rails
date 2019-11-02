@@ -5,11 +5,11 @@ define(['text!widget/footer/template/footer.html'], function(templateCode) {
         rightLinks: [
             {
                 title: 'dist',
-                url: '/dist',
+                url: 'http://dist.rails.js',
             },
             {
                 title: 'src',
-                url: '/src',
+                url: 'http://src.rails.js',
             },
         ],
     };

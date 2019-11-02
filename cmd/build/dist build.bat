@@ -1,3 +1,3 @@
 cd ../..
-node rjs.js
+node build/dist.js
 gulp build-dist-build
