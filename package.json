@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.4.1",
+    "copy": "^0.3.2",
     "director": "^1.2.6",
     "gulp-concat": "^2.6.1",
     "highlight.js": "^9.15.10",

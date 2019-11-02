@@ -1,3 +1,3 @@
-cd ..
+cd ../..
 npm update
 pause

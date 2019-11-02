@@ -1,3 +1,3 @@
-cd ..
+cd ../..
 gulp build-prod
 pause
