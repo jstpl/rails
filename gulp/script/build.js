@@ -4,7 +4,9 @@ var src = require('../config/src');
 var helper = require('../../node_modules/jrails/gulp/script/helper');
 var builderTypeHelper = require('../../node_modules/jrails/gulp/script/builderTypeHelper');
 var rjs = require('gulp-requirejs');
-var requireJs = require('requirejs');
+//var requireJs = require('requirejs');
+var requirejs = require('requirejs');
+var config = require('../../build/distConfig');
 
 var build = {
 
@@ -138,6 +140,11 @@ var build = {
 
     // боевая сборка
     dist: function () {
+        /*config.baseUrl = '../../..';
+        requirejs.optimize( config, function(results) {
+            console.log(results);
+        });*/
+
         // собираем стили вендоров
         builderTypeHelper.buildStyle(src.style.all, './dist/assets', 'built.css', true);
         // копируем нужные файлы

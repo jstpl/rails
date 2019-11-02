@@ -1,3 +1,3 @@
 cd ../..
-node "./node_modules/requirejs/bin/r.js" -o "src/app/config/requirejs.js"
+node rjs.js
 gulp build-dist-build
