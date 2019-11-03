@@ -3294,7 +3294,7 @@ define('jrails/kernel/container',['lodash', 'jrails/helper/class'], function(_, 
     return window.container;
 
 });
-define('jrails/rest/client',['lodash'], function(lodash) {
+define('jrails/rest/client',['lodash', 'jquery'], function(lodash, $) {
 
     var helper = {
 
@@ -3370,7 +3370,7 @@ define('jrails/rest/client',['lodash'], function(lodash) {
         sendRequest: function (requestSource) {
             var request = _.clone(requestSource);
             this.prepareRequest(request);
-            var promiseCallback = function(resolve,reject){
+            var promiseCallback = function(resolve, reject){
                 request.success = function(data) {
                     resolve(data);
                     container.event.trigger('api.request.send.success', data);
