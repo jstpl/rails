@@ -5,19 +5,7 @@ requirejs.config({
     paths: {
         module: '../module',
         widget: '../widget',
-        app: '../app',
-        jrails: '../../node_modules/jrails/src',
-        DirectorRouter: '../../node_modules/director/build/director.min',
-        lodash: '../../node_modules/lodash/lodash.min',
-        jquery: '../../node_modules/jquery/dist/jquery.min',
-        text: '../../node_modules/text/text',
-        twitterBootstrap: '../../node_modules/bootstrap/dist/js/bootstrap.min',
-        //redux: '../../node_modules/redux/dist/redux.min',
-        vue: '../../node_modules/vue/dist/vue.min',
-        //toastr: '../../node_modules/toastr/build/toastr.min',
-        toastr: '../app/toastr',
-        jqueryUi: '../../node_modules/jquery-ui/jquery-ui.min',
-        //templates: '../app/view',
+        app: '../app'
     },
     shim: {
         'DirectorRouter': {
@@ -42,7 +30,7 @@ requirejs.config({
         },
         'vue': {
             exports: 'Vue'
-        },
+        }
     }
 });
 
