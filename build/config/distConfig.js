@@ -3,7 +3,6 @@
 var config = require('jrails/requirejs/requirejs-deps');
 // указываем в какой файл собирать
 config.out = "dist/assets/built.js";
-config.out = "dist/assets/built.js";
 config.name = "src/app/index";
 
 config.paths['module'] = 'src/module';
