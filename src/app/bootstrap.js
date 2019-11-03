@@ -20,12 +20,8 @@ define(
         'widget/navbar/vm/navbarVm',
         'widget/footer/vm/footerVm',
 
-        //
-
-        'module/bskit/config/route',
-        'module/user/config/route',
-        'module/person/config/route',
-        'module/dashboard/config/route',
+        // подключаем зависимости
+        'app/config/dependency',
 
     ],
     function(
