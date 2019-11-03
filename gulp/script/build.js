@@ -6,7 +6,7 @@ var builderTypeHelper = require('../../node_modules/jrails/gulp/script/builderTy
 var rjs = require('gulp-requirejs');
 //var requireJs = require('requirejs');
 var requirejs = require('requirejs');
-var config = require('../../build/distConfig');
+//var config = require('../../build/config/distConfig');
 
 var build = {
 
