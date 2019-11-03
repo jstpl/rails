@@ -21,7 +21,6 @@ define(['text!widget/footer/template/footer.html'], function(templateCode) {
     return {
         el: '#app-footer',
         data: data,
-        //templateFile: 'app/template/footer.html',
         created: function () {
             $('#app-footer').html(templateCode);
         }
