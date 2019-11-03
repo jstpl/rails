@@ -11,21 +11,51 @@ var del = require('del');
 
 var build = {
 
-    dist: function () {
-        var dir = './dist/assets';
-        var promise = del(dir);
-        promise.then(function () {
-            var config = require('../../build/config/distConfig');
-            rjs(config).pipe(gulp.dest('.'));
+    /**
+     * Собираем проект для продакшн
+     * 
+     * Шаги:
+     * - собираем стили
+     * - собираем скрипты
+     * - собираем шаблоны
+     * - мнифицируем
+     */
+    prod: function () {
+        builderTypeHelper.buildStyle(src.style.all, './dist/assets/style', 'build.css', true);
+        builderTypeHelper.buildScript(src.script.all, './dist/assets/script', 'build.js', true);
 
-            builderTypeHelper.buildStyle(src.style.all, dir, 'built.css', true);
-            // копируем нужные файлы
-            builderTypeHelper.copy(['./src/app/root/*'], 'dist');
+        var data = {
+            scriptList: ['assets/script/build-min.js'],
+            styleList: ['assets/style/build.css']
+        };
+        data.scriptList = helper.replaceInArray(data.scriptList, '/src/', '/');
+        data.styleList = helper.replaceInArray(data.styleList, '/src/', '/');
 
-        });
+        builderTypeHelper.buildPage(data, './dist');
     },
 
+    /**
+     * Собираем проект для разработки
+     * 
+     * Шаги:
+     * - собираем стили в разные файлы (вендоры, рельсы)
+     * - собираем скрипты в разные файлы (вендоры, рельсы)
+     */
     dev: function () {
+        builderTypeHelper.buildStyle(src.style.all, './src/assets/style', 'vendor.css');
+        builderTypeHelper.buildScript(src.script.vendor, './src/script', 'vendor.js');
+        builderTypeHelper.buildScript(src.script.rails, './src/script', 'rails.js');
+
+        var vendorScriptList = ['./src/assets/vendor.js'];
+        var bundleScriptList = helper.getFileList(src.script.rails);
+        var appScriptList = helper.getFileList(src.script.app);
+        var data = {};
+        data.scriptList = vendorScriptList.concat(bundleScriptList.concat(appScriptList));
+        data.styleList = ['./src/assets/style/vendor.css'];
+        builderTypeHelper.buildPage(data, '.');
+    },
+
+    devRjs: function () {
         var dir = './src/assets';
         var promise = del(dir);
         promise.then(function () {
@@ -33,6 +63,9 @@ var build = {
             rjs(config).pipe(gulp.dest('.'));
             builderTypeHelper.buildStyle(src.style.all, dir, 'vendor.css', true);
         });
+        /*requirejs.optimize( config, function(results) {
+            console.log(results);
+        });*/
     },
 
     // сборка стилей для разработки
@@ -55,7 +88,7 @@ var build = {
     },
 
     // боевая сборка
-    dist1111: function () {
+    dist: function () {
         /*config.baseUrl = '../../..';
         requirejs.optimize( config, function(results) {
             console.log(results);
