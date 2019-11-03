@@ -26,7 +26,7 @@ module.exports = {
         // удаление сбоорки (нужно для пересборки)
         var promise = del(dir);
         promise.then(function () {
-            var config = require('../../build/config/distConfig');
+            var config = require('../config/distConfig');
             rjs(config).pipe(gulp.dest('.'));
             // сборка стилей для боя
             builderTypeHelper.buildStyle(src.style.all, dir, 'built.css', true);
@@ -40,7 +40,7 @@ module.exports = {
         // удаление сбоорки (нужно для пересборки)
         var promise = del(dir);
         promise.then(function () {
-            var config = require('../../build/config/devConfig');
+            var config = require('../config/devConfig');
             rjs(config).pipe(gulp.dest('.'));
             // сборка стилей для разработки
             builderTypeHelper.buildStyle(src.style.all, dir, 'vendor.css', true);

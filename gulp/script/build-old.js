@@ -4,10 +4,8 @@ var src = require('../config/src');
 var helper = require('../../node_modules/jrails/gulp/script/helper');
 var builderTypeHelper = require('../../node_modules/jrails/gulp/script/builderTypeHelper');
 var rjs = require('gulp-requirejs');
-//var requireJs = require('requirejs');
 var requirejs = require('requirejs');
 var del = require('del');
-//var config = require('../../build/config/distConfig');
 
 var build = {
 
