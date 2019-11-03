@@ -11,6 +11,10 @@ define(['text!widget/footer/template/footer.html'], function(templateCode) {
                 title: 'src',
                 url: 'http://src.rails.js',
             },
+            {
+                title: 'clean',
+                url: 'http://rails.js/src/clean.html',
+            },
         ],
     };
 
