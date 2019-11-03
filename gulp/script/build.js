@@ -3,8 +3,23 @@ var src = require('../config/src');
 var builderTypeHelper = require('../../node_modules/jrails/gulp/script/builderTypeHelper');
 var rjs = require('gulp-requirejs');
 var del = require('del');
+var replace = require('gulp-replace');
+var fs = require("fs");
 
 module.exports = {
+
+    one: function () {
+        fs.readFile("./dist/assets/built.js", "utf-8", function(err, code) {
+            gulp.src(['./src/root/index.html'])
+                .pipe(replace('<!--SCRIPT_PLACEHOLDER-->', '<script>\n' + code + '\n</script>'))
+                .pipe(gulp.dest('./dist/one'));
+            fs.readFile("./dist/assets/built.css", "utf-8", function(err, code) {
+                gulp.src(['./dist/one/index.html'])
+                    .pipe(replace('<!--STYLE_PLACEHOLDER-->', '<style>\n' + code + '\n</style>'))
+                    .pipe(gulp.dest('./dist/one'));
+            });
+        });
+    },
 
     dist: function () {
         var dir = './dist/assets';
